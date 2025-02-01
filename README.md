@@ -2,7 +2,7 @@
 
 <img src="https://github.com/user-attachments/assets/242eded9-d940-42df-9321-1dfed7595efa" width="200" />
 
-** Problem statement **
+__ Problem statement __
 
 * Current methods of locating and accessing municipal facilities are inefficient and lack 
 transparency. Users often struggle to find accurate and up-to-date information about 
@@ -11,7 +11,7 @@ for business owners to update their service information. This project aims to so
 these problems by creating a web application that provides comprehensive 
 information and improves user interaction with municipal services. *
 
-** Proposed Solution **
+__ Proposed Solution __
 
 * The scope of the City Support encompasses the development, implementation, and 
 continuous improvement of a web application aimed at enhancing access to municipal 
