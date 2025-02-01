@@ -13,3 +13,8 @@ Hi, I'm Krish. Below is the tech stack used in City Support.
 | Cloud Database| MongoDB Atlas       |
 | Server| Express.js       |
 | Styling| Material UI       |
+
+<p3>Client</p3>
+contains Frontend Files
+<p3>Server</p3>
+contains Backend Files
