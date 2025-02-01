@@ -8,8 +8,8 @@ Hi, I'm Krish. Below is the tech stack used in City Support.
 
 | Feature | Languages |
 |-----:|-----------|
-|     Frontend| React.js    |
-|     Backend| Node.js|
-|     Cloud Database| MongoDB Atlas       |
-|     Server| Express.js       |
-|     Styling| Material UI       |
+| Frontend| React.js    |
+| Backend| Node.js|
+| Cloud Database| MongoDB Atlas       |
+| Server| Express.js       |
+| Styling| Material UI       |
