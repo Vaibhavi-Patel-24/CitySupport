@@ -14,7 +14,7 @@ Hi, I'm Krish. Below is the tech stack used in City Support.
 | Server| Express.js       |
 | Styling| Material UI       |
 
-<p3>Client</p3>
-contains Frontend Files
-<p3>Server</p3>
-contains Backend Files
+##Client
+###contains Frontend Files
+##Server
+###contains Backend Files
