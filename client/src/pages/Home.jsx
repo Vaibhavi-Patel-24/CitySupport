@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Banner from "../components/Banner";
 import HomeMarquee from "../components/HomeMarquee";
 import EventsSection from "../components/Events";
+import MustVisit from "../components/MustVisit";
+
 
 export default function Home(){
     return(
@@ -12,6 +14,7 @@ export default function Home(){
              <HomeMarquee/>
              <Banner/>
              <EventsSection/>
+             <MustVisit/>
              
        </div>
     )
