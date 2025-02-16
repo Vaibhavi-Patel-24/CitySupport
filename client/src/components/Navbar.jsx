@@ -27,6 +27,7 @@ const Image = styled("img")({
 
 export default function Navbar() {
     return(
+        <>
         <Box sx={{flexGrow:1}}>
             <Nav>
                 <Toolbar sx={{display:'flex', justifyContent:'space-between'}}>
@@ -65,5 +66,6 @@ export default function Navbar() {
                 </Toolbar>
             </Nav>
         </Box>
+        </>
     )
 }
