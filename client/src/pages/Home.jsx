@@ -5,17 +5,16 @@ import Banner from "../components/Banner";
 import HomeMarquee from "../components/HomeMarquee";
 import EventsSection from "../components/Events";
 import MustVisit from "../components/MustVisit";
+import Footer from "../components/Footer";
 
 
 export default function Home(){
     return(
        <div>
-             <Navbar/>
              <HomeMarquee/>
              <Banner/>
              <EventsSection/>
-             <MustVisit/>
-             
+             <MustVisit/>             
        </div>
     )
 }
