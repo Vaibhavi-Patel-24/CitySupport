@@ -24,8 +24,9 @@ export default function HomeMarquee(){
         backgroundColor: "#FFE4B8",
         color: "#FF0000",
         padding: "8px 0",
-        position: "relative",
+        position: "sticky",
         width: "100%",
+        marginTop: "80px",
       }}
     >
       <Box
