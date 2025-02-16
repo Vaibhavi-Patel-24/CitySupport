@@ -11,6 +11,7 @@ const events = [
 
 const EventsSection = () => {
   return (
+    <>
     <Box sx={{ backgroundColor: '#f9f9f9', padding: 4 }}>
       <Typography variant="h4" sx={{ color: '#f97316', borderBottom: '2px solid #f97316', display: 'inline-block', mb: 3 }}>
         Events
@@ -39,6 +40,7 @@ const EventsSection = () => {
         ))}
       </Grid>
     </Box>
+    </>
   );
 };
 

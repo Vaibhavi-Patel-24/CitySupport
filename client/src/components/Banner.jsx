@@ -35,6 +35,7 @@ const Banner = () => {
   };
 
   return (
+    <>
     <Box display="flex" alignItems="center" justifyContent="center" position="relative" onMouseEnter={() => setShowArrows(true)}
     onMouseLeave={() => setShowArrows(false)}>
 
@@ -59,6 +60,7 @@ const Banner = () => {
       </Box>
       )}
     </Box>
+    </>
   );
 };
 
