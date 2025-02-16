@@ -26,7 +26,7 @@ export default function HomeMarquee(){
         padding: "8px 0",
         position: "sticky",
         width: "100%",
-        marginTop: "80px",
+        marginTop: "1px",
       }}
     >
       <Box

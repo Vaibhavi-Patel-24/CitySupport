@@ -8,7 +8,7 @@ import logo from "../images/CITY SUPPORT main logo.png"
 const Nav = styled(AppBar)({ 
     background: "white", 
     color: "black", 
-    position: "fixed",
+    position: "relative",
     top: 0, 
     width: "100%",
     zIndex: 1100 
@@ -31,7 +31,7 @@ const Image = styled("img")({
 export default function Navbar() {
     return(
         <>
-        <Box sx={{flexGrow:1, position:"sticky"}}>
+        <Box sx={{flexGrow:1, position:"relative"}}>
             <Nav>
                 <Toolbar sx={{display:'flex', justifyContent:'space-between'}}>
                     

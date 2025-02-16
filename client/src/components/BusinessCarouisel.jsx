@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Slider from "react-slick"; // ✅ Correct import for carousel
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import banner_1 from "../images/banner_1.webp";
@@ -10,24 +10,24 @@ import banner_5 from "../images/banner_5.jpg";
 import banner_6 from "../images/banner_6.jpg";
 
 export default function BusinessCarousel() {
-  const [bannerHeight, setBannerHeight] = useState("91vh");
+  const [bannerHeight, setBannerHeight] = useState("80vh");
 
   useEffect(() => {
     const handleResize = () => {
-      setBannerHeight(window.innerWidth <= 600 ? "50vh" : "91vh");
+      setBannerHeight(window.innerWidth <= 600 ? "50vh" : "80vh");
     };
-    handleResize();
+
+    handleResize(); 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const images = [banner_1, banner_2, banner_3, banner_4, banner_5, banner_6];
 
-  // ✅ Slick Carousel settings
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 900,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -44,9 +44,9 @@ export default function BusinessCarousel() {
               alt={`Slide ${index}`}
               style={{
                 width: "100%",
-                height: bannerHeight,
+                height: bannerHeight, 
                 objectFit: "cover",
-                borderRadius: "5px",
+                borderRadius: "4px",
               }}
             />
           </div>
