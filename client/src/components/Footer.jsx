@@ -14,10 +14,10 @@ const Footer = () => {
 
   return (
     <>
-    <Box sx={{bgcolor:"black",pt:{md:3},pl:{md:17},pr:{md:17},height:'auto'}}>
+    <Box sx={{bgcolor:"black",pt:{md:2},pl:{md:17},pr:{md:17},height:'auto',bottom:0}}>
 
       <Box sx={{display:'flex',flexDirection:{xs:'column',md:'row'}}}>
-        <Box sx={{pt:4,display:'flex',flexDirection:{xs:'column',md:'row'},alignItems: { xs: 'center', md: 'flex-start' },textAlign: { xs: "center", md: "left" },flexGrow:1,gap:{xs:5,md:10},marginBottom:{xs:4},    justifyContent: { xs: "center", md: "flex-start"}}}>
+        <Box sx={{pt:3,display:'flex',flexDirection:{xs:'column',md:'row'},alignItems: { xs: 'center', md: 'flex-start' },textAlign: { xs: "center", md: "left" },flexGrow:1,gap:{xs:5,md:10},marginBottom:{xs:4},    justifyContent: { xs: "center", md: "flex-start"}}}>
             
             <ul style={{display: "flex",flexDirection:"column",listStyleType: "none",margin:0,padding:0}}>
                 <Link to={'/'} style={{color:"rgb(46, 122, 197)",marginBottom:25,textDecoration:'none'}}>Home</Link>
@@ -41,28 +41,28 @@ const Footer = () => {
             </ul>            
         </Box>
 
-        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 2,justifyContent: "center",marginBottom:{xs:4}}}>
-              <img src={logo} alt="logo" style={{width:'auto',height:160}}/>
+        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 1,justifyContent: "center",marginBottom:{xs:4}}}>
+              <img src={logo} alt="logo" style={{width:'auto',height:120}}/>
                 <TextField
-                variant="outlined"
+                variant="standard"
                 placeholder="Subscribe to our Newsletter" 
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                sx={{backgroundColor:'white',borderRadius:'8px'}}
+                sx={{backgroundColor:'white',borderRadius:'8px', width: "200px",height:"40px","& .MuiInput-underline:before": { borderBottom: "none"}}}
               />
-              <Button variant="contained" size="small" sx={{ backgroundColor: "rgb(241,118,53)", color: "rgb(73,143,191)",fontWeight: "bold",fontSize:"20px",borderRadius:"10px"}}>SUBSCRIBE</Button>
+              <Button variant="contained" size="small" sx={{ backgroundColor: "rgb(241,118,53)", color: "rgb(73,143,191)",fontWeight: "bold",fontSize:"14px",borderRadius:"10px"}}>SUBSCRIBE</Button>
         </Box>
       </Box>
 
         <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',color:'white'}}>
-          <IconButton sx={{gap:{xs:1,md:4}}}>
-              <img src={linkedin} alt='linkedin'/>
-              <img src={facebook} alt='facebook'/>
-              <img src={insta} alt='instagram'/>
-              <img src={youtube} alt='youtube'/>
+          <IconButton sx={{gap:{xs:1,md:3}}}>
+              <img src={linkedin} alt='linkedin' style={{ width: 44, height: 44 }}/>
+              <img src={facebook} alt='facebook' style={{ width: 44, height: 44 }}/>
+              <img src={insta} alt='instagram' style={{ width: 44, height: 44 }}/>
+              <img src={youtube} alt='youtube'style={{ width: 44, height: 44 }}/>
           </IconButton>
 
-          <Typography sx={{marginTop:3,color:'rgba(240, 240, 240, 0.64)'}}>Copyright © 2025 CitySupport</Typography>
+          <Typography sx={{marginTop:1,color:'rgba(240, 240, 240, 0.64)'}}>Copyright © 2025 CitySupport</Typography>
           <Typography sx={{color:"rgba(240, 240, 240, 0.64)"}}>All Rights Reserved</Typography>
         </Box>
     </Box>
