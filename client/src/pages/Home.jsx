@@ -5,7 +5,7 @@ import Banner from "../components/Banner";
 import HomeMarquee from "../components/HomeMarquee";
 import EventsSection from "../components/Events";
 import MustVisit from "../components/MustVisit";
-import Footer from "../components/Footer";
+import BusinessCarousel from "../components/BusinessCarouisel";
 
 
 export default function Home(){
@@ -13,8 +13,9 @@ export default function Home(){
        <div>
              <HomeMarquee/>
              <Banner/>
+             <MustVisit/>
              <EventsSection/>
-             <MustVisit/>             
+             <BusinessCarousel/>
        </div>
     )
 }

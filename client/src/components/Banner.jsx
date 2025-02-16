@@ -36,7 +36,7 @@ const Banner = () => {
 
   return (
     <>
-    <Box display="flex" alignItems="center" justifyContent="center" position="relative" onMouseEnter={() => setShowArrows(true)}
+    <Box display="flex" alignItems="center" justifyContent="center" position="relative" sx={{ marginTop: "2px" }} onMouseEnter={() => setShowArrows(true)}
     onMouseLeave={() => setShowArrows(false)}>
 
       {/* Image Container */}
@@ -45,7 +45,7 @@ const Banner = () => {
           component="img"
           src={images[currentIndex]}
           alt="carousel"
-          sx={{ width: "100%", height: "100%", borderRadius: 2, objectFit: "cover" }}
+          sx={{ width: "100%", height: "100%", borderRadius: 0.5, objectFit: "cover" }}
         />
       </Box>
 
