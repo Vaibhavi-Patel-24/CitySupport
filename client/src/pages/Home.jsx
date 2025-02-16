@@ -7,7 +7,11 @@ import EventsSection from "../components/Events";
 import MustVisit from "../components/MustVisit";
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import Footer from "../components/Footer";
+=======
+import BusinessCarousel from "../components/BusinessCarouisel";
+>>>>>>> Stashed changes
 =======
 import BusinessCarousel from "../components/BusinessCarouisel";
 >>>>>>> Stashed changes
@@ -23,8 +27,14 @@ export default function Home(){
              <Banner/>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
              <EventsSection/>
              <MustVisit/>             
+=======
+             <MustVisit/>
+             <EventsSection/>
+             <BusinessCarousel/>
+>>>>>>> Stashed changes
 =======
              <MustVisit/>
              <EventsSection/>
