@@ -14,7 +14,7 @@ const Footer = () => {
 
   return (
     <>
-    <Box sx={{bgcolor:"black",pt:{md:2},pl:{md:17},pr:{md:17},height:'auto',bottom:0}}>
+    <Box sx={{bgcolor:"black",pt:{md:2},pl:{md:17},pr:{md:17},height:'auto',bottom:0,marginTop:1}}>
 
       <Box sx={{display:'flex',flexDirection:{xs:'column',md:'row'}}}>
         <Box sx={{pt:3,display:'flex',flexDirection:{xs:'column',md:'row'},alignItems: { xs: 'center', md: 'flex-start' },textAlign: { xs: "center", md: "left" },flexGrow:1,gap:{xs:5,md:10},marginBottom:{xs:4},    justifyContent: { xs: "center", md: "flex-start"}}}>

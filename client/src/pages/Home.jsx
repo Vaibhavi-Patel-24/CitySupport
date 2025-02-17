@@ -6,6 +6,7 @@ import HomeMarquee from "../components/HomeMarquee";
 import EventsSection from "../components/Events";
 import MustVisit from "../components/MustVisit";
 import BusinessCarousel from "../components/BusinessCarouisel";
+import HomeLocalBusinessCorner from "../components/HomeLocalBusinessCorner";
 
 
 export default function Home(){
@@ -16,6 +17,7 @@ export default function Home(){
              <MustVisit/>
              <EventsSection/>
              <BusinessCarousel/>
+             <HomeLocalBusinessCorner/>
        </div>
     )
 }
