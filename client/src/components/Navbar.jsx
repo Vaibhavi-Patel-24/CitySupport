@@ -4,12 +4,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 import logo from "../images/CITY SUPPORT main logo.png"
-// import Person from "../images/member.png"
-// import Search from "../images/search icon.png"
 
-
-
-const Nav = styled(AppBar)({ background: "white",color: "black", position: "static" });
+const Nav = styled(AppBar)({ 
+    background: "white", 
+    color: "black", 
+    position: "relative",
+    top: 0, 
+    width: "100%",
+    zIndex: 1100 
+});
 const NavMenu = styled("div")({ 
     color:"black",
     display:"flex",
@@ -27,7 +30,8 @@ const Image = styled("img")({
 
 export default function Navbar() {
     return(
-        <Box sx={{flexGrow:1}}>
+        <>
+        <Box sx={{flexGrow:1, position:"relative"}}>
             <Nav>
                 <Toolbar sx={{display:'flex', justifyContent:'space-between'}}>
                     
@@ -65,5 +69,6 @@ export default function Navbar() {
                 </Toolbar>
             </Nav>
         </Box>
+        </>
     )
 }

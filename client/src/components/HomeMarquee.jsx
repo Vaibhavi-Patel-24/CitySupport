@@ -14,6 +14,7 @@ const announcements = [
 
 export default function HomeMarquee(){
     return (
+      <>
     <Box
       sx={{
         overflow: "hidden",
@@ -23,8 +24,9 @@ export default function HomeMarquee(){
         backgroundColor: "#FFE4B8",
         color: "#FF0000",
         padding: "8px 0",
-        position: "relative",
+        position: "sticky",
         width: "100%",
+        marginTop: "1px",
       }}
     >
       <Box
@@ -53,5 +55,6 @@ export default function HomeMarquee(){
         ))}
       </Box>
     </Box>
+    </>
     );
 }
