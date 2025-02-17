@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, Typography, Card, CardContent } from "@mui/material";
+import { Box, Grid, Typography, Card, CardContent, Collapse } from "@mui/material";
 
 const places = [
   { 
@@ -46,38 +46,34 @@ const MustVisit = () => {
             <Card
               sx={{
                 p: 2,
-                display: "flex",
-                alignItems: "center",
                 boxShadow: 2,
                 cursor: "pointer",
-                transition: "height 0.3s ease",
-                height: expanded === place.id ? "auto" : 150,
+                transition: "0.3s ease",
+                "&:hover": { boxShadow: 4 },
               }}
               onClick={() => handleToggleExpand(place.id)}
             >
-              <img 
-                src={place.image} 
-                alt={place.name} 
-                style={{ width: 80, height: 80, objectFit: "cover", borderRadius: 8, margin: "8px" }} 
-              />
-              <CardContent sx={{ flex: 1, minWidth: 0 }}>
-                <Typography variant="h6" fontWeight="bold" noWrap>
-                  {place.name}
-                </Typography>
-                <Typography 
-                  variant="body2" 
-                  color="text.secondary" 
-                  sx={{ 
-                    display: "-webkit-box",
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    WebkitLineClamp: expanded === place.id ? "unset" : 2,
-                  }}
-                >
-                  {place.description}
-                </Typography>
-              </CardContent>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box sx={{ p: 1 }}>
+                  <img 
+                    src={place.image} 
+                    alt={place.name} 
+                    style={{ width: 80, height: 80, objectFit: "cover", borderRadius: 8 }} 
+                  />
+                </Box>
+                <CardContent sx={{ flex: 1 }}>
+                  <Typography variant="h6" fontWeight="bold">
+                    {place.name}
+                  </Typography>
+                </CardContent>
+              </Box>
+              <Collapse in={expanded === place.id}>
+                <Box sx={{ p: 2, backgroundColor: "#f5f5f5", borderRadius: "8px", mt: 1 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    {place.description}
+                  </Typography>
+                </Box>
+              </Collapse>
             </Card>
           </Grid>
         ))}
