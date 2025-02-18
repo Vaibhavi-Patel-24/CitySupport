@@ -1,12 +1,12 @@
 import React from "react";
-
-import Navbar from "../components/Navbar";
 import Banner from "../components/Banner";
 import HomeMarquee from "../components/HomeMarquee";
 import EventsSection from "../components/Events";
 import MustVisit from "../components/MustVisit";
 import BusinessCarousel from "../components/BusinessCarouisel";
 import HomeLocalBusinessCorner from "../components/HomeLocalBusinessCorner";
+import DistrictGlance from '../components/DistrictGlance';
+
 
 
 export default function Home(){
@@ -18,6 +18,8 @@ export default function Home(){
              <EventsSection/>
              <BusinessCarousel/>
              <HomeLocalBusinessCorner/>
+             <DistrictGlance />
+
        </div>
     )
 }

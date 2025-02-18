@@ -15,7 +15,6 @@ import Services from './pages/Services';
 import RegisterBusiness from './pages/RegisterBusiness';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import DistrictGlance from './components/DistrictGlance';
 
 function App() {
   return (
@@ -35,7 +34,6 @@ function App() {
         <Route path='/Services' element={<Services/>}/>
         <Route path='/RegisterBusiness' element={<RegisterBusiness/>}/>
       </Routes>
-      <DistrictGlance />
       <Footer/>
     </Router>
   );
