@@ -36,7 +36,9 @@ const MustVisit = () => {
   };
 
   return (
-    <Box sx={{ p: 4 }}>
+    <>
+    
+    <Box sx={{ p: 4,margin:"0 120px" }}>
       <Typography variant="h6" sx={{ color: "#FF6600", fontWeight: "bold", mb: 2 }}>
         ~ Must Visit
       </Typography>
@@ -79,6 +81,8 @@ const MustVisit = () => {
         ))}
       </Grid>
     </Box>
+
+    </>
   );
 };
 

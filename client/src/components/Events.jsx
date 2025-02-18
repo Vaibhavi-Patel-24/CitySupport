@@ -11,7 +11,7 @@ const events = [
 
 const EventsSection = () => {
   return (
-    <Box sx={{ padding: '40px 20px' }}>
+    <Box sx={{ padding: '40px 20px',margin:"0 120px" }}>
       <Typography 
         variant="h4" 
         sx={{ 
