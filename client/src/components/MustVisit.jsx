@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, Typography, Card, CardContent, Collapse } from "@mui/material";
+import { Box, Grid, Typography, Card, CardContent } from "@mui/material";
 
 const places = [
   { 
@@ -29,57 +29,50 @@ const places = [
 ];
 
 const MustVisit = () => {
-  const [expanded, setExpanded] = useState(null);
-
-  const handleToggleExpand = (id) => {
-    setExpanded(expanded === id ? null : id);
-  };
-
   return (
-    <div style={{margin:'0 120px'}}>
-    <Box sx={{ p: 4}}>
-      <Typography variant="h6" sx={{ color: "#FF6600", fontWeight: "bold", textAlign: "left", mb: 2 }}>
-        ~ Must Visit
-      </Typography>
+    <div style={{ margin: '0 120px' }}>
+      <Box sx={{ p: 4 }}>
+        <Typography variant="h6" sx={{ color: "#FF6600", fontWeight: "bold", textAlign: "left", mb: 2 }}>
+          ~ Must Visit
+        </Typography>
 
-      <Grid container spacing={3}>
-        {places.map((place) => (
-          <Grid item xs={12} sm={6} key={place.id}>
-            <Card
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                padding: 0.5,
-                boxShadow: 2,
-                cursor: "pointer",
-                transition: "0.3s ease",
-                "&:hover": { boxShadow: 4 },
-              }}
-              onClick={() => handleToggleExpand(place.id)}s
-            >
-              {/* Image on the Left */}
-              <Box sx={{ minWidth: 80, minHeight: 80, mr: 2 }}>
-                <img 
-                  src={place.image} 
-                  alt={place.name} 
-                  style={{ width: 80, height: 80, objectFit: "cover", borderRadius: 5 }} 
-                />
-              </Box>
+        <Grid container spacing={3}>
+          {places.map((place) => (
+            <Grid item xs={12} sm={6} key={place.id}>
+              <Card
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: 0.5,
+                  boxShadow: 2,
+                  cursor: "pointer",
+                  transition: "0.3s ease",
+                  "&:hover": { boxShadow: 4 },
+                }}
+              >
+                {/* Updated Image Box */}
+                <Box sx={{ width: 100, height: 100, flexShrink: 0, mr: 2, overflow: "hidden", borderRadius: 2 }}>
+                  <img 
+                    src={place.image} 
+                    alt={place.name} 
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                  />
+                </Box>
 
-              {/* Text on the Right */}
-              <CardContent sx={{ flex: 1 }}>
-                <Typography variant="h6" fontWeight="bold">
-                  {place.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2, overflow: "hidden" }}>
-                  {place.description}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+                {/* Text Content */}
+                <CardContent sx={{ flex: 1 }}>
+                  <Typography variant="h6" fontWeight="bold">
+                    {place.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2, overflow: "hidden" }}>
+                    {place.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </div>
   );
 };

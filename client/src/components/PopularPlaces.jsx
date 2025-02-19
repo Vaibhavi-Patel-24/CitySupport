@@ -10,7 +10,7 @@ const places = [
   {
     id: 2,
     name: "Rudra Mahalaya",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs3itipLoDJ422UK_E6a2PC5suhjlqsrev3A&s",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRh-NhUyeaA0QH3InorLLIz1Hhfxn9fBICgg&s",
   },
   {
     id: 3,
@@ -22,20 +22,18 @@ const places = [
 const PopularPlaces = () => {
   return (
     <Box sx={{ p: 4 }}>
-      {}
       <Typography variant="h4" sx={{ fontWeight: "bold", mb: 4 }}>
         Popular Places
       </Typography>
 
       <Grid container spacing={4}>
-        {}
         <Grid item xs={12} sm={4}>
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
               height: "100%",
-              justifyContent: "space-between", 
+              justifyContent: "space-between",
             }}
           >
             {places.map((place) => (
@@ -52,21 +50,26 @@ const PopularPlaces = () => {
                   "&:hover": {
                     transform: "scale(1.05)",
                   },
-                  flex: 1, // Ensures cards fill the available space
+                  flex: 1,
                 }}
               >
                 <Box
-                  component="img"
-                  src={place.image}
-                  alt={place.name}
                   sx={{
                     width: 80,
                     height: 80,
-                    objectFit: "cover",
                     borderRadius: 1,
                     mr: 2,
+                    overflow: "hidden",
+                    flexShrink: 0,
                   }}
-                />
+                >
+                  <img
+                    src={place.image}
+                    alt={place.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </Box>
+
                 <CardContent sx={{ p: 0 }}>
                   <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     {place.name}
@@ -77,12 +80,11 @@ const PopularPlaces = () => {
           </Box>
         </Grid>
 
-        { }
         <Grid item xs={12} sm={8}>
           <Box
             sx={{
               width: "100%",
-              height: "370px", 
+              height: "370px",
               borderRadius: 2,
               overflow: "hidden",
               boxShadow: 3,
