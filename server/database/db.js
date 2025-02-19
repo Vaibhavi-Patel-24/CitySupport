@@ -1,8 +1,5 @@
 import mongoose from "mongoose";
 
-import dotenv from dotenv
-
-
 const connection = async (USERNAME, PASSWORD) => {
     const URL = `mongodb+srv://${USERNAME}:${PASSWORD}@citysupport.5pflg.mongodb.net/?retryWrites=true&w=majority&appName=CITYSUPPORT`;
     try {
