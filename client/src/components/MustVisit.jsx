@@ -36,7 +36,8 @@ const MustVisit = () => {
   };
 
   return (
-    <Box sx={{ p: 4, marginLeft: "120px", marginRight: "120px" }}>
+    <div style={{margin:'0 120px'}}>
+    <Box sx={{ p: 4}}>
       <Typography variant="h6" sx={{ color: "#FF6600", fontWeight: "bold", textAlign: "left", mb: 2 }}>
         ~ Must Visit
       </Typography>
@@ -54,7 +55,7 @@ const MustVisit = () => {
                 transition: "0.3s ease",
                 "&:hover": { boxShadow: 4 },
               }}
-              onClick={() => handleToggleExpand(place.id)}
+              onClick={() => handleToggleExpand(place.id)}s
             >
               {/* Image on the Left */}
               <Box sx={{ minWidth: 80, minHeight: 80, mr: 2 }}>
@@ -79,6 +80,7 @@ const MustVisit = () => {
         ))}
       </Grid>
     </Box>
+    </div>
   );
 };
 
