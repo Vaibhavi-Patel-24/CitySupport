@@ -18,7 +18,7 @@ const places = [
     id: 3, 
     name: "Statue of Unity", 
     description: "The Statue of Unity, standing 182 meters tall, is the world’s tallest statue. It is located near Kevadia, Gujarat, and was dedicated to Sardar Vallabhbhai Patel. Patel was India’s first Deputy Prime Minister and a key figure in the country’s independence movement. The statue symbolizes his efforts to unite the country after independence. The structure offers panoramic views of the surrounding Narmada Valley. It is an architectural marvel and a major tourist attraction in India.", 
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Statue_of_Unity.jpg/800px-Statue_of_Unity.jpg" 
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_iEARf-Fxz9VsoxKKB6pYUGIJevtoZMMwlQ&s" 
   },
   { 
     id: 4, 
@@ -36,7 +36,7 @@ const MustVisit = () => {
   };
 
   return (
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: 4 ,marginLeft: ' 120px',marginRight:'120px'}}>
       <Typography variant="h6" sx={{ color: "#FF6600", fontWeight: "bold", mb: 2 }}>
         ~ Must Visit
       </Typography>
@@ -45,7 +45,7 @@ const MustVisit = () => {
           <Grid item xs={12} sm={6} md={6} key={place.id}>
             <Card
               sx={{
-                p: 2,
+                p: 1,
                 boxShadow: 2,
                 cursor: "pointer",
                 transition: "0.3s ease",
@@ -54,11 +54,11 @@ const MustVisit = () => {
               onClick={() => handleToggleExpand(place.id)}
             >
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Box sx={{ p: 1 }}>
+                <Box sx={{ p: 0.5 }}>
                   <img 
                     src={place.image} 
                     alt={place.name} 
-                    style={{ width: 80, height: 80, objectFit: "cover", borderRadius: 8 }} 
+                    style={{ width: 80, height: 80, objectFit: "cover", borderRadius: 5 }} 
                   />
                 </Box>
                 <CardContent sx={{ flex: 1 }}>
