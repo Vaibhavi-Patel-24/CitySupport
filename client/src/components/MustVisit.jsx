@@ -49,7 +49,7 @@ const MustVisit = () => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                padding: 1,
+                padding: 0.5,
                 boxShadow: 2,
                 cursor: "pointer",
                 transition: "0.3s ease",

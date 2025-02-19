@@ -5,7 +5,9 @@ import EventsSection from "../components/Events";
 import MustVisit from "../components/MustVisit";
 import BusinessCarousel from "../components/BusinessCarouisel";
 import HomeLocalBusinessCorner from "../components/HomeLocalBusinessCorner";
+import PopularPlaces from "../components/PopularPlaces";
 import DistrictGlance from '../components/DistrictGlance';
+
 
 
 
@@ -18,7 +20,9 @@ export default function Home(){
              <EventsSection/>
              <BusinessCarousel/>
              <HomeLocalBusinessCorner/>
+             <PopularPlaces/>
              <DistrictGlance />
+             
 
        </div>
     )
