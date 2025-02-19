@@ -1,5 +1,6 @@
+import React from 'react';
 import './App.css';
-import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Utility from './pages/Utility';
 import Events from './pages/Events';
@@ -14,6 +15,7 @@ import Services from './pages/Services';
 import RegisterBusiness from './pages/RegisterBusiness';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+
 function App() {
   return (
     <Router>

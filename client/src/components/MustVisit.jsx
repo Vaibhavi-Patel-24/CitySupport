@@ -36,7 +36,7 @@ const MustVisit = () => {
   };
 
   return (
-    <Box sx={{ p: 4 ,marginLeft: ' 120px',marginRight:'120px'}}>
+    <Box sx={{ p: 4, marginLeft: "120px", marginRight: "120px" }}>
       <Typography variant="h6" sx={{ color: "#FF6600", fontWeight: "bold", mb: 2 }}>
         ~ Must Visit
       </Typography>
