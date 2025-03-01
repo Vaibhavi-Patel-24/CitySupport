@@ -7,13 +7,16 @@ import BusinessCarousel from "../components/BusinessCarouisel";
 import HomeLocalBusinessCorner from "../components/HomeLocalBusinessCorner";
 import PopularPlaces from "../components/PopularPlaces";
 import DistrictGlance from '../components/DistrictGlance';
-
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 
 
 export default function Home(){
     return(
-       <div>
+        <div className="page-container">
+            <Navbar/>
+            <div className="content">
              <HomeMarquee/>
              <Banner/>
              <MustVisit/>
@@ -22,8 +25,8 @@ export default function Home(){
              <HomeLocalBusinessCorner/>
              <PopularPlaces/>
              <DistrictGlance />
-             
-
+             </div>
+            <Footer/>
        </div>
     )
 }

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,Outlet, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Utility from './pages/Utility';
 import Events from './pages/Events';
@@ -9,33 +9,57 @@ import Tourism from './pages/Tourism';
 import Transports from './pages/Transports';
 import LocalBusiness from './pages/LocalBusiness';
 import Gallery from './pages/Gallery';
-import ContactUs from './pages/ContactUs';
+import Help from './pages/Help';
 import Promotions from './pages/Promotions';
 import Services from './pages/Services';
 import RegisterBusiness from './pages/RegisterBusiness';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+
+import AdminLogin from './components/Admin/AdminLogin';
+import AdminHome from './pages/Admin/AdminHome';
+import DataProvider from './context/DataProvider';
+import Map from './pages/Map';
+
+
+
+const PrivateRoute = ({ isAuthenticated }) => {
+  return isAuthenticated ? 
+  <Outlet/>
+  :
+  <Navigate replace to='/admin123/login' />
+}
 
 function App() {
+  const [ isAuthenticated , isUserAuthenticated ] = useState(false);
   return (
-    <Router>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/Utility' element={<Utility/>}/>
-        <Route path='/Events' element={<Events/>}/>
-        <Route path='/Social' element={<Social/>}/>
-        <Route path='/Tourism' element={<Tourism/>}/>
-        <Route path='/Transports' element={<Transports/>}/>
-        <Route path='/LocalBusiness' element={<LocalBusiness/>}/>
-        <Route path='/Gallery' element={<Gallery/>}/>
-        <Route path='/ContactUs' element={<ContactUs/>}/>
-        <Route path='/Promotions' element={<Promotions/>}/>
-        <Route path='/Services' element={<Services/>}/>
-        <Route path='/RegisterBusiness' element={<RegisterBusiness/>}/>
-      </Routes>
-      <Footer/>
-    </Router>
+    <DataProvider>
+      <Router basename='/citysupport'>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/utility' element={<Utility/>}/>
+          <Route path='/events' element={<Events/>}/>
+          <Route path='/social' element={<Social/>}/>
+          <Route path='/tourism' element={<Tourism/>}/>
+          <Route path='/transports' element={<Transports/>}/>
+          <Route path='/localbusiness' element={<LocalBusiness/>}/>
+          <Route path='/gallery' element={<Gallery/>}/>
+          <Route path='/help' element={<Help/>}/>
+          <Route path='/promotions' element={<Promotions/>}/>
+          <Route path='/services' element={<Services/>}/>
+          <Route path='/registerbusiness' element={<RegisterBusiness/>}/>
+          <Route path='/map' element={<Map/>} />
+          
+          <Route path='/admin123/login' element={<AdminLogin isUserAuthenticated={isUserAuthenticated}/>}/>
+            
+            <Route path='/admin123' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+            
+              <Route path='/admin123' element={<AdminHome/>}/>
+            
+            </Route>
+
+
+        </Routes>
+      </Router>
+    </DataProvider>
   );
 }
 
