@@ -19,6 +19,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import EventIcon from '@mui/icons-material/Event';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
+import ArticleIcon from '@mui/icons-material/Article';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 // import EventSettings from './EventSettings';
@@ -28,6 +30,7 @@ import LogoImage from "../../images/CITY SUPPORT main logo.png";
 // import UsersList from './UserList';
 // import AdminBlogs from './AdminBlogs';
 // import AdminCampaigns from './AdminCampaigns'; // Import the AdminCampaigns component
+import ContactQueries from './Queries';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -98,6 +101,8 @@ const AdminMain = () => {
         return <h1>This is  news section..</h1>;
       case 'Campaigns': // Add this case for rendering AdminCampaigns
         return <h1>This is campaign section..</h1>;
+      case 'Queries': // Add this case for rendering AdminCampaigns
+        return <ContactQueries/>;
       case 'Settings':
         return <h1>This is settings section..</h1>;
       default:
@@ -125,28 +130,34 @@ const AdminMain = () => {
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="Home" />
+          <ListItemText primary="Home" sx={{cursor:'pointer'}} />
         </ListItem>
        
         <ListItem button onClick={() => handleNavigation('Events')}>
           <ListItemIcon>
             <EventIcon />
           </ListItemIcon>
-          <ListItemText primary="Events" />
+          <ListItemText primary="Events" sx={{cursor:'pointer'}}/>
         </ListItem>
        
         <ListItem button onClick={() => handleNavigation('News')}>
           <ListItemIcon>
             <NewspaperIcon />
           </ListItemIcon>
-          <ListItemText primary="News" />
+          <ListItemText primary="News" sx={{cursor:'pointer'}}/>
         </ListItem>
         
         <ListItem button onClick={() => handleNavigation('Blogs')}> 
           <ListItemIcon>
-            <NewspaperIcon />
+            <ArticleIcon />
           </ListItemIcon>
-          <ListItemText primary="Blogs" />
+          <ListItemText primary="Blogs" sx={{cursor:'pointer'}}/>
+        </ListItem>
+        <ListItem button onClick={() => handleNavigation('Queries')}> 
+          <ListItemIcon>
+            <LiveHelpIcon />
+          </ListItemIcon>
+          <ListItemText primary="Queries"sx={{cursor:'pointer'}} />
         </ListItem>
         {/* <ListItem button onClick={() => handleNavigation('Campaigns')}> 
           <ListItemIcon>
@@ -159,7 +170,7 @@ const AdminMain = () => {
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
-          <ListItemText primary="Settings" />
+          <ListItemText primary="Settings" sx={{cursor:'pointer'}} />
         </ListItem>
       
       </List>

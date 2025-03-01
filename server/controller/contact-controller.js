@@ -3,7 +3,7 @@ import sendEmail from '../services/emailService.js';
 import Contact from '../models/contactModel.js'; 
 
 export const contactUs = async (req, res) => {
-  const { firstName, lastName, email, phone, role, message } = req.body;
+  const { firstName, lastName, email, phone, role, message, createdAt } = req.body;
 
   if (!firstName || !lastName || !email || !phone || !role || !message) {
     return res.status(400).json({ msg: 'Please fill in all fields.' });
@@ -11,7 +11,7 @@ export const contactUs = async (req, res) => {
 
   
   try {
-    const newContact = new Contact({ firstName, lastName, email, phone, role, message });
+    const newContact = new Contact({ firstName, lastName, email, phone, role, message, createdAt });
     await newContact.save();
     console.log(`user data saved in db`)
   } catch (error) {
