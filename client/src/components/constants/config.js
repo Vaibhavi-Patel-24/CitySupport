@@ -2,7 +2,7 @@
 export const SERVICE_URLS = {
     // userSignup: { url: '/registration', method: 'POST' },
     // userLogin: { url: '/login', method: 'POST' },
-    // contactUs: { url: '/contact', method: 'POST' },
+    contactUs: { url: '/contact', method: 'POST' },
     // donateUs: { url: '/donate', method: 'POST' },
     // adminEvent: { url: '/admin29/events', method: 'POST' },
     // adminBlog: { url: '/admin29/blogs', method: 'POST' },

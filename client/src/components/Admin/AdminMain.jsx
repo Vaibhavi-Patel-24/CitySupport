@@ -19,19 +19,19 @@ import HomeIcon from '@mui/icons-material/Home';
 import EventIcon from '@mui/icons-material/Event';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import { styled } from '@mui/material/styles';
+import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import EventSettings from './EventSettings';
-import NewsSettings from './NewsSettings';
-import LogoImage from "../images/SwaLogoMain.png";
-import AdminHome from "./AdminHome";
-import UsersList from './UserList';
-import AdminBlogs from './AdminBlogs';
-import AdminCampaigns from './AdminCampaigns'; // Import the AdminCampaigns component
+// import EventSettings from './EventSettings';
+// import NewsSettings from './NewsSettings';
+import LogoImage from "../../images/CITY SUPPORT main logo.png";
+// import AdminHome from "./AdminHome";
+// import UsersList from './UserList';
+// import AdminBlogs from './AdminBlogs';
+// import AdminCampaigns from './AdminCampaigns'; // Import the AdminCampaigns component
 
 const drawerWidth = 240;
 const Image = styled("img")({
-  height: 45,
+  height: 100,
   margin: "auto",
   display: "flex",
   padding: "5px 0 0",
@@ -44,7 +44,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   display: 'flex',
   alignItems: 'center',
-  padding: theme.spacing(0, 1),
+  padding: theme.spacing(0, 4),
   justifyContent: 'flex-end',
 }));
 
@@ -71,7 +71,7 @@ const Content = styled('main')(({ theme }) => ({
   overflowX: 'auto', 
 }));
 
-const AdminNavbar = () => {
+const AdminMain = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [selectedComponent, setSelectedComponent] = useState('Home');
 
@@ -89,15 +89,15 @@ const AdminNavbar = () => {
   const renderComponent = () => {
     switch (selectedComponent) {
       case 'Home':
-        return <AdminHome />;
+        return <h1>This is Home section..</h1>;
       case 'Blogs':
-        return <AdminBlogs />;
+        return <h1>This is Blog section..</h1>;
       case 'Events':
-        return <EventSettings />;
+        return <h1>This is Events section..</h1>;
       case 'News':
-        return <NewsSettings />;
+        return <h1>This is  news section..</h1>;
       case 'Campaigns': // Add this case for rendering AdminCampaigns
-        return <AdminCampaigns />;
+        return <h1>This is campaign section..</h1>;
       case 'Settings':
         return <h1>This is settings section..</h1>;
       default:
@@ -108,33 +108,40 @@ const AdminNavbar = () => {
   const drawer = (
     <div>
       <DrawerHeader>
-        <div>
-          <Image src={LogoImage} alt="Logo" sx={{ marginLeft: "auto" }} />
+        <div >
+          {/* <Image src={LogoImage} alt="Logo" sx={{ marginLeft: "auto" }} /> */}
+          <Typography variant='h4' sx={{color:'#fc843d', fontWeight:900 , fontStyle:'normal',alignSelf:'center'}} noWrap>CitySupport</Typography>
         </div>
-        <IconButton onClick={handleDrawerToggle}>
-          <ChevronLeftIcon />
+        <IconButton onClick={handleDrawerToggle} sx={{ display: { md: 'none',lg:'none' }}}>
+          <ChevronLeftIcon  />
         </IconButton>
       </DrawerHeader>
+
       <Divider />
+
       <List>
+
         <ListItem button onClick={() => handleNavigation('Home')}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
+       
         <ListItem button onClick={() => handleNavigation('Events')}>
           <ListItemIcon>
             <EventIcon />
           </ListItemIcon>
           <ListItemText primary="Events" />
         </ListItem>
+       
         <ListItem button onClick={() => handleNavigation('News')}>
           <ListItemIcon>
             <NewspaperIcon />
           </ListItemIcon>
           <ListItemText primary="News" />
         </ListItem>
+        
         <ListItem button onClick={() => handleNavigation('Blogs')}> 
           <ListItemIcon>
             <NewspaperIcon />
@@ -147,12 +154,14 @@ const AdminNavbar = () => {
           </ListItemIcon>
           <ListItemText primary="Campaigns" />
         </ListItem> */}
+       
         <ListItem button onClick={() => handleNavigation('Settings')}>
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
           <ListItemText primary="Settings" />
         </ListItem>
+      
       </List>
     </div>
   );
@@ -172,10 +181,11 @@ const AdminNavbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            SwaSarjan Admin Dashboard
+            Admin Dashboard
           </Typography>
         </Toolbar>
       </AppBarStyled>
+
       <DrawerStyled
         variant="temporary"
         open={mobileOpen}
@@ -196,19 +206,19 @@ const AdminNavbar = () => {
       </DrawerStyled>
       <Content>
         <DrawerHeader />
-        <Box>
-          {renderComponent()}
-        </Box>
+          <Box>
+            {renderComponent()}
+          </Box>
       </Content>
     </Root>
   );
 };
 
-const theme = createTheme();
-
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 const App = () => (
   <ThemeProvider theme={theme}>
-    <AdminNavbar />
+    <AdminMain />
   </ThemeProvider>
 );
 
