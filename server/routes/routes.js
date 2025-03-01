@@ -20,4 +20,21 @@ router.get("/queries", async (req, res) => {
     }
   });
 
+
+  router.delete("/queries/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedQuery = await Contact.findByIdAndDelete(id);
+  
+      if (!deletedQuery) {
+        return res.status(404).json({ message: "Query not found" });
+      }
+  
+      res.status(200).json({ message: "Query deleted successfully", deletedQuery });
+    } catch (error) {
+      console.error("Error deleting query:", error);
+      res.status(500).json({ message: "Server error" });
+    }
+  });
+  
 export default router;
