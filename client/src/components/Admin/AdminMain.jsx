@@ -21,6 +21,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import ArticleIcon from '@mui/icons-material/Article';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
 import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 // import EventSettings from './EventSettings';
@@ -171,7 +172,7 @@ const AdminMain = () => {
        
         <ListItem button onClick={() => handleNavigation('FAQs')}>
           <ListItemIcon>
-            <SettingsIcon />
+            <PsychologyAltIcon />
           </ListItemIcon>
           <ListItemText primary="FAQs" sx={{cursor:'pointer'}} />
         </ListItem>
