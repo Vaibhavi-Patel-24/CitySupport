@@ -119,7 +119,7 @@ const AdminMain = () => {
       <DrawerHeader>
         <div >
           {/* <Image src={LogoImage} alt="Logo" sx={{ marginLeft: "auto" }} /> */}
-          <Typography variant='h4' sx={{color:'#fc843d', fontWeight:900 , fontStyle:'normal',alignSelf:'center'}} noWrap>CitySupport</Typography>
+          <Typography variant='h4' sx={{color:'#fc843d', fontWeight:900 , fontStyle:'normal',alignSelf:'center', cursor:'pointer'}} noWrap>CitySupport</Typography>
         </div>
         <IconButton onClick={handleDrawerToggle} sx={{ display: { md: 'none',lg:'none' }}}>
           <ChevronLeftIcon  />
