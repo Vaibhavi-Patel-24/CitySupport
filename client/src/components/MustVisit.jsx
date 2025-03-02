@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Grid, Typography, Card, CardContent } from "@mui/material";
 
 const places = [
@@ -30,7 +30,12 @@ const places = [
 
 const MustVisit = () => {
   return (
-    <div style={{ margin: '0 120px' }}>
+    <Box 
+      sx={{ 
+        marginX: { xs: "auto", md: "120px" }, 
+        maxWidth: "1200px"
+      }}
+    >
       <Box sx={{ p: 4 }}>
         <Typography variant="h6" sx={{ color: "#FF6600", fontWeight: "bold", textAlign: "left", mb: 2 }}>
           ~ Must Visit
@@ -42,8 +47,9 @@ const MustVisit = () => {
               <Card
                 sx={{
                   display: "flex",
+                  flexDirection: { xs: "column", sm: "row" }, // Stack image and text on small screens
                   alignItems: "center",
-                  padding: 0.5,
+                  padding: 1,
                   boxShadow: 2,
                   cursor: "pointer",
                   transition: "0.3s ease",
@@ -51,7 +57,13 @@ const MustVisit = () => {
                 }}
               >
                 {/* Updated Image Box */}
-                <Box sx={{ width: 100, height: 100, flexShrink: 0, mr: 2, overflow: "hidden", borderRadius: 2 }}>
+                <Box sx={{ 
+                  width: { xs: "100%", sm: 100 }, 
+                  height: { xs: 180, sm: 100 }, 
+                  flexShrink: 0, 
+                  overflow: "hidden", 
+                  borderRadius: 2 
+                }}>
                   <img 
                     src={place.image} 
                     alt={place.name} 
@@ -60,11 +72,16 @@ const MustVisit = () => {
                 </Box>
 
                 {/* Text Content */}
-                <CardContent sx={{ flex: 1 }}>
+                <CardContent sx={{ flex: 1, textAlign: { xs: "center", sm: "left" } }}>
                   <Typography variant="h6" fontWeight="bold">
                     {place.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2, overflow: "hidden" }}>
+                  <Typography variant="body2" color="text.secondary" sx={{ 
+                    display: "-webkit-box", 
+                    WebkitBoxOrient: "vertical", 
+                    WebkitLineClamp: 3, 
+                    overflow: "hidden" 
+                  }}>
                     {place.description}
                   </Typography>
                 </CardContent>
@@ -73,7 +90,7 @@ const MustVisit = () => {
           ))}
         </Grid>
       </Box>
-    </div>
+    </Box>
   );
 };
 
