@@ -44,11 +44,12 @@ const Footer = () => {
         <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 1,justifyContent: "center",marginBottom:{xs:4}}}>
               <img src={logo} alt="logo" style={{width:'auto',height:120}}/>
                 <TextField
-                variant="standard"
+                variant="outlined"
                 placeholder="Subscribe to our Newsletter" 
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                sx={{backgroundColor:'white',borderRadius:'8px', width: "200px",height:"40px","& .MuiInput-underline:before": { borderBottom: "none"},"& .MuiInput-underline:after": { borderBottom: "none"}}}
+                sx={{backgroundColor:"white",borderRadius:'8px', width: "235px"}}
+                size='small'
               />
               <Button variant="contained" size="small" sx={{ backgroundColor: "rgb(241,118,53)", color: "rgb(73,143,191)",fontWeight: "bold",fontSize:"14px",borderRadius:"10px"}}>SUBSCRIBE</Button>
         </Box>

@@ -13,11 +13,11 @@ import Help from './pages/Help';
 import Promotions from './pages/Promotions';
 import Services from './pages/Services';
 import RegisterBusiness from './pages/RegisterBusiness';
-
 import AdminLogin from './components/Admin/AdminLogin';
 import AdminHome from './pages/Admin/AdminHome';
 import DataProvider from './context/DataProvider';
 import Map from './pages/Map';
+import School from './pages/School';
 
 
 
@@ -47,7 +47,7 @@ function App() {
           <Route path='/services' element={<Services/>}/>
           <Route path='/registerbusiness' element={<RegisterBusiness/>}/>
           <Route path='/map' element={<Map/>} />
-          
+          <Route path='/utility/school' element={<School></School>} />
           <Route path='/admin123/login' element={<AdminLogin isUserAuthenticated={isUserAuthenticated}/>}/>
             
             <Route path='/admin123' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
