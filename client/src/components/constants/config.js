@@ -4,8 +4,11 @@ export const SERVICE_URLS = {
     contactUs: { url: '/contact', method: 'POST' },
     getQueries: { url: '/queries', method: 'GET' },
     adminLogin: { url: '/admin123/login', method: 'POST' },
-    deleteQuery: { url: "/queries/:id", method: "DELETE" } // Add this
-
+    deleteQuery: { url: "/queries/:id", method: "DELETE" }, // Add this
+    getFAQs: { url: '/faqs', method: 'GET' }, 
+    addFAQ: { url: '/faqs', method: 'POST' }, 
+    updateFAQ: { url: '/faqs/:id', method: 'PUT' }, 
+    deleteFAQ: { url: '/faqs/:id', method: 'DELETE' } 
 
   };
   

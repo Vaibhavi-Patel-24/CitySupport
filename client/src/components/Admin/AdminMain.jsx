@@ -31,6 +31,7 @@ import LogoImage from "../../images/CITY SUPPORT main logo.png";
 // import AdminBlogs from './AdminBlogs';
 // import AdminCampaigns from './AdminCampaigns'; // Import the AdminCampaigns component
 import ContactQueries from './Queries';
+import ManageFAQs from './AdminFAQs';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -103,6 +104,8 @@ const AdminMain = () => {
         return <h1>This is campaign section..</h1>;
       case 'Queries': // Add this case for rendering AdminCampaigns
         return <ContactQueries/>;
+      case 'FAQs': // Add this case for rendering AdminCampaigns
+        return <ManageFAQs/>;
       case 'Settings':
         return <h1>This is settings section..</h1>;
       default:
@@ -166,6 +169,13 @@ const AdminMain = () => {
           <ListItemText primary="Campaigns" />
         </ListItem> */}
        
+        <ListItem button onClick={() => handleNavigation('FAQs')}>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="FAQs" sx={{cursor:'pointer'}} />
+        </ListItem>
+
         <ListItem button onClick={() => handleNavigation('Settings')}>
           <ListItemIcon>
             <SettingsIcon />

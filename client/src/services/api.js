@@ -79,24 +79,32 @@ const convertToFormData = (data) => {
 const API = {};
 
 for (const [key, value] of Object.entries(SERVICE_URLS)) {
-  API[key] = async (body, showUploadProgress, showDownloadProgress) => {
+  API[key] = async (body = {}, showUploadProgress = () => {}, showDownloadProgress = () => {}) => {
     try {
+      let url = value.url;
+      if (value.method === 'PUT' || value.method === 'DELETE') {
+        if (!body.id) {
+          throw new Error("ID is required for update/delete operations.");
+        }
+        url = value.url.replace(':id', body.id); // Ensure proper URL formatting
+      }
+
       const config = {
         method: value.method,
-        url: value.method === 'DELETE' ? `${value.url.replace(':id', body)}` : value.url,
-        data: value.method === 'GET' || value.method === 'DELETE' ? {} : (body instanceof FormData ? body : JSON.stringify(body)),
+        url: url,
+        data: value.method === 'GET' || value.method === 'DELETE' ? null : body, // Remove unnecessary JSON.stringify
         headers: {
-          'Content-Type': body instanceof FormData ? 'multipart/form-data' : 'application/json'
+          'Content-Type': 'application/json'
         },
         responseType: value.responseType,
         onUploadProgress: function (progressEvent) {
-          if (showUploadProgress) {
+          if (typeof showUploadProgress === 'function') {
             let percentageCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
             showUploadProgress(percentageCompleted);
           }
         },
         onDownloadProgress: function (progressEvent) {
-          if (showDownloadProgress) {
+          if (typeof showDownloadProgress === 'function') {
             let percentageCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
             showDownloadProgress(percentageCompleted);
           }
@@ -111,5 +119,5 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
   };
 }
 
+
 export { API };
-  
