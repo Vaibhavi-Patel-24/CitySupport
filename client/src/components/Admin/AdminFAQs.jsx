@@ -34,23 +34,24 @@ const ManageFAQs = () => {
   // Handle FAQ Submission
   const handleAddFAQ = async () => {
     if (!title || !description) {
-      alert("Title and Description are required!");
-      return;
+        alert("Title and Description are required!");
+        return;
     }
 
     try {
-      const response = await API.addFAQ({ title, description });
-      if (response.isSuccess) {
-        setFaqs([...faqs, response.data]); // Update list
-        setTitle("");
-        setDescription("");
-      } else {
-        console.error("Failed to add FAQ");
-      }
+        const response = await API.addFAQ({ title, description });
+
+        if (response && response.isSuccess) {
+            fetchFAQs(); // 🔥 Fetch latest FAQs instead of manually adding
+            setTitle("");
+            setDescription("");
+        } else {
+            console.error("Failed to add FAQ: Invalid response data");
+        }
     } catch (error) {
-      console.error("Error adding FAQ:", error);
+        console.error("Error adding FAQ:", error);
     }
-  };
+};
 
   // Handle Delete FAQ
   const handleDelete = async (id) => {
@@ -63,10 +64,18 @@ const ManageFAQs = () => {
     try {
         const response = await API.deleteFAQ({ id });
         console.log(response);
+        
+        if (response && response.isSuccess) {
+            // Remove the deleted FAQ from the list instead of appending
+            setFaqs((prevFaqs) => prevFaqs.filter(faq => faq._id !== id));
+        } else {
+            console.error("Failed to delete FAQ");
+        }
     } catch (error) {
         console.error("Error deleting FAQ:", error);
     }
 };
+
 
 
   // Start Editing a FAQ
@@ -78,20 +87,23 @@ const ManageFAQs = () => {
 
   // Save Updated FAQ
   const handleUpdate = async (id) => {
-    const updatedData = { id, title: editTitle, description: editDescription }; // ✅ Include id in object
-  
+    const updatedData = { id, title: editTitle, description: editDescription };
+
     try {
-      const response = await API.updateFAQ(updatedData); // ✅ Pass as a single object
-      if (response.isSuccess) {
-        setFaqs(faqs.map(faq => (faq._id === id ? response.data : faq))); // ✅ Ensure UI updates correctly
-        setEditingId(null);
-      } else {
-        console.error("Failed to update FAQ");
-      }
+        const response = await API.updateFAQ(updatedData);
+
+        if (response && response.isSuccess) {
+            fetchFAQs(); // 🔥 Fetch latest FAQs from backend after update
+            setEditingId(null);
+        } else {
+            console.error("Failed to update FAQ");
+        }
     } catch (error) {
-      console.error("Error updating FAQ:", error);
+        console.error("Error updating FAQ:", error);
     }
-  };
+};
+
+
   
   
   

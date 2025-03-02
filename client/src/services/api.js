@@ -31,7 +31,7 @@ axiosInstance.interceptors.response.use(
 );
 
 const processResponse = (response) => {
-  if (response?.status === 200) {
+  if (response?.status === 200 || response?.status === 201) {
     return { isSuccess: true, data: response.data };
   } else {
     return {
@@ -92,7 +92,7 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
       const config = {
         method: value.method,
         url: url,
-        data: value.method === 'GET' || value.method === 'DELETE' ? null : body, // Remove unnecessary JSON.stringify
+        data: value.method === 'GET' || value.method === 'DELETE' ? body._id : body, // Remove unnecessary JSON.stringify
         headers: {
           'Content-Type': 'application/json'
         },
