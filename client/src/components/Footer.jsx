@@ -2,15 +2,51 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Box, TextField, Button, IconButton, Typography} from '@mui/material'
 import logo from "../images/CITY_SUPPORT_logo.png"
+import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react'
 import linkedin from "../images/linkedin.png"
 import facebook from "../images/Facebook.png"
 import insta from "../images/Instagram.png"
 import youtube from "../images/Youtube.png"
-
+import { API } from '../services/api';
 
 const Footer = () => {
   const [inputValue, setInputValue] = useState("");
+  
+  const validateEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+  };
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSubmit = async() => {
+    if (!validateEmail(inputValue)) {
+      toast.error("Enter a valid email address!");
+      return;
+    } 
+    try {
+      const response = await API.newSubscriber({ email: inputValue });
+      console.log("hi")
+      console.log(response)
+      if (response.isSuccess) {
+        toast.success(response.data.message);
+        setInputValue(""); // Clear input after successful submission
+      } else {
+        toast.error(response.data.message || "Something went wrong!");
+      }
+    } catch (error) {
+      toast.error(error?.msg || "Server error. Try again later!");
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
 
   return (
     <>
@@ -46,12 +82,14 @@ const Footer = () => {
                 <TextField
                 variant="outlined"
                 placeholder="Subscribe to our Newsletter" 
+                type='email'
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
                 sx={{backgroundColor:"white",borderRadius:'8px', width: "235px"}}
                 size='small'
               />
-              <Button variant="contained" size="small" sx={{ backgroundColor: "rgb(241,118,53)", color: "rgb(73,143,191)",fontWeight: "bold",fontSize:"14px",borderRadius:"10px"}}>SUBSCRIBE</Button>
+              <Button variant="contained" onClick={handleSubmit} size="small" sx={{ backgroundColor: "rgb(241,118,53)", color: "rgb(73,143,191)",fontWeight: "bold",fontSize:"14px",borderRadius:"10px"}}>SUBSCRIBE</Button>
         </Box>
       </Box>
 
@@ -68,6 +106,7 @@ const Footer = () => {
         </Box>
     </Box>
       
+    <Toaster position="top-center" reverseOrder={false} />
     </>
   )
 }
