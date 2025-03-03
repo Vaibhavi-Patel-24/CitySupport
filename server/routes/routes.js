@@ -2,6 +2,8 @@ import express from 'express';
 import { loginAdmin } from '../controller/adminLogin-controller.js';
 import { contactUs } from '../controller/contact-controller.js';
 import { createFAQ, getFAQs, updateFAQ, deleteFAQ } from '../controller/faq-controller.js';
+import { getSubscriber,newSubscriber } from '../controller/subscribers-controller.js';
+
 // import upload from '../middleware/multer.js';
 // import { uploadImage } from '../controllers/upload-controller.js';
 
@@ -21,5 +23,10 @@ router.delete('/faqs/:id', deleteFAQ);
 
 // ✅ Image Upload Route
 // router.post('/upload', upload.single('image'), uploadImage);
+
+
+//Subscriber Route
+router.post('/subscriber',newSubscriber);
+router.get('/subscribers',getSubscriber)
 
 export default router;

@@ -8,7 +8,9 @@ export const SERVICE_URLS = {
     getFAQs: { url: '/faqs', method: 'GET' }, 
     addFAQ: { url: '/faqs', method: 'POST' }, 
     updateFAQ: { url: '/faqs/:id', method: 'PUT' }, 
-    deleteFAQ: { url: '/faqs/:id', method: 'DELETE' } 
+    deleteFAQ: { url: '/faqs/:id', method: 'DELETE' },
+    newSubscriber: { url: '/subscriber', method: 'POST' },
+    getSubscribers: { url: '/subscribers', method: 'GET' }
 
   };
   

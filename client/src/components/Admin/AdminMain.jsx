@@ -24,6 +24,8 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
 import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import EmailIcon from '@mui/icons-material/Email';
+
 // import EventSettings from './EventSettings';
 // import NewsSettings from './NewsSettings';
 import LogoImage from "../../images/CITY SUPPORT main logo.png";
@@ -33,6 +35,7 @@ import LogoImage from "../../images/CITY SUPPORT main logo.png";
 // import AdminCampaigns from './AdminCampaigns'; // Import the AdminCampaigns component
 import ContactQueries from './Queries';
 import ManageFAQs from './AdminFAQs';
+import Subscribers from './Subscribers';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -109,6 +112,8 @@ const AdminMain = () => {
         return <ManageFAQs/>;
       case 'Settings':
         return <h1>This is settings section..</h1>;
+      case 'Subscribers':
+        return <Subscribers/>;
       default:
         return <h1>This will be the Dashboard</h1>;
     }
@@ -157,6 +162,15 @@ const AdminMain = () => {
           </ListItemIcon>
           <ListItemText primary="Blogs" sx={{cursor:'pointer'}}/>
         </ListItem>
+
+        <ListItem button onClick={() => handleNavigation('Subscribers')}> 
+          <ListItemIcon>
+            <EmailIcon />
+          </ListItemIcon>
+          <ListItemText primary="Subscribers" sx={{cursor:'pointer'}}/>
+        </ListItem>
+
+
         <ListItem button onClick={() => handleNavigation('Queries')}> 
           <ListItemIcon>
             <LiveHelpIcon />
