@@ -9,6 +9,9 @@ import {
   Container,
   Box,
   styled,
+  createTheme,
+  responsiveFontSizes,
+  ThemeProvider,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SearchIcon from '../images/search-magnify-magnifier-glass_svgrepo.com.png';
@@ -48,14 +51,27 @@ const ClientFAQs = () => {
     
   };
 
+  const ColoredLine = ({ color }) => (
+    <hr
+        style={{
+            color: color,
+            backgroundColor: color,
+            height: 2
+        }}
+    />
+);
+
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
+      <Box sx={{display:'flex'}}>
       <Typography
         variant="h4"
         sx={{ color: "#FF6600", fontWeight: "bold", mb: 2 }}
       >
         ~ FAQs
       </Typography>
+      <ColoredLine color="red" />
+      </Box>
       <Box sx={{ backgroundColor: '#f9f9f9', padding: '40px', borderRadius: '10px' }}>
         {/* Search Bar */}
         <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
@@ -136,4 +152,12 @@ const ClientFAQs = () => {
   );
 };
 
-export default ClientFAQs;
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <ClientFAQs />
+  </ThemeProvider>
+);
+
+export default App;
