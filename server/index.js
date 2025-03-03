@@ -5,10 +5,14 @@ import bodyParser from 'body-parser';
 
 import router from './routes/routes.js';
 import connection from "./database/db.js"
+import fileUpload from 'express-fileupload';
 
 dotenv.config()
 
 const app = express()
+app.use(fileUpload({
+    useTempFiles:true
+}))
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({ extended:true}))
