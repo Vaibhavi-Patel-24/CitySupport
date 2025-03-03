@@ -7,7 +7,7 @@ import GlobalBreadcrumbs from "../components/GlobalBreadcrumbs";
 
 const places = [
   { id: 1, name: "Vijay Vilas Palace", image: "https://images.unsplash.com/photo-1620103143245-9efb3e4a7553?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { id: 2, name: "Adalaj Vaav", image: "https://images.unsplash.com/photo-1570605505301-0f713202ca7a?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", showOverlay: true }, // Always visible overlay
+  { id: 2, name: "Adalaj Vaav", image: "https://images.unsplash.com/photo-1570605505301-0f713202ca7a?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
   { id: 3, name: "Sun Temple", image: "https://images.unsplash.com/photo-1573131615374-9b754dfeeb0e?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
   { id: 4, name: "Polo Forest", image: "https://www.gujarattourism.com/content/dam/gujrattourism/images/home_page/Polo.jpg" },
   { id: 5, name: "Dwarka", image: "https://www.gujarattourism.com/content/dam/gujrattourism/images/religious-sites/dwarkadhish-temple/Dwarkadhish-Temple-1.jpg" },
@@ -26,7 +26,7 @@ const Gallery = () => {
         </Typography>
 
         <Grid container spacing={3}>
-          {places.map((place, index) => (
+          {places.map((place) => (
             <Grid item xs={12} sm={6} key={place.id}>
               <Card 
                 sx={{ 
@@ -63,7 +63,7 @@ const Gallery = () => {
                   </Box>
                 </Box>
 
-                {/* Hover Overlay (or always visible for 1st row right side) */}
+                {/* Hover Overlay (Appears Only on Hover) */}
                 <Box
                   className="hover-overlay"
                   sx={{
@@ -79,8 +79,8 @@ const Gallery = () => {
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
-                    opacity: place.showOverlay ? 1 : 0,
-                    transform: place.showOverlay ? "translateY(0)" : "translateY(10px)",
+                    opacity: 0,
+                    transform: "translateY(10px)",
                     transition: "opacity 0.3s, transform 0.3s",
                   }}
                 >
