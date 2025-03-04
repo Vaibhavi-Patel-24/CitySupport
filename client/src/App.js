@@ -17,7 +17,15 @@ import AdminLogin from './components/Admin/AdminLogin';
 import AdminHome from './pages/Admin/AdminHome';
 import DataProvider from './context/DataProvider';
 import Map from './pages/Map';
-import School from './pages/School';
+import Schools from './pages/Schools';
+import Municipal from './pages/Municipal';
+import Electricity from './pages/Electricity';
+import Postals from './pages/Postals';
+import Colleges from './pages/Colleges';
+import Ngos from './pages/Ngos';
+import Hospitals from './pages/Hospitals';
+import Banks from './pages/Banks';
+
 
 
 
@@ -47,7 +55,15 @@ function App() {
           <Route path='/services' element={<Services/>}/>
           <Route path='/registerbusiness' element={<RegisterBusiness/>}/>
           <Route path='/map' element={<Map/>} />
-          <Route path='/utility/school' element={<School></School>} />
+          <Route path='/utility/Schools' element={<Schools/>} />
+          <Route path='/utility/Municipal' element={<Municipal/>} />
+          <Route path='/utility/Electricity' element={<Electricity/>} />
+          <Route path='/utility/Banks' element={<Banks/>} />
+          <Route path='/utility/Colleges' element={<Colleges/>} />
+          <Route path='/utility/Ngos' element={<Ngos/>} />
+          <Route path='/utility/Postals' element={<Postals/>} />
+          <Route path='/utility/Hospitals' element={<Hospitals/>} />
+
           <Route path='/admin123/login' element={<AdminLogin isUserAuthenticated={isUserAuthenticated}/>}/>
             
             <Route path='/admin123' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >

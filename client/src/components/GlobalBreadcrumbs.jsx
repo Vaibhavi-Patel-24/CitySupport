@@ -7,7 +7,7 @@ const GlobalBreadcrumbs = () => {
     const pathname = location.pathname.split('/').filter((x)=>x);
   return (
     <>
-    <Box sx={{marginX: { xs: "auto", md: "60px" },p:{md:3,xs:1}}}>
+    <Box sx={{marginX: { xs: "auto", md: "50px" },pt:{md:2,xs:1},pb:{md:2,xs:1}}}>
         <Breadcrumbs separator=">" sx={{color:'rgb(241,118,53)'}}>
             <Link to='/' style={{color:'rgb(241,118,53)',textDecoration:"none"}}>
                 Home

@@ -2,14 +2,14 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs'
 
-const School = () => {
+const Banks = () => {
   return (
     <div>
-    <Navbar/>
-    <GlobalBreadcrumbs/>
-      School
+      <Navbar/>
+      <GlobalBreadcrumbs/>
+      Banks
     </div>
   )
 }
 
-export default School
+export default Banks
