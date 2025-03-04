@@ -2,7 +2,7 @@ import express from 'express';
 import { loginAdmin } from "../controller/adminLogin-controller.js";
 import { contactUs } from '../controller/contact-controller.js';
 import { createFAQ, getFAQs, updateFAQ, deleteFAQ } from '../controller/faq-controller.js';
-import { getSubscriber,newSubscriber } from '../controller/subscribers-controller.js';
+import { deleteSubscriber,getSubscribers,newSubscriber, } from '../controller/subscribers-controller.js';
 
 import Contact from '../models/contactModel.js';
 import upload from '../middleware/multer.js'; // Import Multer setup
@@ -61,8 +61,9 @@ router.delete("/faqs/:id", deleteFAQ);
 // router.post('/upload', upload.single('image'), uploadImage); 
 
 
-//Subscriber Route
-router.post('/subscriber',newSubscriber);
-router.get('/subscribers',getSubscriber)
+// Subscriber Routes
+router.post('/subscribe', newSubscriber);
+router.get('/subscribers', getSubscribers);
+router.delete('/subscribers/:id', deleteSubscriber); 
 
 export default router;

@@ -83,6 +83,7 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
     try {
       let url = value.url;
       if (value.method === 'PUT' || value.method === 'DELETE') {
+        console.log(body)
         if (!body.id) {
           throw new Error("ID is required for update/delete operations.");
         }
