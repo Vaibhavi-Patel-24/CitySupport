@@ -1,83 +1,133 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { useEffect, useState } from 'react';
-import { API } from '../../services/api';
-
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-
+import React, { useEffect, useState } from "react";
+import {
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+  Paper, Typography, TextField, Button, Tooltip, CircularProgress
+} from "@mui/material";
+import { API } from "../../services/api"; 
 
 const Subscribers = () => {
-
   const [subscribers, setSubscribers] = useState([]);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true); // 🔹 Added Loading State
 
   useEffect(() => {
-    const fetchSubscribers = async () => {
-      try {
-        const response = await API.getSubscribers();
-        console.log(response.data); // Check what API is returning
-        
-        if (Array.isArray(response.data)) {
-          setSubscribers(response.data);
-        } else {
-          setSubscribers([]); // Fallback if response is not an array
-        }
-      } catch (error) {
-        console.error("Error fetching subscribers:", error);
-      }
-    };
-  
     fetchSubscribers();
   }, []);
+
+  // Fetch subscribers from API
+  const fetchSubscribers = async () => {
+    setLoading(true); // Start loading
+    try {
+      console.log("Fetching subscribers from API...");
+      const response = await API.getSubscribers();
+      console.log("API Response:", response);
+
+      if (response.isSuccess) {
+        setSubscribers(response.data);
+      } else {
+        console.error("API response failed:", response);
+      }
+    } catch (error) {
+      console.error("Error fetching subscribers:", error);
+    }
+    setLoading(false); // Stop loading
+  };
+
+  // Handle Delete Subscriber
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this subscriber?")) return;
   
+    try {
+      console.log("Deleting subscriber with ID:", id);
+      const response = await API.deleteSubscriber({ id });
+      console.log("Delete Response:", response);
+      if (response.isSuccess) {
+        setSubscribers(prevSubscribers => prevSubscribers.filter(subscriber => subscriber._id !== id));
+        console.log("Subscriber deleted successfully");
+      } else {
+        console.error("Failed to delete subscriber", response);
+      }
+    } catch (error) {
+      console.error("Error deleting subscriber:", error);
+    }
+  };
+
+  // Filter subscribers based on search input
+  const filteredSubscribers = subscribers.filter(subscriber =>
+    subscriber.email.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <>
-      <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 300 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell sx={{ width: "12%",pl:5}}>Sr. No.</StyledTableCell>
-            <StyledTableCell  sx={{ width: "88%" }}>Email</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {subscribers.map((subscriber, index) => (
-            <StyledTableRow key={index}>
-              <StyledTableCell sx={{ width: "12%",pl:5}}>{index + 1}</StyledTableCell>
-              <StyledTableCell sx={{ width: "88%" }}>{subscriber.email}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </>
-  )
-}
+    <TableContainer component={Paper} sx={{ marginTop: 2, padding: 2 }}>
+      <Typography variant="h6" gutterBottom>
+        Subscribers List
+      </Typography>
 
-export default Subscribers
+      {/* Search Bar */}
+      <TextField
+        label="Search by Email"
+        variant="outlined"
+        fullWidth
+        margin="dense"
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {/* Show loading spinner while fetching */}
+      {loading ? (
+        <div style={{ textAlign: "center", padding: "20px" }}>
+          <CircularProgress /> {/* 🔥 Added Loading Spinner */}
+        </div>
+      ) : (
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ width: "10%" }}><strong>S.No.</strong></TableCell>
+              <TableCell sx={{ width: "80%" }}><strong>Email</strong></TableCell>
+              <TableCell sx={{ width: "10%" }}><strong>Actions</strong></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredSubscribers.length > 0 ? (
+              filteredSubscribers.map((subscriber, index) => (
+                <TableRow key={subscriber._id}>
+                  <TableCell>{index + 1}</TableCell>
+                  {/* Tooltip for long email addresses */}
+                  <TableCell>
+                    <Tooltip title={subscriber.email}>
+                      <span style={{
+                        display: "inline-block",
+                        maxWidth: "250px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis"
+                      }}>
+                        {subscriber.email}
+                      </span>
+                    </Tooltip>
+                  </TableCell>
+                  <TableCell>
+                    <Button 
+                      variant="contained" 
+                      color="error" 
+                      onClick={() => handleDelete(subscriber._id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={3} align="center">
+                  {search ? "No matching subscribers found" : "No subscribers available"}
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      )}
+    </TableContainer>
+  );
+};
+
+export default Subscribers;

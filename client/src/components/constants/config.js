@@ -10,8 +10,8 @@ export const SERVICE_URLS = {
     updateFAQ: { url: '/faqs/:id', method: 'PUT' }, 
     deleteFAQ: { url: '/faqs/:id', method: 'DELETE' },
     newSubscriber: { url: '/subscriber', method: 'POST' },
-    getSubscribers: { url: '/subscribers', method: 'GET' }
-
+    getSubscribers: { url: '/subscribers', method: 'GET' },
+    deleteSubscriber:{url: '/subscribers/:id', method:'DELETE'}
   };
   
   // API_NOTIFICATION_MESSAGES
