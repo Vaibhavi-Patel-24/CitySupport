@@ -62,7 +62,7 @@ router.delete("/faqs/:id", deleteFAQ);
 
 
 // Subscriber Routes
-router.post('/subscribe', newSubscriber);
+router.post('/subscriber', newSubscriber);
 router.get('/subscribers', getSubscribers);
 router.delete('/subscribers/:id', deleteSubscriber); 
 
