@@ -9,56 +9,96 @@ const RegisterBusiness = () => {
     <div>
       <Navbar />
       <GlobalBreadcrumbs />
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Paper elevation={3} sx={{ width: '800px', border: '2px solid #1976d2' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '100vh',
+          bgcolor: '#f5f5f5', // Background similar to your UI
+        }}
+      >
+        <Paper
+          elevation={3}
+          sx={{
+            border: '2px solid #1976d2',
+            width: '650px', // Matches the exact width in your screenshot
+            minHeight: '90vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
           {/* Header */}
           <Box sx={{ bgcolor: '#1976d2', color: 'white', p: 2 }}>
-            <Typography variant="h5" fontWeight="bold">Register Your Business</Typography>
-            <Typography variant="subtitle1" fontStyle="italic">Please provide all required details to register your business with us</Typography>
+            <Typography variant="h5" fontWeight="bold">
+              Register Your Business
+            </Typography>
+            <Typography variant="subtitle2" fontStyle="italic">
+              Please provide all required details to register your business with us
+            </Typography>
           </Box>
 
           {/* Form */}
-          <Box component="form" sx={{ p: 3 }}>
+          <Box component="form" sx={{ p: 4 }}>
             {/* Business Owner */}
             <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mb: 0.5 }}>Business Owner*</Typography>
             <Grid container spacing={1}>
-              <Grid item xs={6}><TextField fullWidth size="small" variant="outlined" placeholder="First Name" /></Grid>
-              <Grid item xs={6}><TextField fullWidth size="small" variant="outlined" placeholder="Last Name" /></Grid>
+              <Grid item xs={6}>
+                <TextField fullWidth variant="outlined" size="small" placeholder="First Name" />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField fullWidth variant="outlined" size="small" placeholder="Last Name" />
+              </Grid>
             </Grid>
 
             {/* Business Name */}
-            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 1, mb: 0.5 }}>Business Name*</Typography>
-            <TextField fullWidth size="small" variant="outlined" />
+            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 2, mb: 0.5 }}>Business Name*</Typography>
+            <TextField fullWidth variant="outlined" size="small" />
 
             {/* Contact Number */}
-            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 1, mb: 0.5 }}>Contact Number*</Typography>
-            <TextField fullWidth size="small" variant="outlined" />
+            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 2, mb: 0.5 }}>Contact Number*</Typography>
+            <TextField fullWidth variant="outlined" size="small" />
 
             {/* Email */}
-            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 1, mb: 0.5 }}>E-mail*</Typography>
-            <TextField fullWidth size="small" variant="outlined" />
+            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 2, mb: 0.5 }}>E-mail*</Typography>
+            <TextField fullWidth variant="outlined" size="small" />
 
             {/* Address */}
-            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 1, mb: 0.5 }}>Address*</Typography>
-            <TextField fullWidth multiline rows={3} variant="outlined" />
+            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 2, mb: 0.5 }}>Address*</Typography>
+            <TextField fullWidth multiline rows={3} variant="outlined" size="small" />
+
+            {/* Street Address */}
             <Grid container spacing={1} sx={{ mt: 1 }}>
-              <Grid item xs={6}><TextField fullWidth size="small" variant="outlined" placeholder="Street Address" /></Grid>
-              <Grid item xs={6}><TextField fullWidth size="small" variant="outlined" placeholder="State / Province" /></Grid>
+              <Grid item xs={6}>
+                <TextField fullWidth variant="outlined" size="small" placeholder="Street Address" />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField fullWidth variant="outlined" size="small" placeholder="State / Province" />
+              </Grid>
             </Grid>
+
+            {/* City & Postal Code */}
             <Grid container spacing={1} sx={{ mt: 1 }}>
-              <Grid item xs={6}><TextField fullWidth size="small" variant="outlined" placeholder="City" /></Grid>
-              <Grid item xs={6}><TextField fullWidth size="small" variant="outlined" placeholder="Postal / Zip Code" /></Grid>
+              <Grid item xs={6}>
+                <TextField fullWidth variant="outlined" size="small" placeholder="City" />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField fullWidth variant="outlined" size="small" placeholder="Postal / Zip Code" />
+              </Grid>
             </Grid>
 
             {/* GST & Aadhaar */}
-            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 1, mb: 0.5 }}>GST No.*</Typography>
-            <TextField fullWidth size="small" variant="outlined" />
-            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 1, mb: 0.5 }}>Aadhaar Number*</Typography>
-            <TextField fullWidth size="small" variant="outlined" />
+            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 2, mb: 0.5 }}>GST No.*</Typography>
+            <TextField fullWidth variant="outlined" size="small" />
+            <Typography sx={{ color: '#e67e22', fontWeight: 'bold', mt: 2, mb: 0.5 }}>Aadhaar Number*</Typography>
+            <TextField fullWidth variant="outlined" size="small" />
 
             {/* Submit Button */}
-            <Box textAlign="center" mt={2} mb={2}>
-              <Button variant="contained" color="primary" sx={{ px: 4, py: 1, textTransform: 'none' }}>Next Page</Button>
+            <Box textAlign="center" mt={3}>
+              <Button variant="contained" color="primary" sx={{ px: 4, py: 1, textTransform: 'none' }}>
+                Next Page
+              </Button>
             </Box>
           </Box>
         </Paper>

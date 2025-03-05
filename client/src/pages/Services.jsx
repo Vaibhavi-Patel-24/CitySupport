@@ -3,21 +3,22 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import GlobalBreadcrumbs from "../components/GlobalBreadcrumbs";
 import { Container, Typography, Grid, Box, Button } from "@mui/material";
+import { ConfirmationNumber, Opacity, Home, SportsSoccer, Recycling, DirectionsBus, LocalPolice, LocalFireDepartment, LocalHospital } from "@mui/icons-material";
 
-// Service data
+// Service data with black & white icons
 const services = [
-  { name: "TICKET BOOKING", icon: "🎟️" },
-  { name: "WATER METER", icon: "🚰" },
-  { name: "COMMUNITY HALL BOOKING", icon: "🏛️" },
-  { name: "STADIUM BOOKING", icon: "🏟️" },
-  { name: "WASTE MANAGEMENT", icon: "♻️" },
-  { name: "PUBLIC TRANSPORT SCHEDULES", icon: "🚌" },
+  { name: "TICKET BOOKING", icon: <ConfirmationNumber sx={{ fontSize: 32, color: "black" }} /> },
+  { name: "WATER METER", icon: <Opacity sx={{ fontSize: 32, color: "black" }} /> },
+  { name: "COMMUNITY HALL BOOKING", icon: <Home sx={{ fontSize: 32, color: "black" }} /> },
+  { name: "STADIUM BOOKING", icon: <SportsSoccer sx={{ fontSize: 32, color: "black" }} /> },
+  { name: "WASTE MANAGEMENT", icon: <Recycling sx={{ fontSize: 32, color: "black" }} /> },
+  { name: "PUBLIC TRANSPORT SCHEDULES", icon: <DirectionsBus sx={{ fontSize: 32, color: "black" }} /> },
 ];
 
 const emergencyServices = [
-  { name: "POLICE STATION", icon: "🚓" },
-  { name: "FIRE STATION", icon: "🔥" },
-  { name: "HEALTH SERVICES", icon: "⚕️" },
+  { name: "POLICE STATION", icon: <LocalPolice sx={{ fontSize: 32, color: "black" }} /> },
+  { name: "FIRE STATION", icon: <LocalFireDepartment sx={{ fontSize: 32, color: "black" }} /> },
+  { name: "HEALTH SERVICES", icon: <LocalHospital sx={{ fontSize: 32, color: "black" }} /> },
 ];
 
 // Card component
@@ -43,7 +44,6 @@ const ServiceCard = ({ service }) => (
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontSize: "28px",
       }}
     >
       {service.icon}
