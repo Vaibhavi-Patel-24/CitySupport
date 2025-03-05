@@ -28,18 +28,19 @@ const Gallery = () => {
         <Grid container spacing={3}>
           {places.map((place) => (
             <Grid item xs={12} sm={6} key={place.id}>
-              <Card 
-                sx={{ 
-                  position: "relative", 
-                  height: 400, 
-                  borderRadius: 2, 
+              <Card
+                sx={{
+                  position: "relative",
+                  height: 300,
+                  borderRadius: 2,
                   overflow: "hidden",
-                  "&:hover .hover-overlay": { opacity: 1, transform: "translateY(0)" },
+                  "&:hover .hover-overlay": { opacity: 1, bottom: 0 },
                 }}
               >
+                {/* Background Image */}
                 <CardMedia component="img" height="100%" image={place.image} alt={place.name} />
 
-                {/* Default Overlay (Name + Icons Only) */}
+                {/* Default Overlay (Title & Social Icons) */}
                 <Box
                   sx={{
                     position: "absolute",
@@ -63,16 +64,16 @@ const Gallery = () => {
                   </Box>
                 </Box>
 
-                {/* Hover Overlay (Appears Only on Hover) */}
+                {/* Hover Overlay */}
                 <Box
                   className="hover-overlay"
                   sx={{
                     position: "absolute",
-                    top: 0,
+                    bottom: "-100%",
                     left: 0,
                     width: "100%",
                     height: "100%",
-                    bgcolor: "rgba(0, 0, 0, 0.8)",
+                    bgcolor: "#472F72", // Adjusted background color to match screenshot
                     color: "#fff",
                     textAlign: "center",
                     display: "flex",
@@ -80,12 +81,13 @@ const Gallery = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     opacity: 0,
-                    transform: "translateY(10px)",
-                    transition: "opacity 0.3s, transform 0.3s",
+                    transition: "opacity 0.3s, bottom 0.3s",
                   }}
                 >
+                  {/* Place Name */}
                   <Typography variant="h6" sx={{ mb: 2 }}>{place.name}</Typography>
 
+                  {/* View Gallery Button */}
                   <Button
                     variant="contained"
                     sx={{
@@ -93,11 +95,22 @@ const Gallery = () => {
                       color: "#fff",
                       textTransform: "none",
                       fontSize: "14px",
+                      mb: 3, // Added spacing to separate the button from social icons
                       "&:hover": { bgcolor: "#d0651a" },
                     }}
                   >
                     View Gallery
                   </Button>
+
+                  {/* Social Icons Positioned Below */}
+                  <Box sx={{ display: "flex", gap: 2 }}>
+                    <IconButton sx={{ color: "#fff", p: 0.5 }}>
+                      <Twitter fontSize="small" />
+                    </IconButton>
+                    <IconButton sx={{ color: "#fff", p: 0.5 }}>
+                      <Facebook fontSize="small" />
+                    </IconButton>
+                  </Box>
                 </Box>
               </Card>
             </Grid>
