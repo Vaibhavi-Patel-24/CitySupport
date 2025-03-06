@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, Toolbar, styled, AppBar,Typography, Button, IconButton, MenuItem} from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-
 import logo from "../images/CITY SUPPORT main logo.png"
 import { Link } from "react-router-dom";
 

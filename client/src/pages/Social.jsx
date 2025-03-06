@@ -77,6 +77,7 @@ const Social = () => {
     <div className="page-container">
             <Navbar/>
             <GlobalBreadcrumbs/>
+            <div className="content">
             <Typography sx={{color:'rgb(46,122,197)',fontWeight:"bold",fontSize:"22px",pl:15,pb:3}}>Checkout Our Blogs</Typography>
             <Grid2 container spacing={3} justifyContent="center">
               {blogs.map((blog ) => (
@@ -85,6 +86,7 @@ const Social = () => {
                 </Grid2>
               ))}
             </Grid2>
+            </div>
         <Footer/>
     </div>
   )
