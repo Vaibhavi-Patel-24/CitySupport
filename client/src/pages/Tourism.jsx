@@ -79,17 +79,45 @@ const Tourism = () => {
             Home &gt; Tourism
           </Typography>
 
-          {/* Near By Place Section */}
-          <Typography variant="h4" sx={{ mb: 3, color: 'orange' }}>Near By Place</Typography>
+          {/* Near By Place Section with View All Button */}
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+            <Typography variant="h4" sx={{ color: 'orange' }}>Near By Place</Typography>
+            <Button 
+              variant="contained" 
+              sx={{ 
+                backgroundColor: '#1976d2', 
+                borderRadius: '20px',
+                '&:hover': {
+                  backgroundColor: '#1565c0'
+                }
+              }}
+            >
+              View All Places
+            </Button>
+          </Box>
+          
           <Grid container spacing={3} sx={{ mb: 4 }}>
             {nearByPlaces.map((place, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card
                   sx={{
                     height: '100%',
-                    boxShadow: 'none',
+                    boxShadow: '0px 10px 15px -3px rgba(0,0,0,0.1)',
                     border: '1px solid #e0e0e0',
-                    borderRadius: 2
+                    borderRadius: 2,
+                    position: 'relative',
+                    overflow: 'visible',
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      top: '10px',
+                      left: '10px',
+                      zIndex: -1,
+                      borderRadius: 2,
+                      backgroundColor: '#f5f5f5'
+                    }
                   }}
                 >
                   <CardContent sx={{ p: 0 }}>
@@ -107,11 +135,27 @@ const Tourism = () => {
                     >
                       {!place.image && 'Place Photo'}
                     </Box>
-                    <Box sx={{ p: 2 }}>
-                      <Typography variant="h6">{place.name}</Typography>
-                      <Typography variant="body2">Details: {place.details}</Typography>
-                      <Typography variant="body2">Rating: {place.rating}</Typography>
-                      <Typography variant="body2">Status: {place.status}</Typography>
+                    <Box sx={{ p: 2, bgcolor: '#f5f5f5' }}>
+                      <Typography variant="h6">Name : {place.name}</Typography>
+                      <Typography variant="body2">Details : {place.details}</Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
+                        <Typography variant="body2" sx={{ mr: 1 }}>Rating</Typography>
+                        <Button 
+                          variant="contained" 
+                          size="small" 
+                          disableElevation
+                          sx={{ 
+                            borderRadius: '15px', 
+                            backgroundColor: 'rgba(255, 255, 255, 0.5)', 
+                            color: 'black', 
+                            minWidth: 0, 
+                            px: 1.5 
+                          }}
+                        >
+                          {place.rating}
+                        </Button>
+                      </Box>
+                      <Typography variant="body2">open /close</Typography>
                     </Box>
                   </CardContent>
                 </Card>
@@ -119,17 +163,45 @@ const Tourism = () => {
             ))}
           </Grid>
 
-          {/* Hotels Section */}
-          <Typography variant="h5" sx={{ mb: 3, color: 'orange' }}>Hotels</Typography>
+          {/* Hotels Section with View All Button */}
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+            <Typography variant="h5" sx={{ color: 'orange' }}>Hotels</Typography>
+            <Button 
+              variant="contained" 
+              sx={{ 
+                backgroundColor: '#1976d2', 
+                borderRadius: '20px',
+                '&:hover': {
+                  backgroundColor: '#1565c0'
+                }
+              }}
+            >
+              View All hotels
+            </Button>
+          </Box>
+          
           <Grid container spacing={3} sx={{ mb: 4 }}>
             {hotels.map((hotel, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card
                   sx={{
                     height: '100%',
-                    boxShadow: 'none',
+                    boxShadow: '0px 10px 15px -3px rgba(0,0,0,0.1)',
                     border: '1px solid #e0e0e0',
-                    borderRadius: 2
+                    borderRadius: 2,
+                    position: 'relative',
+                    overflow: 'visible',
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      top: '10px',
+                      left: '10px',
+                      zIndex: -1,
+                      borderRadius: 2,
+                      backgroundColor: '#f5f5f5'
+                    }
                   }}
                 >
                   <CardContent sx={{ p: 0 }}>
@@ -147,11 +219,27 @@ const Tourism = () => {
                     >
                       {!hotel.image && 'Place Photo'}
                     </Box>
-                    <Box sx={{ p: 2 }}>
-                      <Typography variant="h6">{hotel.name}</Typography>
-                      <Typography variant="body2">Details: {hotel.details}</Typography>
-                      <Typography variant="body2">Rating: {hotel.rating}</Typography>
-                      <Typography variant="body2">Status: {hotel.status}</Typography>
+                    <Box sx={{ p: 2, bgcolor: '#f5f5f5' }}>
+                      <Typography variant="h6">Name : {hotel.name}</Typography>
+                      <Typography variant="body2">Details : {hotel.details}</Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
+                        <Typography variant="body2" sx={{ mr: 1 }}>Rating</Typography>
+                        <Button 
+                          variant="contained" 
+                          size="small" 
+                          disableElevation
+                          sx={{ 
+                            borderRadius: '15px', 
+                            backgroundColor: 'rgba(255, 255, 255, 0.5)', 
+                            color: 'black', 
+                            minWidth: 0, 
+                            px: 1.5 
+                          }}
+                        >
+                          {hotel.rating}
+                        </Button>
+                      </Box>
+                      <Typography variant="body2">open /close</Typography>
                     </Box>
                   </CardContent>
                 </Card>
@@ -160,50 +248,156 @@ const Tourism = () => {
           </Grid>
 
           {/* Public Transport Section */}
-          <Typography variant="h5" sx={{ mb: 3, color: 'orange' }}>Public Transport</Typography>
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center', 
+              mb: 3,
+              mt: 4,
+              position: 'relative',
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                left: '0',
+                right: '0',
+                top: '-20px',
+                height: '1px',
+                backgroundColor: '#e0e0e0'
+              }
+            }}
+          >
+            <Typography variant="h5" sx={{ color: 'orange' }}>Public Transport</Typography>
+          </Box>
+          
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-                <FormControl fullWidth variant="outlined">
-                  <InputLabel>Starting Point</InputLabel>
-                  <Select
-                    value={startingPoint}
-                    label="Starting Point"
-                    onChange={(e) => setStartingPoint(e.target.value)}
-                  >
-                    <MenuItem value="point1">Point 1</MenuItem>
-                    <MenuItem value="point2">Point 2</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl fullWidth variant="outlined">
-                  <InputLabel>Destination</InputLabel>
-                  <Select
-                    value={destination}
-                    label="Destination"
-                    onChange={(e) => setDestination(e.target.value)}
-                  >
-                    <MenuItem value="dest1">Destination 1</MenuItem>
-                    <MenuItem value="dest2">Destination 2</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl fullWidth variant="outlined">
-                  <InputLabel>Type of Transport</InputLabel>
-                  <Select
-                    value={transportType}
-                    label="Type of Transport"
-                    onChange={(e) => setTransportType(e.target.value)}
-                  >
-                    <MenuItem value="bus">Bus</MenuItem>
-                    <MenuItem value="train">Train</MenuItem>
-                    <MenuItem value="taxi">Taxi</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12}>
               <Grid container spacing={2}>
+                <Grid item xs={12} md={4}>
+                  <FormControl 
+                    fullWidth 
+                    variant="outlined"
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: '0',
+                        backgroundColor: '#f1e7e7',
+                        '& fieldset': {
+                          border: 'none'
+                        }
+                      },
+                      position: 'relative',
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        right: '20px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: 0,
+                        height: 0,
+                        borderLeft: '10px solid transparent',
+                        borderRight: '10px solid transparent',
+                        borderTop: '10px solid black',
+                        pointerEvents: 'none'
+                      }
+                    }}
+                  >
+                    <InputLabel sx={{ backgroundColor: '#f1e7e7', px: 1 }}>Starting Point</InputLabel>
+                    <Select
+                      value={startingPoint}
+                      onChange={(e) => setStartingPoint(e.target.value)}
+                      IconComponent={() => null}
+                    >
+                      <MenuItem value="point1">Point 1</MenuItem>
+                      <MenuItem value="point2">Point 2</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} md={4}>
+                  <FormControl 
+                    fullWidth 
+                    variant="outlined"
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: '0',
+                        backgroundColor: '#f1e7e7',
+                        '& fieldset': {
+                          border: 'none'
+                        }
+                      },
+                      position: 'relative',
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        right: '20px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: 0,
+                        height: 0,
+                        borderLeft: '10px solid transparent',
+                        borderRight: '10px solid transparent',
+                        borderTop: '10px solid black',
+                        pointerEvents: 'none'
+                      }
+                    }}
+                  >
+                    <InputLabel sx={{ backgroundColor: '#f1e7e7', px: 1 }}>Destination</InputLabel>
+                    <Select
+                      value={destination}
+                      onChange={(e) => setDestination(e.target.value)}
+                      IconComponent={() => null}
+                    >
+                      <MenuItem value="dest1">Destination 1</MenuItem>
+                      <MenuItem value="dest2">Destination 2</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} md={4}>
+                  <FormControl 
+                    fullWidth 
+                    variant="outlined"
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        borderRadius: '0',
+                        backgroundColor: '#f1e7e7',
+                        '& fieldset': {
+                          border: 'none'
+                        }
+                      },
+                      position: 'relative',
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        right: '20px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: 0,
+                        height: 0,
+                        borderLeft: '10px solid transparent',
+                        borderRight: '10px solid transparent',
+                        borderTop: '10px solid black',
+                        pointerEvents: 'none'
+                      }
+                    }}
+                  >
+                    <InputLabel sx={{ backgroundColor: '#f1e7e7', px: 1 }}>Type Of Transport</InputLabel>
+                    <Select
+                      value={transportType}
+                      onChange={(e) => setTransportType(e.target.value)}
+                      IconComponent={() => null}
+                    >
+                      <MenuItem value="bus">Bus</MenuItem>
+                      <MenuItem value="train">Train</MenuItem>
+                      <MenuItem value="taxi">Taxi</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+              </Grid>
+            </Grid>
+            
+            <Grid item xs={12} md={12}>
+              <Grid container spacing={2} sx={{ mt: 2 }}>
                 <Grid item xs={6}>
                   <Box
                     sx={{
