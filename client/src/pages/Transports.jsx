@@ -11,7 +11,13 @@ const Transports = () => {
       <Navbar />
       <GlobalBreadcrumbs />
 
-      <Container sx={{ mt: 4 }}>
+      <Box
+        sx={{
+          mx: "auto", // Centers content horizontally
+          width: { xs: "90%", sm: "80%", md: "70%" }, // Adjusts width for different screen sizes
+          mt: 4,
+        }}
+      >
         {/* City Bus Routes Section */}
         <Typography variant="h5" sx={{ fontWeight: "bold", color: "#E87722", mb: 2 }}>
           City Bus Routes
@@ -62,7 +68,7 @@ const Transports = () => {
             Data Unavailable
           </Typography>
         </Box>
-      </Container>
+      </Box>
 
       <Footer />
     </div>
