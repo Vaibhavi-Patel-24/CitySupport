@@ -59,7 +59,7 @@ function App() {
           <Route path='/map' element={<Map/>} />
           <Route path='/utility/Schools' element={<Schools/>} />
           <Route path='/utility/Municipal' element={<Municipal/>} />
-          <Route path='/utility/Electricity' element={<Electricity/>} />
+          <Route path='/utility/Electricity' element={<Electricity/>} />  
           <Route path='/utility/Banks' element={<Banks/>} />
           <Route path='/utility/Colleges' element={<Colleges/>} />
           <Route path='/utility/Ngos' element={<Ngos/>} />
