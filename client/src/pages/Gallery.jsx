@@ -40,7 +40,7 @@ const Gallery = () => {
                 {/* Background Image */}
                 <CardMedia component="img" height="100%" image={place.image} alt={place.name} />
 
-                {/* Default Overlay (Title & Social Icons) */}
+                {/* Default Overlay (Visible All the Time) */}
                 <Box
                   sx={{
                     position: "absolute",
@@ -54,7 +54,16 @@ const Gallery = () => {
                 >
                   <Typography variant="h6">{place.name}</Typography>
 
-                  <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 1 }}>
+                  {/* Social Icons (Always Visible) */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: 2,
+                      mt: 1,
+                      pointerEvents: "auto", // Ensures icons are always clickable
+                    }}
+                  >
                     <IconButton sx={{ color: "#fff", p: 0.5 }}>
                       <Twitter fontSize="small" />
                     </IconButton>
@@ -73,7 +82,7 @@ const Gallery = () => {
                     left: 0,
                     width: "100%",
                     height: "100%",
-                    bgcolor: "#472F72", // Adjusted background color to match screenshot
+                    bgcolor: "#472F72",
                     color: "#fff",
                     textAlign: "center",
                     display: "flex",
@@ -95,15 +104,21 @@ const Gallery = () => {
                       color: "#fff",
                       textTransform: "none",
                       fontSize: "14px",
-                      mb: 3, // Added spacing to separate the button from social icons
+                      mb: 3,
                       "&:hover": { bgcolor: "#d0651a" },
                     }}
                   >
                     View Gallery
                   </Button>
 
-                  {/* Social Icons Positioned Below */}
-                  <Box sx={{ display: "flex", gap: 2 }}>
+                  {/* Social Icons (Re-Positioned to Stay in the Same Spot on Hover) */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      gap: 2,
+                      pointerEvents: "auto",
+                    }}
+                  >
                     <IconButton sx={{ color: "#fff", p: 0.5 }}>
                       <Twitter fontSize="small" />
                     </IconButton>

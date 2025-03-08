@@ -25,6 +25,7 @@ import Colleges from './pages/Colleges';
 import Ngos from './pages/Ngos';
 import Hospitals from './pages/Hospitals';
 import Banks from './pages/Banks';
+import BusinessDetails from './pages/BusinessDetails';
 
 
 
@@ -54,6 +55,7 @@ function App() {
           <Route path='/promotions' element={<Promotions/>}/>
           <Route path='/services' element={<Services/>}/>
           <Route path='/registerbusiness' element={<RegisterBusiness/>}/>
+          <Route path='/RegisterBusiness/BusinessDetails' element={<BusinessDetails/>}/>
           <Route path='/map' element={<Map/>} />
           <Route path='/utility/Schools' element={<Schools/>} />
           <Route path='/utility/Municipal' element={<Municipal/>} />
