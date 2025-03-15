@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
 
 const Tourism = () => {
   const [startingPoint, setStartingPoint] = useState('');
@@ -74,10 +75,7 @@ const Tourism = () => {
       <Navbar />
       <div className="content">
         <Container maxWidth="lg" sx={{ py: 3, flex: 1 }}>
-          {/* Breadcrumb */}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2, color: 'orange' }}>
-            Home &gt; Tourism
-          </Typography>
+        <GlobalBreadcrumbs/>
 
           {/* Near By Place Section with View All Button */}
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>

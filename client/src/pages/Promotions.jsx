@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
 
 const CitySupport = () => {
   // City image URL
@@ -50,12 +51,7 @@ const CitySupport = () => {
     <div className="page-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
       <div className="content" style={{ flex: 1 }}>
-        {/* Breadcrumb */}
-        <Container maxWidth="lg" sx={{ mt: 2 }}>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2, color: 'orange' }}>
-            Home &gt; City Support
-          </Typography>
-        </Container>
+      <GlobalBreadcrumbs/>
         
         {/* Hero Banner Section */}
         <Box 
@@ -169,6 +165,8 @@ const CitySupport = () => {
                 <Card
                   sx={{
                     height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
                     boxShadow: '0px 10px 15px -3px rgba(0,0,0,0.1)',
                     border: '1px solid #e0e0e0',
                     borderRadius: 2,
@@ -187,52 +185,47 @@ const CitySupport = () => {
                     }
                   }}
                 >
-                  <CardContent sx={{ p: 0 }}>
-                    <Box
-                      sx={{
-                        height: 200,
-                        backgroundColor: 'grey.300',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundImage: `url(${offer.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                    <Box sx={{ p: 2, bgcolor: '#f5f5f5' }}>
-                      <Typography variant="h6">Name: {offer.name}</Typography>
-                      <Typography variant="body2">Details: {offer.details}</Typography>
-                      <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
-                        <Typography variant="body2" sx={{ mr: 1 }}>Rating</Typography>
-                        <Button 
-                          variant="contained" 
-                          size="small" 
-                          disableElevation
-                          sx={{ 
-                            borderRadius: '15px', 
-                            backgroundColor: 'rgba(255, 255, 255, 0.5)', 
-                            color: 'black', 
-                            minWidth: 0, 
-                            px: 1.5 
-                          }}
-                        >
-                          {offer.rating}
-                        </Button>
-                      </Box>
-                      <Typography variant="body2">{offer.status}</Typography>
-                      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                        <Button 
-                          variant="contained" 
-                          sx={{ 
-                            backgroundColor: '#3E92CC',
-                            '&:hover': { backgroundColor: '#2A7AB0' },
-                            borderRadius: '20px',
-                          }}
-                        >
-                          {index === 2 ? 'Read More' : 'Claim Now'}
-                        </Button>
-                      </Box>
+                  <Box
+                    sx={{
+                      height: 200,
+                      backgroundColor: 'grey.300',
+                      backgroundImage: `url(${offer.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
+                  <CardContent sx={{ p: 2, bgcolor: '#f5f5f5', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <Typography variant="h6">Name: {offer.name}</Typography>
+                    <Typography variant="body2">Details: {offer.details}</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', my: 1 }}>
+                      <Typography variant="body2" sx={{ mr: 1 }}>Rating</Typography>
+                      <Button 
+                        variant="contained" 
+                        size="small" 
+                        disableElevation
+                        sx={{ 
+                          borderRadius: '15px', 
+                          backgroundColor: 'rgba(255, 255, 255, 0.5)', 
+                          color: 'black', 
+                          minWidth: 0, 
+                          px: 1.5 
+                        }}
+                      >
+                        {offer.rating}
+                      </Button>
+                    </Box>
+                    <Typography variant="body2">{offer.status}</Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 'auto', pt: 2 }}>
+                      <Button 
+                        variant="contained" 
+                        sx={{ 
+                          backgroundColor: '#3E92CC',
+                          '&:hover': { backgroundColor: '#2A7AB0' },
+                          borderRadius: '20px',
+                        }}
+                      >
+                        Claim Now
+                      </Button>
                     </Box>
                   </CardContent>
                 </Card>
