@@ -1,4 +1,3 @@
-// CitySupport.js
 import React from 'react';
 import { 
   Container, 
@@ -9,10 +8,7 @@ import {
   Button, 
   Box, 
   Typography,
-  Paper,
-  List,
-  ListItem,
-  ListItemText
+  Paper
 } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -22,7 +18,11 @@ const CitySupport = () => {
   // City image URL
   const cityImageUrl = "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2l0eXxlbnwwfHwwfHx8MA%3D%3D&w=3000&q=60&fm=jpg";
   
-  // Featured offers data
+  // Image URLs for cards
+  const leftImageUrl = "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/6eb03530811457.5605884ca0d24.jpg";
+  const rightImageUrl = "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/special-offer-ads-design-template-f93f027e3b67d4a472a2dde3eaa9ad65_screen.jpg?ts=1651135986";
+  
+  // Featured offers data without ad indicators
   const featuredOffers = [
     {
       name: "Exclusive City Tours",
@@ -82,61 +82,124 @@ const CitySupport = () => {
           </Typography>
         </Box>
 
-        {/* Promotion Cards Section */}
+        {/* Information Cards Section */}
         <Container maxWidth="lg">
           <Grid container spacing={2} sx={{ mb: 5 }}>
+            {/* Left Image */}
             <Grid item xs={12} md={3}>
-              <Paper elevation={1} sx={{ p: 2, height: '100%' }}>
-                <Typography variant="h6" fontWeight="bold" textAlign="center">
-                  EXCLUSIT TOURS
-                </Typography>
-                <List dense>
-                  <ListItem>
-                    <ListItemText primary="Explore the City Like Never Before!" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary="Discover Hidden Gems with Our Exclusive Tours" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary="Limited-Time Tours to Iconic City Landmarks" />
-                  </ListItem>
-                </List>
+              <Paper 
+                elevation={3} 
+                sx={{ 
+                  height: '300px', // Fixed height to match middle card
+                  overflow: 'hidden',
+                  borderRadius: 2,
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <Box 
+                  component="img"
+                  src={leftImageUrl}
+                  alt="Special Offer"
+                  sx={{ 
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
               </Paper>
             </Grid>
             
+            {/* Middle Promotion Card with Blurred Background */}
             <Grid item xs={12} md={6}>
-              <Paper elevation={1} sx={{ 
-                p: 2, 
-                height: '100%', 
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <Typography variant="h2" fontWeight="bold" textAlign="center">
-                  75% off
-                </Typography>
-                <Typography variant="h6" fontWeight="bold" textAlign="center">
-                  ON LOCAL TOURS
-                </Typography>
-                <Box sx={{ mt: 2 }}>
-                  <Typography variant="h5" fontWeight="bold" textAlign="center">
-                    LOCAL DURATIONS
+              <Paper 
+                elevation={3} 
+                sx={{ 
+                  p: 2, 
+                  height: '300px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  position: 'relative',
+                  borderRadius: 2,
+                  overflow: 'hidden',
+                  backgroundImage: 'url(https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dG91cnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(8px)',
+                    transition: 'all 0.4s ease',
+                  },
+                  '&:hover::before': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    backdropFilter: 'blur(0px)',
+                  }
+                }}
+              >
+                {/* Promo content - always visible but adjusted on hover */}
+                <Box sx={{ 
+                  position: 'relative',
+                  zIndex: 2,
+                  textAlign: 'center'
+                }}>
+                  <Typography variant="h2" fontWeight="bold" textAlign="center" color="red">
+                    75% off
                   </Typography>
+                  <Typography variant="h6" fontWeight="bold" textAlign="center">
+                    ON LOCAL TOURS
+                  </Typography>
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="h5" fontWeight="bold" textAlign="center">
+                      LOCAL DURATIONS
+                    </Typography>
+                  </Box>
+                  <Button 
+                    variant="contained" 
+                    sx={{ 
+                      mt: 2, 
+                      bgcolor: 'red', 
+                      '&:hover': { bgcolor: 'darkred' },
+                      fontWeight: 'bold',
+                      position: 'relative',
+                      zIndex: 3,
+                    }}
+                  >
+                    CLAIM NOW
+                  </Button>
                 </Box>
               </Paper>
             </Grid>
             
+            {/* Right Image */}
             <Grid item xs={12} md={3}>
-              <Paper elevation={1} sx={{ p: 2, height: '100%' }}>
-                <Typography variant="h6" fontWeight="bold" textAlign="center">
-                  WHAT PEOPLE ARE SAY
-                </Typography>
-                <Box sx={{ mt: 2 }}>
-                  <Typography variant="body1" textAlign="center" sx={{ fontStyle: 'italic' }}>
-                    "The discounts made the whole trip even better. We had so much fun and saved money!"
-                  </Typography>
-                </Box>
+              <Paper 
+                elevation={3} 
+                sx={{ 
+                  height: '300px', // Fixed height to match middle card
+                  overflow: 'hidden',
+                  borderRadius: 2,
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <Box 
+                  component="img"
+                  src={rightImageUrl}
+                  alt="Special Offer"
+                  sx={{ 
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
               </Paper>
             </Grid>
           </Grid>
@@ -182,6 +245,10 @@ const CitySupport = () => {
                       zIndex: -1,
                       borderRadius: 2,
                       backgroundColor: '#f5f5f5'
+                    },
+                    transition: 'transform 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-5px)'
                     }
                   }}
                 >
@@ -191,9 +258,11 @@ const CitySupport = () => {
                       backgroundColor: 'grey.300',
                       backgroundImage: `url(${offer.image})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center'
+                      backgroundPosition: 'center',
+                      position: 'relative'
                     }}
-                  />
+                  >
+                  </Box>
                   <CardContent sx={{ p: 2, bgcolor: '#f5f5f5', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <Typography variant="h6">Name: {offer.name}</Typography>
                     <Typography variant="body2">Details: {offer.details}</Typography>
@@ -215,6 +284,7 @@ const CitySupport = () => {
                       </Button>
                     </Box>
                     <Typography variant="body2">{offer.status}</Typography>
+                    
                     <Box sx={{ display: 'flex', justifyContent: 'center', mt: 'auto', pt: 2 }}>
                       <Button 
                         variant="contained" 
