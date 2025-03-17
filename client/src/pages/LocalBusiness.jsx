@@ -82,54 +82,54 @@ const LocalBusiness = () => {
           }}
         >
           {categories.map((category, index) => (
-            <Card
-            key={index}
+          <Card
+          key={index}
+          sx={{
+            borderRadius: "12px",
+            overflow: "hidden",
+            boxShadow: 3,
+            gridArea: category.area,
+            bgcolor: category.title === "MALL" ? "#e0e0e0" : "#fff",
+            margin: category.title === "MALL" ? "20px 0" : "0", // Adds equal top & bottom margin
+            height: "100%", // Same size as other cards
+          }}
+        >
+          <Box
             sx={{
-              borderRadius: "12px",
-              overflow: "hidden",
-              boxShadow: 3,
-              gridArea: category.area,
-              bgcolor: category.title === "MALL" ? "#e0e0e0" : "#fff",
-              marginTop: category.title === "MALL" ? "20px" : "0",  // Adjust top margin
-              marginBottom: category.title === "MALL" ? "0px" : "0", // Remove extra bottom space
+              height: "200px", // Keep image size consistent
+              backgroundImage: `url(${category.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
-          >
-            <Box
+          />
+          <CardContent sx={{ textAlign: "center", p: 2 }}>
+            <Typography variant="h6" fontWeight="bold" sx={{ textTransform: "uppercase" }}>
+              {category.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" sx={{ my: 1 }}>
+              {category.description}
+            </Typography>
+            <Button
+              variant="contained"
+              size="small"
+              endIcon={<ArrowDropDown />}
               sx={{
-                height: "200px",
-                backgroundImage: `url(${category.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
+                mt: 1,
+                bgcolor: "#1976d2",
+                borderRadius: "20px",
+                fontSize: "0.8rem",
+                py: 1,
+                px: 3,
+                textTransform: "uppercase",
+                "&:hover": { bgcolor: "#1256a0" },
               }}
-            />
-            <CardContent sx={{ textAlign: "center", p: 2 }}>
-              <Typography variant="h6" fontWeight="bold" sx={{ textTransform: "uppercase" }}>
-                {category.title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" sx={{ my: 1 }}>
-                {category.description}
-              </Typography>
-              <Button
-                variant="contained"
-                size="small"
-                endIcon={<ArrowDropDown />}
-                sx={{
-                  mt: 1,
-                  bgcolor: "#1976d2",
-                  borderRadius: "20px",
-                  fontSize: "0.8rem",
-                  py: 1,
-                  px: 3,
-                  textTransform: "uppercase",
-                  "&:hover": { bgcolor: "#1256a0" },
-                }}
-              >
-                EXPLORE NOW
-              </Button>
-            </CardContent>
-          </Card>
-          
-          
+            >
+              EXPLORE NOW
+            </Button>
+          </CardContent>
+        </Card>
+        
+
           ))}
         </Box>
       </Container>
