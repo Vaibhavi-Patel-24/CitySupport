@@ -26,15 +26,15 @@ const SearchEvents = () => {
   return (
     <>
     <Box>
-        <Typography sx={{color:'rgb(241,118,53)',fontWeight:"bold",fontSize:"22px",pl:15,pb:3}}>Search for Events</Typography>
-        <Box sx={{ display: "flex", gap: "10px", alignItems: "center", pl: 5, pr: 5, pb: 5, justifyContent:'center' }}>
+        <Typography sx={{color:'rgb(241,118,53)',fontWeight:"bold",fontSize:"22px",pl: { xs: 0, sm: 15 },pb:3,  textAlign: { xs: 'center', sm: 'left' } }}>Search for Events</Typography>
+        <Box sx={{ display: "flex", gap: "10px", alignItems: "center", pl: 5, pr: 5, pb: 5, justifyContent:'center',flexDirection: { xs: "column", sm: "row" }}}>
 
         <TextField
         variant="outlined"
         placeholder="Search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        sx={{width:"30%"}}
+        sx={{ width: { xs: "100%", sm: "30%" }}}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -43,7 +43,7 @@ const SearchEvents = () => {
           ),
           }}/>
 
-        <FormControl sx={{width:"30%"}}>
+        <FormControl sx={{  width: { xs: "100%", sm: "30%" }}}>
         <InputLabel id="demo-simple-select-label">Event Type</InputLabel>
         <Select
             labelId="demo-simple-select-label"
@@ -65,7 +65,7 @@ const SearchEvents = () => {
                 value={selectedDate}
                 onChange={(newValue) => setSelectedDate(newValue)}
                 renderInput={(params) => <TextField {...params} />}
-                sx={{ width: "30%" }}
+                sx={{  width: { xs: "100%", sm: "30%" }}}
             />
         </LocalizationProvider>
 

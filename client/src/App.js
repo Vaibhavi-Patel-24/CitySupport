@@ -26,6 +26,7 @@ import Ngos from './pages/Ngos';
 import Hospitals from './pages/Hospitals';
 import Banks from './pages/Banks';
 import BusinessDetails from './pages/BusinessDetails';
+import AboutEvent from './pages/AboutEvent';
 
 
 
@@ -65,6 +66,8 @@ function App() {
           <Route path='/utility/Ngos' element={<Ngos/>} />
           <Route path='/utility/Postals' element={<Postals/>} />
           <Route path='/utility/Hospitals' element={<Hospitals/>} />
+          <Route path='/AboutEvent' element={<AboutEvent/>} />
+          
 
           <Route path='/admin123/login' element={<AdminLogin isUserAuthenticated={isUserAuthenticated}/>}/>
             
