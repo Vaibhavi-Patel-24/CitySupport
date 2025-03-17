@@ -6,6 +6,7 @@ import Utility from './pages/Utility';
 import Events from './pages/Events';
 import Social from './pages/Social';
 import Tourism from './pages/Tourism';
+import Hotels from './pages/Hotels';
 import Transports from './pages/Transports';
 import LocalBusiness from './pages/LocalBusiness';
 import Gallery from './pages/Gallery';
@@ -49,6 +50,7 @@ function App() {
           <Route path='/events' element={<Events/>}/>
           <Route path='/social' element={<Social/>}/>
           <Route path='/tourism' element={<Tourism/>}/>
+          <Route path="/citysupport/Hotels" element={<Hotels />} />
           <Route path='/transports' element={<Transports/>}/>
           <Route path='/localbusiness' element={<LocalBusiness/>}/>
           <Route path='/gallery' element={<Gallery/>}/>
