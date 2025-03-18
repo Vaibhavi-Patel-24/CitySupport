@@ -5,7 +5,10 @@ import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs'
 import Blogs from '../components/Blogs'
 import profile from "../images/profile.png";
 import blog_1 from "../images/blog_1.png";
-import { Grid2, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+
 const blogs = [
   {
     id: 1,
@@ -79,13 +82,21 @@ const Social = () => {
             <GlobalBreadcrumbs/>
             <div className="content">
             <Typography sx={{color:'rgb(46,122,197)',fontWeight:"bold",fontSize:"22px",pl:15,pb:3}}>Checkout Our Blogs</Typography>
-            <Grid2 container spacing={3} justifyContent="center">
+
+            <Box sx={{ display: "flex", justifyContent: "center", width: "100%",pl:5,pr:5,pb:8}}>
+
+            <Grid container spacing={3} sx={{ maxWidth: "1100px", justifyContent: "center" }}>
               {blogs.map((blog ) => (
-                <Grid2 item key={blog.id} xs={12} sm={6} md={4} lg={3}>
+                <Grid item key={blog.id} xs={12} sm={6} md={4} lg={4} sx={{ display: "flex", justifyContent: "center" }}>
+                <Box sx={{ width: "100%" }}>
                   <Blogs blog={blog}/>
-                </Grid2>
+                </Box>
+                </Grid>
               ))}
-            </Grid2>
+            </Grid>
+            
+            </Box>
+
             </div>
         <Footer/>
     </div>

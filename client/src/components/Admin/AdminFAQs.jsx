@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { 
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
-  Paper, Typography, TextField, Button 
+  Paper, Typography, TextField, Button, Grid, Box 
 } from "@mui/material";
 import { API } from "../../services/api"; 
 
@@ -17,7 +17,6 @@ const ManageFAQs = () => {
     fetchFAQs();
   }, []);
 
-  // Fetch FAQs from API
   const fetchFAQs = async () => {
     try {
       const response = await API.getFAQs();
@@ -31,7 +30,6 @@ const ManageFAQs = () => {
     }
   };
 
-  // Handle FAQ Submission
   const handleAddFAQ = async () => {
     if (!title || !description) {
         alert("Title and Description are required!");
@@ -40,9 +38,8 @@ const ManageFAQs = () => {
 
     try {
         const response = await API.addFAQ({ title, description });
-
         if (response && response.isSuccess) {
-            fetchFAQs(); // 🔥 Fetch latest FAQs instead of manually adding
+            fetchFAQs();
             setTitle("");
             setDescription("");
         } else {
@@ -53,20 +50,12 @@ const ManageFAQs = () => {
     }
 };
 
-  // Handle Delete FAQ
   const handleDelete = async (id) => {
-    console.log("Deleting FAQ with ID:", id); // Debugging: Check if ID is correct
-    if (!id) {
-        console.error("Error: ID is undefined while trying to delete FAQ");
-        return;
-    }
+    if (!id) return;
 
     try {
         const response = await API.deleteFAQ({ id });
-        console.log(response);
-        
         if (response && response.isSuccess) {
-            // Remove the deleted FAQ from the list instead of appending
             setFaqs((prevFaqs) => prevFaqs.filter(faq => faq._id !== id));
         } else {
             console.error("Failed to delete FAQ");
@@ -76,24 +65,19 @@ const ManageFAQs = () => {
     }
 };
 
-
-
-  // Start Editing a FAQ
   const handleEdit = (faq) => {
     setEditingId(faq._id);
     setEditTitle(faq.title);
     setEditDescription(faq.description);
   };
 
-  // Save Updated FAQ
   const handleUpdate = async (id) => {
     const updatedData = { id, title: editTitle, description: editDescription };
 
     try {
         const response = await API.updateFAQ(updatedData);
-
         if (response && response.isSuccess) {
-            fetchFAQs(); // 🔥 Fetch latest FAQs from backend after update
+            fetchFAQs();
             setEditingId(null);
         } else {
             console.error("Failed to update FAQ");
@@ -102,11 +86,6 @@ const ManageFAQs = () => {
         console.error("Error updating FAQ:", error);
     }
 };
-
-
-  
-  
-  
 
   return (
     <TableContainer component={Paper} sx={{ marginTop: 2, padding: 2 }}>
@@ -133,9 +112,16 @@ const ManageFAQs = () => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <Button variant="contained" color="primary" onClick={handleAddFAQ} sx={{ mt: 2 }}>
-        Add FAQ
-      </Button>
+      <Box sx={{ mt: 2, display: "flex", justifyContent: "flex-end" }}>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          onClick={handleAddFAQ}
+          sx={{ width: { xs: "100%", sm: "auto" } }}
+        >
+          Add FAQ
+        </Button>
+      </Box>
 
       {/* FAQs List */}
       <Table sx={{ marginTop: 3 }}>
@@ -178,11 +164,12 @@ const ManageFAQs = () => {
                 </TableCell>
                 <TableCell>
                   {editingId === faq._id ? (
-                    <>
+                    <Box sx={{ display: "flex", gap: 1 }}>
                       <Button 
                         variant="contained" 
                         color="success" 
                         onClick={() => handleUpdate(faq._id)}
+                        sx={{ width: { xs: "100%", sm: "auto" } }}
                       >
                         Save
                       </Button>
@@ -190,17 +177,18 @@ const ManageFAQs = () => {
                         variant="contained" 
                         color="secondary" 
                         onClick={() => setEditingId(null)}
-                        sx={{ ml: 1 }}
+                        sx={{ width: { xs: "100%", sm: "auto" } }}
                       >
                         Cancel
                       </Button>
-                    </>
+                    </Box>
                   ) : (
-                    <>
+                    <Box sx={{ display: "flex", gap: 1 }}>
                       <Button 
                         variant="contained" 
                         color="warning" 
                         onClick={() => handleEdit(faq)}
+                        sx={{ width: { xs: "100%", sm: "auto" } }}
                       >
                         Edit
                       </Button>
@@ -208,11 +196,11 @@ const ManageFAQs = () => {
                         variant="contained" 
                         color="error" 
                         onClick={() => handleDelete(faq._id)}
-                        sx={{ ml: 1 }}
+                        sx={{ width: { xs: "100%", sm: "auto" } }}
                       >
                         Delete
                       </Button>
-                    </>
+                    </Box>
                   )}
                 </TableCell>
               </TableRow>

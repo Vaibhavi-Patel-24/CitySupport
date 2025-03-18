@@ -70,7 +70,7 @@ const Footer = () => {
             </ul>
 
             <ul style={{display: "flex",flexDirection:"column",listStyleType: "none",margin:0,padding:0}}>
-                <Link to={'/ContactUs'} style={{color:"rgb(46, 122, 197)",marginBottom:25,textDecoration:'none'}}>Contact Us</Link>
+                <Link to={'/help'} style={{color:"rgb(46, 122, 197)",marginBottom:25,textDecoration:'none'}}>Contact Us</Link>
                 <Link to={'/Promotions'} style={{color:"white",textDecoration:'none',marginBottom:8}}>Promotions</Link>
                 <Link to={'/Services'} style={{color:"white",textDecoration:'none',marginBottom:8}}>Services</Link>
                 <Link to={'/RegisterBusiness'} style={{color:"white",textDecoration:'none'}}>Register Business</Link>

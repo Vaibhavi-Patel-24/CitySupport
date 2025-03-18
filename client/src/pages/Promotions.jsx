@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
 
 const CitySupport = () => {
   // City image URL
@@ -51,11 +52,7 @@ const CitySupport = () => {
       <Navbar />
       <div className="content" style={{ flex: 1 }}>
         {/* Breadcrumb */}
-        <Container maxWidth="lg" sx={{ mt: 2 }}>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2, color: 'orange' }}>
-            Home &gt; City Support
-          </Typography>
-        </Container>
+        <GlobalBreadcrumbs/>
         
         {/* Hero Banner Section */}
         <Box 
@@ -230,7 +227,7 @@ const CitySupport = () => {
                             borderRadius: '20px',
                           }}
                         >
-                          {index === 2 ? 'Read More' : 'Claim Now'}
+                          {index === 2 ? 'Claim Now' : 'Claim Now'}
                         </Button>
                       </Box>
                     </Box>
