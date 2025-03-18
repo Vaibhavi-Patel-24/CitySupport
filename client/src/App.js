@@ -6,6 +6,7 @@ import Utility from './pages/Utility';
 import Events from './pages/Events';
 import Social from './pages/Social';
 import Tourism from './pages/Tourism';
+import Hotels from './pages/Hotels';
 import Transports from './pages/Transports';
 import LocalBusiness from './pages/LocalBusiness';
 import Gallery from './pages/Gallery';
@@ -26,6 +27,7 @@ import Ngos from './pages/Ngos';
 import Hospitals from './pages/Hospitals';
 import Banks from './pages/Banks';
 import BusinessDetails from './pages/BusinessDetails';
+import AboutEvent from './pages/AboutEvent';
 
 
 
@@ -48,6 +50,7 @@ function App() {
           <Route path='/events' element={<Events/>}/>
           <Route path='/social' element={<Social/>}/>
           <Route path='/tourism' element={<Tourism/>}/>
+          <Route path="/citysupport/Hotels" element={<Hotels />} />
           <Route path='/transports' element={<Transports/>}/>
           <Route path='/localbusiness' element={<LocalBusiness/>}/>
           <Route path='/gallery' element={<Gallery/>}/>
@@ -65,6 +68,8 @@ function App() {
           <Route path='/utility/Ngos' element={<Ngos/>} />
           <Route path='/utility/Postals' element={<Postals/>} />
           <Route path='/utility/Hospitals' element={<Hospitals/>} />
+          <Route path='/AboutEvent' element={<AboutEvent/>} />
+          
 
           <Route path='/admin123/login' element={<AdminLogin isUserAuthenticated={isUserAuthenticated}/>}/>
             

@@ -29,7 +29,7 @@ const Days_Events = () => {
   return (
     <>
        <Box>
-      <Typography sx={{ color: 'rgb(241,118,53)', fontWeight: "bold", fontSize: "22px", pl: 15, pb: 3 }}>
+      <Typography sx={{ color: 'rgb(241,118,53)', fontWeight: "bold", fontSize: "22px", pl: { xs: 0, sm: 15 }, pb: 3,  textAlign: { xs: 'center', sm: 'left' } }}>
         Events Day Wise
       </Typography>
 

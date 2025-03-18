@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -69,6 +70,8 @@ const Tourism = () => {
       image: 'https://lh5.googleusercontent.com/p/AF1QipOYpRHZPa0sDbony3cK80KziM037kGYuBRtHiUt=w324-h312-n-k-no'
     }
   ];
+
+  
 
   return (
     <div className="page-container">
@@ -164,18 +167,20 @@ const Tourism = () => {
           {/* Hotels Section with View All Button */}
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
             <Typography variant="h5" sx={{ color: 'orange' }}>Hotels</Typography>
-            <Button 
-              variant="contained" 
-              sx={{ 
-                backgroundColor: '#1976d2', 
-                borderRadius: '20px',
-                '&:hover': {
-                  backgroundColor: '#1565c0'
-                }
-              }}
-            >
-              View All hotels
-            </Button>
+            <Link to="/citysupport/Hotels" style={{ textDecoration: 'none' }}>
+              <Button 
+                variant="contained" 
+                sx={{ 
+                  backgroundColor: '#1976d2', 
+                  borderRadius: '20px',
+                  '&:hover': {
+                    backgroundColor: '#1565c0'
+                  }
+                }}
+              >
+                VIEW ALL HOTELS
+              </Button>
+            </Link>
           </Box>
           
           <Grid container spacing={3} sx={{ mb: 4 }}>

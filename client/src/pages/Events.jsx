@@ -29,6 +29,7 @@ const Events = () => {
       <Navbar />
       <GlobalBreadcrumbs />
       <div className="content">
+        
       <SearchEvents/>
 
       <Typography sx={{color:'rgb(241,118,53)',fontWeight:"bold",fontSize:"22px",pl:15,pb:3}}>Events</Typography>
