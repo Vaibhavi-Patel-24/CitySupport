@@ -30,6 +30,7 @@ const Events = () => {
       <GlobalBreadcrumbs />
       <div className="content">
       <SearchEvents/>
+
       <Typography sx={{color:'rgb(241,118,53)',fontWeight:"bold",fontSize:"22px",pl:15,pb:3}}>Events</Typography>
       <Box sx={{ display: "flex", justifyContent: "center", width: "100%",pl:5,pr:5,pb:8}}>
         <Grid container spacing={3} sx={{ maxWidth: "1100px", justifyContent: "center" }}>
