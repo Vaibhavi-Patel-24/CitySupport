@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -15,6 +16,7 @@ import {
 } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
 import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
 
 const Tourism = () => {
@@ -70,13 +72,14 @@ const Tourism = () => {
     }
   ];
 
+  
+
   return (
     <div className="page-container">
       <Navbar />
       <div className="content">
         <Container maxWidth="lg" sx={{ py: 3, flex: 1 }}>
-          {/* Breadcrumb */}
-          <GlobalBreadcrumbs/>
+        <GlobalBreadcrumbs/>
 
           {/* Near By Place Section with View All Button */}
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
@@ -165,18 +168,20 @@ const Tourism = () => {
           {/* Hotels Section with View All Button */}
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
             <Typography variant="h5" sx={{ color: 'orange' }}>Hotels</Typography>
-            <Button 
-              variant="contained" 
-              sx={{ 
-                backgroundColor: '#1976d2', 
-                borderRadius: '20px',
-                '&:hover': {
-                  backgroundColor: '#1565c0'
-                }
-              }}
-            >
-              View All hotels
-            </Button>
+            <Link to="/citysupport/Hotels" style={{ textDecoration: 'none' }}>
+              <Button 
+                variant="contained" 
+                sx={{ 
+                  backgroundColor: '#1976d2', 
+                  borderRadius: '20px',
+                  '&:hover': {
+                    backgroundColor: '#1565c0'
+                  }
+                }}
+              >
+                VIEW ALL HOTELS
+              </Button>
+            </Link>
           </Box>
           
           <Grid container spacing={3} sx={{ mb: 4 }}>
