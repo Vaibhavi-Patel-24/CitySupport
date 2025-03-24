@@ -12,7 +12,7 @@ const AboutEvent = () => {
     <>
     <Navbar/>
     <GlobalBreadcrumbs/>
-    <Box sx={{display:'flex',flexDirection:{xs:'column',md:'row'},pt:5,pl:2,pr:2,pb:5,gap:1}}>
+    <Box sx={{display:'flex',flexDirection:{xs:'column',md:'row'},pt:5,pl:2,pr:2,pb:5,gap:2,bgcolor:'rgb(211, 214, 225)'}}>
       <Left_AboutEvent />
       <Right_AboutEvent />
     </Box>

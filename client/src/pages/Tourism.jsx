@@ -17,7 +17,6 @@ import {
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
-import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
 
 const Tourism = () => {
   const [startingPoint, setStartingPoint] = useState('');

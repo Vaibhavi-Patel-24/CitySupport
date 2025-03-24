@@ -13,7 +13,6 @@ import {
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
-import GlobalBreadcrumbs from '../components/GlobalBreadcrumbs';
 
 const CitySupport = () => {
   // City image URL

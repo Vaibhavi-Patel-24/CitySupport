@@ -35,10 +35,10 @@ const Events = () => {
 
       <Typography sx={{color:'rgb(241,118,53)',fontWeight:"bold",fontSize:"22px",pl: { xs: 0, sm: 15 },pb:3,  textAlign: { xs: 'center', sm: 'left' } }}>Events</Typography>
       <Box sx={{ display: "flex", justifyContent: "center", width: "100%",pl:5,pr:5,pb:8}}>
-        <Grid container spacing={3} sx={{ maxWidth: "1100px", justifyContent: "center" }}>
+        <Grid container spacing={3} sx={{ maxWidth: "1100px", justifyContent: "center",alignItems: "center" }}>
           {events.map((event) => (
             <Grid item key={event.id} xs={12} sm={6} md={4} lg={4} sx={{ display: "flex", justifyContent: "center" }}>
-              <Box sx={{ width: "100%" }}>
+              <Box sx={{ width: "100%",maxWidth: 350 }}>
                 <EventComponet event={event} />
               </Box>
             </Grid>
