@@ -71,65 +71,71 @@ const LocalBusiness = () => {
         <Box
           sx={{
             display: "grid",
-            gridTemplateAreas: `
-              "restaurants shops mall"
-              "furniture medical mall"
-            `,
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1.1fr" }, // **MALL slightly larger**
+            gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" }, // 3 columns on medium screens and up
             gridTemplateRows: "1fr 1fr",
             gap: 3,
             alignItems: "stretch",
           }}
         >
           {categories.map((category, index) => (
-          <Card
-          key={index}
-          sx={{
-            borderRadius: "12px",
-            overflow: "hidden",
-            boxShadow: 3,
-            gridArea: category.area,
-            bgcolor: category.title === "MALL" ? "#e0e0e0" : "#fff",
-            margin: category.title === "MALL" ? "20px 0" : "0", // Adds equal top & bottom margin
-            height: "100%", // Same size as other cards
-          }}
-        >
-          <Box
-            sx={{
-              height: "200px", // Keep image size consistent
-              backgroundImage: `url(${category.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-          <CardContent sx={{ textAlign: "center", p: 2 }}>
-            <Typography variant="h6" fontWeight="bold" sx={{ textTransform: "uppercase" }}>
-              {category.title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" sx={{ my: 1 }}>
-              {category.description}
-            </Typography>
-            <Button
-              variant="contained"
-              size="small"
-              endIcon={<ArrowDropDown />}
+            <Card
+              key={index}
               sx={{
-                mt: 1,
-                bgcolor: "#1976d2",
-                borderRadius: "20px",
-                fontSize: "0.8rem",
-                py: 1,
-                px: 3,
-                textTransform: "uppercase",
-                "&:hover": { bgcolor: "#1256a0" },
+                borderRadius: "12px",
+                overflow: "hidden",
+                boxShadow: 3,
+                bgcolor: "#fff",
+                display: "flex",
+                flexDirection: "column", // Ensures consistent layout for card content
+                height: "100%", // Ensures all cards are of the same height
+                minHeight: "350px", // Minimum height for uniformity
               }}
             >
-              EXPLORE NOW
-            </Button>
-          </CardContent>
-        </Card>
-        
-
+              {/* Image Section */}
+              <Box
+                sx={{
+                  height: "200px", // Keep image size consistent
+                  backgroundImage: `url(${category.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              />
+              {/* Card Content Section */}
+              <CardContent
+                sx={{
+                  textAlign: "center",
+                  p: 2,
+                  flexGrow: 1, // Ensures content fills the card height evenly
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography variant="h6" fontWeight="bold" sx={{ textTransform: "uppercase" }}>
+                  {category.title}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" sx={{ my: 1 }}>
+                  {category.description}
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="small"
+                  endIcon={<ArrowDropDown />}
+                  sx={{
+                    mt: 1,
+                    bgcolor: "#1976d2",
+                    borderRadius: "20px",
+                    fontSize: "0.8rem",
+                    py: 1,
+                    px: 3,
+                    textTransform: "uppercase",
+                    "&:hover": { bgcolor: "#1256a0" },
+                  }}
+                >
+                  EXPLORE NOW
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </Box>
       </Container>
