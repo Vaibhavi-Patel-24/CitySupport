@@ -40,6 +40,7 @@ export const createMustVisit = async (req, res) => {
 // ✅ Delete a Must Visit Place
 export const deleteMustVisit = async (request, response) => {
   try {
+    console.log('Entered delete must visit controller')
     const { id } = request.params;
 
     console.log(`Deleting MustVisit with ID: ${id}`);

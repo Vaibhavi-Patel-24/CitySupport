@@ -93,7 +93,7 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
       const config = {
         method: value.method,
         url: url,
-        data: value.method === 'GET' || value.method === 'DELETE' ? body._id : body, // Remove unnecessary JSON.stringify
+        data: value.method === 'GET' ? body : (value.method === 'DELETE' ? {} : body),
         headers: {
           'Content-Type': value.method === 'POST' && body instanceof FormData ? 'multipart/form-data' : 'application/json'
         },        

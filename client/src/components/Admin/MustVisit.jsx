@@ -78,7 +78,8 @@ export default function MustVisit() {
 
   const handleDelete = async (id) => {
     try {
-      await API.deleteMustVisit(id);
+      console.log(id)
+      await API.deleteMustVisit({id});
       setPlaces((prev) => prev.filter((place) => place._id !== id));
     } catch (error) {
       console.error("Failed to delete place:", error);
