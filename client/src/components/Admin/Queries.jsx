@@ -37,7 +37,7 @@ const ContactQueries = () => {
     if (!window.confirm("Are you sure you want to delete this query?")) return;
 
     try {
-        const response = await API.deleteQuery(id); // Delete request
+        const response = await API.deleteQuery({id}); 
         if (response.isSuccess) {
             setQueries(prevQueries => prevQueries.filter(query => query._id !== id));
             console.log("Query deleted successfully");
