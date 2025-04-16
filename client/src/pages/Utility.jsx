@@ -29,9 +29,11 @@ const Utility = () => {
     <Box className="page-container">
       <Navbar/>
       <GlobalBreadcrumbs/>
+      <Box className="content">
+
         <Box>
 
-        <Typography sx={{color:'rgb(241,118,53)',fontSize:"20px",fontWeight:'bold',marginX:{xs:'auto',md:'50px'}}}>Public Utilities</Typography>
+        <Typography sx={{color:'rgb(241,118,53)',fontWeight:"bold",fontSize:"22px",pl: { xs: 0, sm: 15 },pb:3,  textAlign: { xs: 'center', sm: 'left' } }}>Public Utilities</Typography>
         
         <Box sx={{marginX:{xs:'auto',md:'50px'},pt:{xs:1,md:7},pb:{xs:1,md:7},display:'flex',alignItems:'center',justifyContent:'center'}}>
           
@@ -48,6 +50,8 @@ const Utility = () => {
           </Grid2>
         </Box>
         </Box>     
+        </Box>
+
         </Box>
       <Footer/>
     </Box>
