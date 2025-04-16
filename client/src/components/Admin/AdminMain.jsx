@@ -26,6 +26,7 @@ import TourIcon from '@mui/icons-material/Tour';
 import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
+import PeopleIcon from '@mui/icons-material/People';
 
 // import EventSettings from './EventSettings';
 // import NewsSettings from './NewsSettings';
@@ -38,6 +39,7 @@ import ContactQueries from './Queries';
 import ManageFAQs from './AdminFAQs';
 import Subscribers from './Subscribers';
 import MustVisit from './MustVisit';
+import AdminSocial from './AdminSocial';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -114,6 +116,8 @@ const AdminMain = () => {
         return <ManageFAQs/>;
       case 'MustVisit': // Add this case for rendering AdminCampaigns
         return <MustVisit/>;
+        case 'Social': // Add this case for rendering AdminCampaigns
+        return <AdminSocial/>;
       case 'Settings':
         return <h1>This is settings section..</h1>;
       case 'Subscribers':
@@ -200,6 +204,13 @@ const AdminMain = () => {
             <TourIcon />
           </ListItemIcon>
           <ListItemText primary="MustVisit" sx={{cursor:'pointer'}} />
+        </ListItem>
+
+        <ListItem button onClick={() => handleNavigation('Social')}>
+          <ListItemIcon>
+            <PeopleIcon />
+          </ListItemIcon>
+          <ListItemText primary="Social" sx={{cursor:'pointer'}} />
         </ListItem>
 
         <ListItem button onClick={() => handleNavigation('Settings')}>

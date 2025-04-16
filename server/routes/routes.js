@@ -4,6 +4,7 @@ import { contactUs } from '../controller/contact-controller.js';
 import { createFAQ, getFAQs, updateFAQ, deleteFAQ } from '../controller/faq-controller.js';
 import { deleteSubscriber,getSubscribers,newSubscriber, } from '../controller/subscribers-controller.js';
 import { createMustVisit, deleteMustVisit, getAllMustVisit } from '../controller/adminMustVisit-controller.js';
+import { createSocial,getAllSocial,deleteSocial} from "../controller/adminSocial-controller.js";
 
 import Contact from '../models/contactModel.js';
 import upload from '../middleware/multer.js'; 
@@ -65,6 +66,11 @@ router.delete("/faqs/:id", deleteFAQ);
 router.post('/mustvisit', upload.single("image"), createMustVisit);
 router.get('/mustvisit/:id', getAllMustVisit);
 router.delete('/mustvisit/:id', deleteMustVisit);
+
+//Social for the adminpanel
+router.post('/social', upload.single("image"), createSocial);
+router.get('/social/:id', getAllSocial);
+router.delete('/social/:id', deleteSocial);
 
 
 

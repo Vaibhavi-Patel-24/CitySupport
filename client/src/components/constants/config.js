@@ -15,6 +15,10 @@ export const SERVICE_URLS = {
     mustVisit: { url: '/mustvisit', method: 'POST' },
     deleteMustVisit: { url: '/mustvisit/:id', method: 'DELETE' },
     getMustVisit: { url: '/mustvisit/:id', method: 'GET' },
+    blog: { url: '/social', method: 'POST' },
+    deleteBlog: { url: '/social/:id', method: 'DELETE' },
+    getBlog: { url: '/social/:id', method: 'GET' },
+
 
   };
   
