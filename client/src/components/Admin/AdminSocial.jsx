@@ -57,7 +57,7 @@ const [title, setTitle] = useState("");
     const formData = new FormData();
     formData.append("title", title);
     formData.append("name", name);
-    formData.append("date", date);
+    formData.append("datePosted", date);
     formData.append("image", image);
 
     try {
