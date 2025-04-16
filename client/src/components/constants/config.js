@@ -19,6 +19,9 @@ export const SERVICE_URLS = {
     deleteBlog: { url: '/social/:id', method: 'DELETE' },
     getBlog: { url: '/social/:id', method: 'GET' },
 
+    uploadBanner: { url: '/banner', method: 'POST' },
+    deleteBanner: { url: '/banner/:id', method: 'DELETE' },
+    getBanner: { url: '/banner/:id', method: 'GET' },
 
   };
   

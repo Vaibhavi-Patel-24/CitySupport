@@ -27,6 +27,7 @@ import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
 import PeopleIcon from '@mui/icons-material/People';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 
 // import EventSettings from './EventSettings';
 // import NewsSettings from './NewsSettings';
@@ -40,7 +41,7 @@ import ManageFAQs from './AdminFAQs';
 import Subscribers from './Subscribers';
 import MustVisit from './MustVisit';
 import AdminSocial from './AdminSocial';
-
+import Banner from './Banner';
 const drawerWidth = 240;
 const Image = styled("img")({
   height: 100,
@@ -104,6 +105,8 @@ const AdminMain = () => {
         return <h1>This is Home section..</h1>;
       case 'Blogs':
         return <h1>This is Blog section..</h1>;
+      case 'Banner':
+        return <Banner/>;
       case 'Events':
         return <h1>This is Events section..</h1>;
       case 'News':
@@ -150,6 +153,13 @@ const AdminMain = () => {
           <ListItemText primary="Home" sx={{cursor:'pointer'}} />
         </ListItem>
        
+        <ListItem button onClick={() => handleNavigation('Banner')}>
+          <ListItemIcon>
+            <ViewCarouselIcon />
+          </ListItemIcon>
+          <ListItemText primary="Banner" sx={{cursor:'pointer'}}/>
+        </ListItem>
+
         <ListItem button onClick={() => handleNavigation('Events')}>
           <ListItemIcon>
             <EventIcon />

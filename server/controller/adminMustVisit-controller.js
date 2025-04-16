@@ -60,7 +60,7 @@ export const deleteMustVisit = async (request, response) => {
   }
 };
 
-export const getAllMustVisit = async (req, res) => {
+export const  getAllMustVisit = async (req, res) => {
   try {
     const places = await MustVisit.find();
     return res.status(200).json({ data: places });

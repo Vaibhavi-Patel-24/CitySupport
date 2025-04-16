@@ -5,6 +5,7 @@ import { createFAQ, getFAQs, updateFAQ, deleteFAQ } from '../controller/faq-cont
 import { deleteSubscriber,getSubscribers,newSubscriber, } from '../controller/subscribers-controller.js';
 import { createMustVisit, deleteMustVisit, getAllMustVisit } from '../controller/adminMustVisit-controller.js';
 import { createSocial,getAllSocial,deleteSocial} from "../controller/adminSocial-controller.js";
+import {deleteBanner, getAllBanners, uploadBanner} from '../controller/banner-controller.js';
 
 import Contact from '../models/contactModel.js';
 import upload from '../middleware/multer.js'; 
@@ -73,6 +74,10 @@ router.get('/social/:id', getAllSocial);
 router.delete('/social/:id', deleteSocial);
 
 
+// Banner for Amdinpanel
+router.post('/banner', upload.single("image"),uploadBanner)
+router.get('/banner/:id', getAllBanners);
+router.delete('/banner/:id', deleteBanner);
 
 // Subscriber Routes
 router.post('/subscriber', newSubscriber);
