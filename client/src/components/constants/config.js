@@ -15,6 +15,9 @@ export const SERVICE_URLS = {
     mustVisit: { url: '/mustvisit', method: 'POST' },
     deleteMustVisit: { url: '/mustvisit/:id', method: 'DELETE' },
     getMustVisit: { url: '/mustvisit/:id', method: 'GET' },
+    uploadBanner: { url: '/banner', method: 'POST' },
+    deleteBanner: { url: '/banner/:id', method: 'DELETE' },
+    getBanner: { url: '/banner/:id', method: 'GET' },
 
   };
   

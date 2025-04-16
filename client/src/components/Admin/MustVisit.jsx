@@ -11,27 +11,27 @@ import {
   IconButton
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { API } from "../../services/api";
+import { API } from "../../services/api"; // Adjust path if needed
 
-export default function MustVisit() {
+export default function Banner() {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [altText, setAltText] = useState("");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [places, setPlaces] = useState([]);
+  const [banners, setBanners] = useState([]);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    fetchPlaces();
+    fetchBanners();
   }, []);
 
-  const fetchPlaces = async () => {
+  const fetchBanners = async () => {
     try {
-      const response = await API.getMustVisit();
-      setPlaces(response.data?.data || []);
+      const response = await API.getBanner(); // You must have this in your API.js
+      setBanners(response.data?.data || []);
     } catch (error) {
-      console.error("Failed to fetch places:", error);
+      console.error("Failed to fetch banners:", error);
     }
   };
 
@@ -44,7 +44,7 @@ export default function MustVisit() {
     setLoading(true);
     setMessage("");
 
-    if (!title || !description || !image) {
+    if (!title || !altText || !image) {
       setMessage("All fields are required!");
       setLoading(false);
       return;
@@ -52,25 +52,24 @@ export default function MustVisit() {
 
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("description", description);
+    formData.append("altText", altText);
     formData.append("image", image);
 
     try {
-      const response = await API.mustVisit(formData);
-
+      const response = await API.uploadBanner(formData); // API.uploadBanner() should be defined
       if (response.isSuccess) {
-        setMessage("Place added successfully!");
+        setMessage("Banner added successfully!");
         setTitle("");
-        setDescription("");
+        setAltText("");
         setImage(null);
         if (fileInputRef.current) fileInputRef.current.value = "";
-        fetchPlaces(); // Refresh list
+        fetchBanners(); // Refresh list
       } else {
-        setMessage("Failed to add place.");
+        setMessage("Failed to add banner.");
       }
     } catch (error) {
-      console.error("Error uploading place:", error);
-      setMessage("Error uploading place.");
+      console.error("Error uploading banner:", error);
+      setMessage("Error uploading banner.");
     }
 
     setLoading(false);
@@ -78,18 +77,17 @@ export default function MustVisit() {
 
   const handleDelete = async (id) => {
     try {
-      console.log(id)
-      await API.deleteMustVisit({id});
-      setPlaces((prev) => prev.filter((place) => place._id !== id));
+      await API.deleteBanner({ id }); // API.deleteBanner() should be defined
+      setBanners((prev) => prev.filter((banner) => banner._id !== id));
     } catch (error) {
-      console.error("Failed to delete place:", error);
+      console.error("Failed to delete banner:", error);
     }
   };
 
   return (
     <Box sx={{ padding: 3, marginTop: 3 }}>
       <Typography variant="h5" gutterBottom>
-        Add a Must Visit Place
+        Add a Banner
       </Typography>
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -103,14 +101,12 @@ export default function MustVisit() {
         />
 
         <TextField
-          label="Description"
+          label="Alt Text"
           variant="outlined"
           fullWidth
           margin="dense"
-          multiline
-          rows={3}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={altText}
+          onChange={(e) => setAltText(e.target.value)}
         />
 
         <Box sx={{ marginTop: 2 }}>
@@ -129,21 +125,21 @@ export default function MustVisit() {
 
       {message && <Typography sx={{ marginTop: 2, color: "green" }}>{message}</Typography>}
 
-      {/* Must Visit List */}
+      {/* Banner List */}
       <Box sx={{ mt: 5 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>
-          All Must Visit Places
+          All Banners
         </Typography>
         <Grid container spacing={2}>
-          {places.map((place) => (
-            <Grid item xs={12} sm={6} key={place._id}>
+          {banners.map((banner) => (
+            <Grid item xs={12} sm={6} key={banner._id}>
               <Card
                 sx={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
                   boxShadow: 3,
-                  p: 1
+                  p: 1,
                 }}
               >
                 <Box
@@ -156,20 +152,20 @@ export default function MustVisit() {
                   }}
                 >
                   <img
-                    src={place.imageURL}
-                    alt={place.title}
+                    src={banner.imageURL}
+                    alt={banner.altText}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </Box>
                 <CardContent sx={{ flex: 1 }}>
                   <Typography variant="subtitle1" fontWeight="bold">
-                    {place.title}
+                    {banner.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {place.description}
+                    {banner.altText}
                   </Typography>
                 </CardContent>
-                <IconButton onClick={() => handleDelete(place._id)} color="error">
+                <IconButton onClick={() => handleDelete(banner._id)} color="error">
                   <DeleteIcon />
                 </IconButton>
               </Card>
