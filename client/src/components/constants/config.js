@@ -11,7 +11,11 @@ export const SERVICE_URLS = {
     deleteFAQ: { url: '/faqs/:id', method: 'DELETE' },
     newSubscriber: { url: '/subscriber', method: 'POST' },
     getSubscribers: { url: '/subscribers', method: 'GET' },
-    deleteSubscriber:{url: '/subscribers/:id', method:'DELETE'}
+    deleteSubscriber:{url: '/subscribers/:id', method:'DELETE'},
+    mustVisit: { url: '/mustvisit', method: 'POST' },
+    deleteMustVisit: { url: '/mustvisit/:id', method: 'DELETE' },
+    getMustVisit: { url: '/mustvisit/:id', method: 'GET' },
+
   };
   
   // API_NOTIFICATION_MESSAGES

@@ -1,24 +1,33 @@
+// services/cloudinary.js
 import { v2 as cloudinary } from 'cloudinary';
+import dotenv from 'dotenv';
 import fs from 'fs';
+
+dotenv.config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  api_secret: process.env.CLOUDINARY_SECRET_KEY
 });
 
-export const uploadToCloudinary = async (filePath) => {
+const uploadToCloudinary = async (localFilePath) => {
   try {
-    const result = await cloudinary.uploader.upload(filePath, {
-      folder: 'uploads' // Cloudinary folder
+    if (!localFilePath) return null;
+
+    console.log("cloudinary code starts");
+    const result = await cloudinary.uploader.upload(localFilePath, {
+      folder: "uploads"
     });
 
-    // Delete local file after upload
-    fs.unlinkSync(filePath);
+    // Optional: delete local file after upload
+    fs.unlinkSync(localFilePath);
 
-    return result.secure_url; // Return Cloudinary URL
+    return result.secure_url;
   } catch (error) {
-    console.error('Cloudinary Upload Error:', error);
-    throw new Error('Upload to Cloudinary failed');
+    console.error("Cloudinary Upload Error:", error);
+    throw new Error("Upload to Cloudinary failed");
   }
 };
+
+export default uploadToCloudinary;

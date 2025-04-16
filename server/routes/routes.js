@@ -3,6 +3,7 @@ import { loginAdmin } from "../controller/adminLogin-controller.js";
 import { contactUs } from '../controller/contact-controller.js';
 import { createFAQ, getFAQs, updateFAQ, deleteFAQ } from '../controller/faq-controller.js';
 import { deleteSubscriber,getSubscribers,newSubscriber, } from '../controller/subscribers-controller.js';
+import { createMustVisit, getAllMustVisit } from '../controller/adminMustVisit-controller.js';
 
 import Contact from '../models/contactModel.js';
 import upload from '../middleware/multer.js'; 
@@ -59,6 +60,11 @@ router.delete("/faqs/:id", deleteFAQ);
 // ✅ Image Upload Route
 // ------------------------------------
 // router.post('/upload', upload.single('image'), uploadImage); 
+
+// MustVisit for the adminpanel
+router.post('/mustvisit', upload.single("image"), createMustVisit);
+router.get('/mustvisit/:id', getAllMustVisit);
+
 
 
 // Subscriber Routes

@@ -22,6 +22,7 @@ import NewspaperIcon from '@mui/icons-material/Newspaper';
 import ArticleIcon from '@mui/icons-material/Article';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
+import TourIcon from '@mui/icons-material/Tour';
 import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
@@ -36,6 +37,7 @@ import LogoImage from "../../images/CITY SUPPORT main logo.png";
 import ContactQueries from './Queries';
 import ManageFAQs from './AdminFAQs';
 import Subscribers from './Subscribers';
+import MustVisit from './MustVisit';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -110,6 +112,8 @@ const AdminMain = () => {
         return <ContactQueries/>;
       case 'FAQs': // Add this case for rendering AdminCampaigns
         return <ManageFAQs/>;
+      case 'MustVisit': // Add this case for rendering AdminCampaigns
+        return <MustVisit/>;
       case 'Settings':
         return <h1>This is settings section..</h1>;
       case 'Subscribers':
@@ -189,6 +193,13 @@ const AdminMain = () => {
             <PsychologyAltIcon />
           </ListItemIcon>
           <ListItemText primary="FAQs" sx={{cursor:'pointer'}} />
+        </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('MustVisit')}>
+          <ListItemIcon>
+            <TourIcon />
+          </ListItemIcon>
+          <ListItemText primary="MustVisit" sx={{cursor:'pointer'}} />
         </ListItem>
 
         <ListItem button onClick={() => handleNavigation('Settings')}>

@@ -95,8 +95,8 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
         url: url,
         data: value.method === 'GET' || value.method === 'DELETE' ? body._id : body, // Remove unnecessary JSON.stringify
         headers: {
-          'Content-Type': 'application/json'
-        },
+          'Content-Type': value.method === 'POST' && body instanceof FormData ? 'multipart/form-data' : 'application/json'
+        },        
         responseType: value.responseType,
         onUploadProgress: function (progressEvent) {
           if (typeof showUploadProgress === 'function') {
