@@ -28,7 +28,7 @@ const EventComponet = ({ event }) => {
     setLikeCount((prevCount) => (like ? prevCount - 1 : prevCount + 1));
   }
   return (
-    <Card sx={{ maxWidth: 280 }}>
+    <Card sx={{ maxWidth: 290 }}>
       <CardMedia
         sx={{ height: 150 }}
         image={event.img}

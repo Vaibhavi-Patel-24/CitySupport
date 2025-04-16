@@ -81,10 +81,12 @@ const Social = () => {
             <Navbar/>
             <GlobalBreadcrumbs/>
             <div className="content">
-            <Typography sx={{color:'rgb(46,122,197)',fontWeight:"bold",fontSize:"22px",pl:15,pb:3}}>Checkout Our Blogs</Typography>
 
-            <Box sx={{ display: "flex", justifyContent: "center", width: "100%",pl:5,pr:5,pb:8}}>
+            <Typography sx={{color:'rgb(241,118,53)',fontWeight:"bold",fontSize:"22px",pl: { xs: 0, sm: 15 },pb:3,  textAlign: { xs: 'center', sm: 'left' } }}>Checkout Our Blogs</Typography>
+            
+            <Box sx={{pl:{xs:6,md:12},pr:{xs:6,md:12},pb:{xs:1,md:7},display:'flex',alignItems:'center',justifyContent:'center'}}>
 
+            <Box>
             <Grid container spacing={3} sx={{ maxWidth: "1100px", justifyContent: "center" }}>
               {blogs.map((blog ) => (
                 <Grid item key={blog.id} xs={12} sm={6} md={4} lg={4} sx={{ display: "flex", justifyContent: "center" }}>
@@ -94,6 +96,7 @@ const Social = () => {
                 </Grid>
               ))}
             </Grid>
+            </Box>
             
             </Box>
 
