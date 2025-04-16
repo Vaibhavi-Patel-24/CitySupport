@@ -127,7 +127,10 @@ const LocalBusiness = () => {
                     borderRadius: "20px",
                     fontSize: "0.8rem",
                     py: 1,
-                    px: 3,
+                    px: 2, // Reduced padding to make the button less wide
+                    width: "200px", // Let the button size adjust based on content
+                    justifyContent:"center",
+                    textAlign:"center",
                     textTransform: "uppercase",
                     "&:hover": { bgcolor: "#1256a0" },
                   }}
