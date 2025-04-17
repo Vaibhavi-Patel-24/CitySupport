@@ -26,8 +26,8 @@ import TourIcon from '@mui/icons-material/Tour';
 import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
-import PeopleIcon from '@mui/icons-material/People';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+
 
 // import EventSettings from './EventSettings';
 // import NewsSettings from './NewsSettings';
@@ -103,8 +103,6 @@ const AdminMain = () => {
     switch (selectedComponent) {
       case 'Home':
         return <h1>This is Home section..</h1>;
-      case 'Blogs':
-        return <h1>This is Blog section..</h1>;
       case 'Banner':
         return <Banner/>;
       case 'Events':
@@ -119,7 +117,7 @@ const AdminMain = () => {
         return <ManageFAQs/>;
       case 'MustVisit': // Add this case for rendering AdminCampaigns
         return <MustVisit/>;
-        case 'Social': // Add this case for rendering AdminCampaigns
+        case 'Blogs': // Add this case for rendering AdminCampaigns
         return <AdminSocial/>;
       case 'Settings':
         return <h1>This is settings section..</h1>;
@@ -173,13 +171,7 @@ const AdminMain = () => {
           </ListItemIcon>
           <ListItemText primary="News" sx={{cursor:'pointer'}}/>
         </ListItem>
-        
-        <ListItem button onClick={() => handleNavigation('Blogs')}> 
-          <ListItemIcon>
-            <ArticleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Blogs" sx={{cursor:'pointer'}}/>
-        </ListItem>
+      
 
         <ListItem button onClick={() => handleNavigation('Subscribers')}> 
           <ListItemIcon>
@@ -216,11 +208,11 @@ const AdminMain = () => {
           <ListItemText primary="MustVisit" sx={{cursor:'pointer'}} />
         </ListItem>
 
-        <ListItem button onClick={() => handleNavigation('Social')}>
+        <ListItem button onClick={() => handleNavigation('Blogs')}>
           <ListItemIcon>
-            <PeopleIcon />
+          <ArticleIcon />
           </ListItemIcon>
-          <ListItemText primary="Social" sx={{cursor:'pointer'}} />
+          <ListItemText primary="Blogs" sx={{cursor:'pointer'}} />
         </ListItem>
 
         <ListItem button onClick={() => handleNavigation('Settings')}>

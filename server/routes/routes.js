@@ -69,7 +69,10 @@ router.get('/mustvisit/:id', getAllMustVisit);
 router.delete('/mustvisit/:id', deleteMustVisit);
 
 //Social for the adminpanel
-router.post('/social', upload.single("image"), createSocial);
+router.post('/social',  upload.fields([
+    { name: 'image', maxCount: 1 },
+    { name: 'profilePhoto', maxCount: 1 }
+  ]), createSocial);
 router.get('/social/:id', getAllSocial);
 router.delete('/social/:id', deleteSocial);
 
