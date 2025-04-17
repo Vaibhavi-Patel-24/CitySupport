@@ -28,6 +28,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
 import PeopleIcon from '@mui/icons-material/People';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import StorefrontIcon from '@mui/icons-material/Storefront';
 
 // import EventSettings from './EventSettings';
 // import NewsSettings from './NewsSettings';
@@ -42,6 +43,9 @@ import Subscribers from './Subscribers';
 import MustVisit from './MustVisit';
 import AdminSocial from './AdminSocial';
 import Banner from './Banner';
+import LocalBusinessCorner from '../HomeLocalBusinessCorner';
+import LocalBusinessAdmin from './HomeLocalBussinesses';
+
 const drawerWidth = 240;
 const Image = styled("img")({
   height: 100,
@@ -105,6 +109,8 @@ const AdminMain = () => {
         return <h1>This is Home section..</h1>;
       case 'Blogs':
         return <h1>This is Blog section..</h1>;
+      case 'HomeLocalBussiness':
+        return <LocalBusinessAdmin/>;
       case 'Banner':
         return <Banner/>;
       case 'Events':
@@ -165,6 +171,13 @@ const AdminMain = () => {
             <EventIcon />
           </ListItemIcon>
           <ListItemText primary="Events" sx={{cursor:'pointer'}}/>
+        </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('HomeLocalBussiness')}>
+          <ListItemIcon>
+            <StorefrontIcon />
+          </ListItemIcon>
+          <ListItemText primary="HomeLocalBussiness" sx={{cursor:'pointer'}}/>
         </ListItem>
        
         <ListItem button onClick={() => handleNavigation('News')}>

@@ -9,6 +9,7 @@ import {deleteBanner, getAllBanners, uploadBanner} from '../controller/banner-co
 
 import Contact from '../models/contactModel.js';
 import upload from '../middleware/multer.js'; 
+import { createLocalBusiness, deleteLocalBusiness, getAllLocalBusinesses, updateLocalBusiness } from '../controller/homelocalBusinessController.js';
 // import { uploadImage } from '../controller/upload-controller.js'; // Import upload controller
 
 const router = express.Router();
@@ -78,6 +79,13 @@ router.delete('/social/:id', deleteSocial);
 router.post('/banner', upload.single("image"),uploadBanner)
 router.get('/banner/:id', getAllBanners);
 router.delete('/banner/:id', deleteBanner);
+
+// HomeLocalBussiness
+router.post("/homelocalbussiness", createLocalBusiness);
+router.get("/homelocalbussiness/:id", getAllLocalBusinesses);
+router.put("/homelocalbussiness/:id", updateLocalBusiness);
+router.delete("/homelocalbussiness/:id", deleteLocalBusiness);
+
 
 // Subscriber Routes
 router.post('/subscriber', newSubscriber);
