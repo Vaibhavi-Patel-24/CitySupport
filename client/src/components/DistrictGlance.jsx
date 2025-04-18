@@ -60,7 +60,12 @@ const DistrictGlance = () => {
       width: '93%',
       margin: 7,
       padding: 0,
-      borderRadius: '16px'
+      borderRadius: '16px',
+      mx: 'auto',
+      flexDirection: { xs: 'column', sm: 'row' }, // column for small screens
+      textAlign: { xs: 'center', sm: 'left' },
+      justifyContent: { xs: 'center', sm: 'flex-start' }
+
     }}>
       <Container maxWidth="lg" sx={{ py: 3 }}>
         <Typography variant="h6" sx={{ mb: 4, pl: 1, color: 'white' }}>
@@ -74,7 +79,7 @@ const DistrictGlance = () => {
             md: 'repeat(2, 1fr)'
           },
           gap: 2,
-          px: 2
+          px: 2,
         }}>
           {stats.map((item, index) => (
             <Box key={index} sx={{ 
@@ -87,7 +92,7 @@ const DistrictGlance = () => {
                 alignItems: 'center',
                 width: '24px',
                 height: '24px',
-                minWidth: '24px'
+                minWidth: '24px',
               }}>
                 <img 
                   src={item.icon} 
