@@ -10,6 +10,7 @@ import {deleteBanner, getAllBanners, uploadBanner} from '../controller/banner-co
 import Contact from '../models/contactModel.js';
 import upload from '../middleware/multer.js'; 
 import { createLocalBusiness, deleteLocalBusiness, getAllLocalBusinesses, updateLocalBusiness } from '../controller/homelocalBusinessController.js';
+import { deletePamflate, getPamflate, uploadPamflate } from '../controller/pamflate-controller.js';
 // import { uploadImage } from '../controller/upload-controller.js'; // Import upload controller
 
 const router = express.Router();
@@ -83,6 +84,11 @@ router.delete('/social/:id', deleteSocial);
 router.post('/banner', upload.single("image"),uploadBanner)
 router.get('/banner/:id', getAllBanners);
 router.delete('/banner/:id', deleteBanner);
+
+// Pamflate
+router.post('/Pamflate', upload.single("image"),uploadPamflate)
+router.get('/Pamflate/:id', getPamflate);
+router.delete('/Pamflate/:id', deletePamflate);
 
 // HomeLocalBussiness
 router.post("/homelocalbussiness", createLocalBusiness);

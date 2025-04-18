@@ -45,6 +45,7 @@ import AdminSocial from './AdminSocial';
 import Banner from './Banner';
 import LocalBusinessCorner from '../HomeLocalBusinessCorner';
 import LocalBusinessAdmin from './HomeLocalBussinesses';
+import PromotionalPamphlet from './PromotionalPamflates';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -111,6 +112,8 @@ const AdminMain = () => {
         return <LocalBusinessAdmin/>;
       case 'Banner':
         return <Banner/>;
+      case 'PromotionalPamphlet':
+        return <PromotionalPamphlet/>;
       case 'Events':
         return <h1>This is Events section..</h1>;
       case 'News':
@@ -170,6 +173,13 @@ const AdminMain = () => {
             <EventIcon />
           </ListItemIcon>
           <ListItemText primary="Events" sx={{cursor:'pointer'}}/>
+        </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('PromotionalPamphlet')}>
+          <ListItemIcon>
+            <EventIcon />
+          </ListItemIcon>
+          <ListItemText primary="PromotionalPamphlet" sx={{cursor:'pointer'}}/>
         </ListItem>
         
         <ListItem button onClick={() => handleNavigation('HomeLocalBussiness')}>

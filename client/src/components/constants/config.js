@@ -22,6 +22,10 @@ export const SERVICE_URLS = {
     uploadBanner: { url: '/banner', method: 'POST' },
     deleteBanner: { url: '/banner/:id', method: 'DELETE' },
     getBanner: { url: '/banner/:id', method: 'GET' },
+
+    uploadPamflate: { url: '/Pamflate', method: 'POST' },
+    deletePamflate: { url: '/Pamflate/:id', method: 'DELETE' },
+    getPamflate: { url: '/Pamflate/:id', method: 'GET' },
     uploadHomeBusinesses: { url: '/homelocalbussiness', method: 'POST' },
     getHomeBusinesses: { url: '/homelocalbussiness/:id', method: 'GET' },
     deleteHomeBusinesses: { url: '/homelocalbussiness/:id', method: 'DELETE' },
