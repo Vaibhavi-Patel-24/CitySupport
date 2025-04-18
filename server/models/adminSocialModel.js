@@ -34,4 +34,6 @@ const adminSocialSchema = new mongoose.Schema(
 
 const Social = mongoose.model("Social", adminSocialSchema);
 
+
+
 export default Social;

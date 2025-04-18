@@ -45,7 +45,7 @@ export const createSocial = async (req, res) => {
         msg: "Social post created successfully",
         data: newSocial,
       });
-    } catch (uploadError) {
+    } catch (uploadError) {   
       console.error("Cloudinary upload error:", uploadError);
       return res.status(500).json({ msg: "Failed to upload images to Cloudinary" });
     }

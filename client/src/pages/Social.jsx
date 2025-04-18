@@ -82,7 +82,6 @@ const Social = () => {
             <GlobalBreadcrumbs/>
             <div className="content">
 
-              
 
             <Typography sx={{color:'rgb(241,118,53)',fontWeight:"bold",fontSize:"22px",pl: { xs: 0, sm: 15 },pb:3,  textAlign: { xs: 'center', sm: 'left' } }}>Checkout Our Blogs</Typography>
             
@@ -107,5 +106,7 @@ const Social = () => {
     </div>
   )
 }
+
+
 
 export default Social

@@ -78,6 +78,7 @@ router.get('/social/:id', getAllSocial);
 router.delete('/social/:id', deleteSocial);
 
 
+
 // Banner for Amdinpanel
 router.post('/banner', upload.single("image"),uploadBanner)
 router.get('/banner/:id', getAllBanners);
