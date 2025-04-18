@@ -107,8 +107,6 @@ const AdminMain = () => {
     switch (selectedComponent) {
       case 'Home':
         return <h1>This is Home section..</h1>;
-      case 'Blogs':
-        return <h1>This is Blog section..</h1>;
       case 'HomeLocalBussiness':
         return <LocalBusinessAdmin/>;
       case 'Banner':
@@ -159,7 +157,7 @@ const AdminMain = () => {
           <ListItemText primary="Home" sx={{cursor:'pointer'}} />
         </ListItem>
        
-       
+
         <ListItem button onClick={() => handleNavigation('Banner')}>
           <ListItemIcon>
             <ViewCarouselIcon />
