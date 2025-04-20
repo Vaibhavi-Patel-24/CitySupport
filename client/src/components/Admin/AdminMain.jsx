@@ -245,6 +245,13 @@ const AdminMain = () => {
           </ListItemIcon>
           <ListItemText primary="Settings" sx={{cursor:'pointer'}} />
         </ListItem>
+
+        <ListItem button onClick={() => handleNavigation('PopularPlaces')}>
+        <ListItemIcon>
+            <TourIcon />
+       </ListItemIcon>
+        <ListItemText primary="Popular Places" sx={{ cursor: 'pointer' }} />
+        </ListItem>
       
       </List>
     </div>

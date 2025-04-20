@@ -11,6 +11,11 @@ import Contact from '../models/contactModel.js';
 import upload from '../middleware/multer.js'; 
 import { createLocalBusiness, deleteLocalBusiness, getAllLocalBusinesses, updateLocalBusiness } from '../controller/homelocalBusinessController.js';
 import { deletePamflate, getPamflate, uploadPamflate } from '../controller/pamflate-controller.js';
+
+import { createPlace, getAllPlaces, deletePlace } from "../controller/adminPopularPlace-controller.js";
+
+
+
 // import { uploadImage } from '../controller/upload-controller.js'; // Import upload controller
 
 const router = express.Router();
@@ -69,6 +74,11 @@ router.delete("/faqs/:id", deleteFAQ);
 router.post('/mustvisit', upload.single("image"), createMustVisit);
 router.get('/mustvisit/:id', getAllMustVisit);
 router.delete('/mustvisit/:id', deleteMustVisit);
+
+// Popular Places for Admin Panel
+router.post('/places', upload.single('image'), createPlace);
+router.get('/places', getAllPlaces);
+router.delete('/places/:id', deletePlace);
 
 //Social for the adminpanel
 router.post('/social',  upload.fields([
