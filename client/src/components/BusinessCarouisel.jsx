@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
+import { API } from "../services/api.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import banner_1 from "../images/banner_1.webp";
-import banner_2 from "../images/banner_2.webp";
-import banner_3 from "../images/banner_3.webp";
-import banner_4 from "../images/banner_4.webp";
-import banner_5 from "../images/banner_5.jpg";
-import banner_6 from "../images/banner_6.jpg";
 
 export default function BusinessCarousel() {
   const [bannerHeight, setBannerHeight] = useState("80vh");
+  const [slides, setSlides] = useState([]);
 
+  /* — fetch once — */
   useEffect(() => {
-    const handleResize = () => {
-      setBannerHeight(window.innerWidth <= 600 ? "50vh" : "80vh");
+    const fetchSlides = async () => {
+      try {
+        const res  = await API.getPamflate();
+        // sort by order field (fallback to createdAt)
+        const data = res.data.data.sort(
+          (a, b) => (a.order ?? 0) - (b.order ?? 0)
+        );
+        setSlides(data);
+      } catch (err) {
+        console.error("Banner fetch failed", err);
+      }
     };
+    fetchSlides();
+  }, []);
 
-    handleResize(); 
+  /* — resize handler — */
+  useEffect(() => {
+    const handleResize = () =>
+      setBannerHeight(window.innerWidth <= 600 ? "50vh" : "80vh");
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const images = [banner_1, banner_2, banner_3, banner_4, banner_5, banner_6];
 
   const settings = {
     dots: true,
@@ -34,17 +44,18 @@ export default function BusinessCarousel() {
     autoplaySpeed: 3000,
   };
 
+  /* — render — */
   return (
     <div style={{ height: bannerHeight, overflow: "hidden" }}>
       <Slider {...settings}>
-        {images.map((imgSrc, index) => (
-          <div key={index}>
+        {slides.map(({ _id, imageURL, altText }) => (
+          <div key={_id}>
             <img
-              src={imgSrc}
-              alt={`Slide ${index}`}
+              src={imageURL}
+              alt={altText}
               style={{
                 width: "100%",
-                height: bannerHeight, 
+                height: bannerHeight,
                 objectFit: "cover",
                 borderRadius: "4px",
               }}

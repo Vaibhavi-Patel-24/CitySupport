@@ -26,6 +26,7 @@ export const SERVICE_URLS = {
     uploadPamflate: { url: '/Pamflate', method: 'POST' },
     deletePamflate: { url: '/Pamflate/:id', method: 'DELETE' },
     getPamflate: { url: '/Pamflate/:id', method: 'GET' },
+    
     uploadHomeBusinesses: { url: '/homelocalbussiness', method: 'POST' },
     getHomeBusinesses: { url: '/homelocalbussiness/:id', method: 'GET' },
     deleteHomeBusinesses: { url: '/homelocalbussiness/:id', method: 'DELETE' },
