@@ -83,6 +83,7 @@ const Tourism = () => {
           {/* Near By Place Section with View All Button */}
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
             <Typography variant="h4" sx={{ color: 'orange' }}>Near By Place</Typography>
+            <Link to="/citysupport/NearByPlace" style={{ textDecoration: 'none' }}>
             <Button 
               variant="contained" 
               sx={{ 
@@ -95,6 +96,7 @@ const Tourism = () => {
             >
               View All Places
             </Button>
+            </Link>
           </Box>
           
           <Grid container spacing={3} sx={{ mb: 4 }}>
