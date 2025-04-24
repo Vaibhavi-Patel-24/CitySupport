@@ -1,48 +1,52 @@
 import * as React from 'react';
-import {Card,Box} from '@mui/material';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
+import { Card, Box, Avatar, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 
-const getCurrentDate = () => {
-    return new Date().toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
 
-const Blogs = ({blog}) => {
+const Blogs = ({ blog }) => {
   return (
     <Box>
       <Card sx={{ maxWidth: 310 }}>
-      <CardMedia
-        sx={{ height: 180 }}
-        image={blog.image}
-        title="green iguana"
-      />
-      <CardContent>
-      <Button sx={{backgroundColor:'rgb(242,242,242)',color:'rgb(75,107,251)',fontSize:'9px',fontWeight:'bold',borderRadius:'20px',}}>
-          CitySupport
-       </Button>
-
-        <Typography variant="body2" sx={{fontWeight:'bold',fontSize:'17px',marginTop:"15px"}}>
+        <CardMedia
+          sx={{ height: 180 }}
+          image={blog.imageURL}
+          title={blog.title}
+        />
+        <CardContent>
+          <Button sx={{
+            backgroundColor: 'rgb(242,242,242)',
+            color: 'rgb(75,107,251)',
+            fontSize: '9px',
+            fontWeight: 'bold',
+            borderRadius: '20px',
+          }}>
+            CitySupport
+          </Button>
+          <Typography variant="body2" sx={{ fontWeight: 'bold', fontSize: '17px', marginTop: "15px" }}>
             {blog.title}
-        </Typography>
-      </CardContent>
-      <Box sx={{pb:1}}>
-      <CardActions>
-      <Avatar alt="Remy Sharp" src={blog.profile} />
-      <Typography sx={{color:'rgb(151,152,159)',fontSize:'15px',fontWeight:'15px'}}>{blog.author}</Typography>
-      <Typography sx={{color:"rgb(151,152,159)",pl:4}}>{getCurrentDate()}</Typography>
-      </CardActions>
-      </Box>
-    </Card>
+          </Typography>
+        </CardContent>
+        <Box sx={{ pb: 1 }}>
+          <CardActions>
+            <Avatar alt={blog.name} src={blog.profilePhoto} />
+            <Typography sx={{ color: 'rgb(151,152,159)', fontSize: '15px', ml: 1 }}>
+              {blog.name}
+            </Typography>
+            <Typography sx={{ color: "rgb(151,152,159)", pl: 4 }}>
+              {formatDate(blog.datePosted)}
+            </Typography>
+          </CardActions>
+        </Box>
+      </Card>
     </Box>
-  )
-}
+  );
+};
 
-export default Blogs
+export default Blogs;
