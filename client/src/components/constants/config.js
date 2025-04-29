@@ -33,10 +33,10 @@ export const SERVICE_URLS = {
     deletePamflate: { url: '/Pamflate/:id', method: 'DELETE' },
     getPamflate: { url: '/Pamflate/:id', method: 'GET' },
     
-    uploadHomeBusinesses: { url: '/homelocalbussiness', method: 'POST' },
-    getHomeBusinesses: { url: '/homelocalbussiness/:id', method: 'GET' },
-    deleteHomeBusinesses: { url: '/homelocalbussiness/:id', method: 'DELETE' },
-    updateHomeBussiness: { url: '/faqs/:id', method: 'PUT' }, 
+    uploadHomeBussinesses: { url: '/homelocalbussiness', method: 'POST' },
+    getHomeBussinesses: { url: '/homelocalbussiness/:id', method: 'GET' },
+    deleteHomeBussinesses: { url: '/homelocalbussiness/:id', method: 'DELETE' },
+    updateHomeBussiness: { url: '/homelocalbussiness/:id', method: 'PUT' }, 
 
   };
   

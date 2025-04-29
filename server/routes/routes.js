@@ -101,7 +101,7 @@ router.get('/Pamflate/:id', getPamflate);
 router.delete('/Pamflate/:id', deletePamflate);
 
 // HomeLocalBussiness
-router.post("/homelocalbussiness", createLocalBusiness);
+router.post("/homelocalbussiness",upload.single("image"), createLocalBusiness);
 router.get("/homelocalbussiness/:id", getAllLocalBusinesses);
 router.put("/homelocalbussiness/:id", updateLocalBusiness);
 router.delete("/homelocalbussiness/:id", deleteLocalBusiness);

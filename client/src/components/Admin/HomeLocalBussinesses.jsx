@@ -12,11 +12,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem
+  DialogTitle
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -25,17 +21,12 @@ import PlaceIcon from '@mui/icons-material/Place';
 import { API } from "../../services/api";
 
 export default function LocalBusinessAdmin() {
-  // Form state
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-//   const [date, setDate] = useState("");
-//   const [month, setMonth] = useState("");
   const [time, setTime] = useState("");
   const [smallDesc, setSmallDesc] = useState("");
   const [venue, setVenue] = useState("");
   const [image, setImage] = useState(null);
-  
-  // UI state
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [businesses, setBusinesses] = useState([]);
@@ -45,7 +36,6 @@ export default function LocalBusinessAdmin() {
   
   const fileInputRef = useRef(null);
 
-  // Fetch businesses on component mount
   useEffect(() => {
     fetchBusinesses();
   }, []);
@@ -53,7 +43,7 @@ export default function LocalBusinessAdmin() {
   const fetchBusinesses = async () => {
     try {
       setLoading(true);
-      const response = await API.getHomeBusinesses();
+      const response = await API.getHomeBussinesses();
       setBusinesses(response.data?.data || []);
       setLoading(false);
     } catch (error) {
@@ -69,8 +59,6 @@ export default function LocalBusinessAdmin() {
   const resetForm = () => {
     setName("");
     setDescription("");
-    // setDate("");
-    // setMonth("");
     setTime("");
     setSmallDesc("");
     setVenue("");
@@ -85,7 +73,6 @@ export default function LocalBusinessAdmin() {
     setLoading(true);
     setMessage("");
 
-    // Validate required fields
     if (!name || !description || !venue || (!image && !editMode)) {
       setMessage("Name, description, venue and image are required fields!");
       setLoading(false);
@@ -95,35 +82,26 @@ export default function LocalBusinessAdmin() {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
-    // formData.append("date", date);
-    // formData.append("month", month);
     formData.append("time", time);
     formData.append("smallDesc", smallDesc);
     formData.append("venue", venue);
-    
     if (image) {
       formData.append("image", image);
     }
 
-    
     try {
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-          }
-          
       let response;
-      
       if (editMode) {
         formData.append("id", currentBusinessId);
-        response = await API.updateHomeBussiness(formData);
+        response = await API.updateHomeBussiness(formData); // ✅ spelling fixed
       } else {
-        response = await API.uploadHomeBusinesses(formData);
+        response = await API.uploadHomeBussinesses(formData);
       }
 
       if (response.isSuccess) {
         setMessage(editMode ? "Business updated successfully!" : "Business added successfully!");
         resetForm();
-        fetchBusinesses(); // Refresh list
+        fetchBusinesses();
       } else {
         setMessage(editMode ? "Failed to update business." : "Failed to add business.");
       }
@@ -131,33 +109,28 @@ export default function LocalBusinessAdmin() {
       console.error("Error processing business data:", error);
       setMessage("Error processing business data.");
     }
-
     setLoading(false);
   };
 
   const handleEdit = (business) => {
     setName(business.name);
     setDescription(business.description);
-    // setDate(business.date || "");
-    // setMonth(business.month || "");
     setTime(business.time || "");
     setSmallDesc(business.smallDesc || "");
     setVenue(business.venue);
     setCurrentBusinessId(business._id);
     setEditMode(true);
-    
-    // Scroll to form
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     setDialogOpen(true);
     setCurrentBusinessId(id);
   };
 
   const confirmDelete = async () => {
     try {
-      await API.deleteHomeBusinesses({ id: currentBusinessId });
+      await API.deleteHomeBussinesses({ id: currentBusinessId });
       setBusinesses((prev) => prev.filter((business) => business._id !== currentBusinessId));
       setMessage("Business deleted successfully!");
       setDialogOpen(false);
@@ -172,11 +145,6 @@ export default function LocalBusinessAdmin() {
     setDialogOpen(false);
     setCurrentBusinessId(null);
   };
-
-//   const months = [
-//     "January", "February", "March", "April", "May", "June",
-//     "July", "August", "September", "October", "November", "December"
-//   ];
 
   return (
     <Box sx={{ padding: 3, marginTop: 3 }}>
@@ -194,7 +162,6 @@ export default function LocalBusinessAdmin() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-
         <TextField
           label="Description"
           variant="outlined"
@@ -206,36 +173,7 @@ export default function LocalBusinessAdmin() {
           onChange={(e) => setDescription(e.target.value)}
           required
         />
-
-         <Grid container spacing={2} sx={{ mt: 1 }}>
-          {/* <Grid item xs={12} sm={6} md={3}>
-            <TextField
-              label="Date"
-              variant="outlined"
-              fullWidth
-              type="number"
-              InputProps={{ inputProps: { min: 1, max: 31 } }}
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </Grid>  */}
-          
-          {/* <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth>
-              <InputLabel id="month-select-label">Month</InputLabel>
-              <Select
-                labelId="month-select-label"
-                value={month}
-                label="Month"
-                onChange={(e) => setMonth(e.target.value)}
-              >
-                {months.map((month) => (
-                  <MenuItem key={month} value={month}>{month}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid> */}
-          
+        <Grid container spacing={2} sx={{ mt: 1 }}>
           <Grid item xs={12} sm={6} md={6}>
             <TextField
               label="Business Hours"
@@ -247,7 +185,6 @@ export default function LocalBusinessAdmin() {
             />
           </Grid>
         </Grid>
-
         <TextField
           label="Additional Description"
           variant="outlined"
@@ -258,7 +195,6 @@ export default function LocalBusinessAdmin() {
           value={smallDesc}
           onChange={(e) => setSmallDesc(e.target.value)}
         />
-
         <TextField
           label="Venue/Location"
           variant="outlined"
@@ -268,20 +204,18 @@ export default function LocalBusinessAdmin() {
           onChange={(e) => setVenue(e.target.value)}
           required
         />
-
         <Box sx={{ marginTop: 2 }}>
           <Typography variant="body2" gutterBottom>
             {editMode && "Upload new image (leave empty to keep current image)"}
           </Typography>
-          <input 
-            type="file" 
-            accept="image/*" 
-            ref={fileInputRef} 
-            onChange={handleImageChange} 
-            required={!editMode}
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleImageChange}
+            {...(!editMode && { required: true })}
           />
         </Box>
-
         <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
           <Button
             variant="contained"
@@ -291,13 +225,8 @@ export default function LocalBusinessAdmin() {
           >
             {loading ? (
               <CircularProgress size={24} sx={{ color: "white" }} />
-            ) : editMode ? (
-              "Update Business"
-            ) : (
-              "Add Business"
-            )}
+            ) : editMode ? "Update Business" : "Add Business"}
           </Button>
-          
           {editMode && (
             <Button
               variant="outlined"
@@ -311,22 +240,15 @@ export default function LocalBusinessAdmin() {
       </form>
 
       {message && (
-        <Typography
-          sx={{
-            marginTop: 2,
-            color: message.includes("successfully") ? "green" : "red",
-          }}
-        >
+        <Typography sx={{ marginTop: 2, color: message.includes("successfully") ? "green" : "red" }}>
           {message}
         </Typography>
       )}
 
-      {/* Local Business List */}
       <Box sx={{ mt: 5 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>
           All Local Businesses
         </Typography>
-        
         {loading && !businesses.length ? (
           <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
             <CircularProgress />
@@ -356,21 +278,18 @@ export default function LocalBusinessAdmin() {
                     }}
                   >
                     <img
-                      src={business.imageURL}
+                      src={business.imageURL || '/default-placeholder.png'}
                       alt={business.name}
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   </Box>
-                  
                   <CardContent sx={{ flex: 1, p: { xs: 1, md: 2 } }}>
                     <Typography variant="h6" fontWeight="bold">
                       {business.name}
                     </Typography>
-                    
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                       {business.description}
                     </Typography>
-                    
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 1 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <CalendarMonthIcon sx={{ fontSize: 20, mr: 0.5, color: '#7622D7' }} />
@@ -378,7 +297,6 @@ export default function LocalBusinessAdmin() {
                           {business.time}
                         </Typography>
                       </Box>
-                      
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <PlaceIcon sx={{ fontSize: 20, mr: 0.5, color: '#7622D7' }} />
                         <Typography variant="body2">
@@ -387,7 +305,6 @@ export default function LocalBusinessAdmin() {
                       </Box>
                     </Box>
                   </CardContent>
-                  
                   <Box sx={{ display: 'flex', gap: 1, mt: { xs: 1, md: 0 } }}>
                     <IconButton onClick={() => handleEdit(business)} color="primary">
                       <EditIcon />
@@ -401,7 +318,6 @@ export default function LocalBusinessAdmin() {
             ))}
           </Grid>
         )}
-        
         {!loading && businesses.length === 0 && (
           <Typography variant="body1" sx={{ textAlign: 'center', my: 4 }}>
             No businesses added yet.
@@ -409,7 +325,6 @@ export default function LocalBusinessAdmin() {
         )}
       </Box>
 
-      {/* Confirmation Dialog */}
       <Dialog open={dialogOpen} onClose={cancelDelete}>
         <DialogTitle>Confirm Delete</DialogTitle>
         <DialogContent>
