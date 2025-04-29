@@ -42,6 +42,7 @@ import ManageFAQs from './AdminFAQs';
 import Subscribers from './Subscribers';
 import MustVisit from './MustVisit';
 import AdminSocial from './AdminSocial';
+import AdminEvent from './AdminEvent'
 import Banner from './Banner';
 import LocalBusinessCorner from '../HomeLocalBusinessCorner';
 import LocalBusinessAdmin from './HomeLocalBussinesses';
@@ -115,7 +116,7 @@ const AdminMain = () => {
       case 'PromotionalPamphlet':
         return <PromotionalPamphlet/>;
       case 'Events':
-        return <h1>This is Events section..</h1>;
+        return <AdminEvent/>;
       case 'News':
         return <h1>This is  news section..</h1>;
       case 'Campaigns': // Add this case for rendering AdminCampaigns
