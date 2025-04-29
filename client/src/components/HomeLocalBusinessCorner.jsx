@@ -117,13 +117,16 @@ const LocalBusinessCorner = () => {
         setLoading(true);
         try {
             // Replace with your actual API endpoint
-            const response = await API.getHomeBusinesses();
+            console.log(`invoking get function`)
+            const response = await API.getHomeBussinesses();
+            console.log(response)
+            console.log(response.data.data.name)
             
             // Assuming your API returns data in the format { data: [...businesses] }
             const fetchedBusinesses = response.data?.data || [];
             setBusinesses(fetchedBusinesses);
             setTotalCount(fetchedBusinesses.length);
-            setLoading(false);
+            setLoading(false);            
         } catch (err) {
             console.error("Failed to fetch business data:", err);
             setError("Failed to load business data. Please try again later.");
@@ -201,7 +204,7 @@ const LocalBusinessCorner = () => {
                         </TextBox>
                         <Box sx={{ p: 2, maxWidth: { xs: '100%', md: '40%' } }}>
                             <img 
-                                src={business.image} 
+                                src={business.imageURL} 
                                 alt={business.name || "Business"} 
                                 style={{ 
                                     maxWidth: '100%', 
