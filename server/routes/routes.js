@@ -13,7 +13,7 @@ import { createLocalBusiness, deleteLocalBusiness, getAllLocalBusinesses, update
 import { deletePamflate, getPamflate, uploadPamflate } from '../controller/pamflate-controller.js';
 
 import { createPlace, getAllPlaces, deletePlace } from "../controller/adminPopularPlace-controller.js";
-
+import {createEvent,deleteEvent,getAllEvents} from '../controller/adminEvent-controller.js'
 
 
 // import { uploadImage } from '../controller/upload-controller.js'; // Import upload controller
@@ -101,7 +101,7 @@ router.get('/Pamflate/:id', getPamflate);
 router.delete('/Pamflate/:id', deletePamflate);
 
 // HomeLocalBussiness
-router.post("/homelocalbussiness", createLocalBusiness);
+router.post("/homelocalbussiness",upload.single("image"), createLocalBusiness);
 router.get("/homelocalbussiness/:id", getAllLocalBusinesses);
 router.put("/homelocalbussiness/:id", updateLocalBusiness);
 router.delete("/homelocalbussiness/:id", deleteLocalBusiness);
@@ -111,5 +111,11 @@ router.delete("/homelocalbussiness/:id", deleteLocalBusiness);
 router.post('/subscriber', newSubscriber);
 router.get('/subscribers', getSubscribers);
 router.delete('/subscribers/:id', deleteSubscriber); 
+
+//Event Routes
+router.post("/events",upload.single('image'),createEvent);
+router.get("/events",getAllEvents)
+router.delete("/events/:id",deleteEvent)
+
 
 export default router;

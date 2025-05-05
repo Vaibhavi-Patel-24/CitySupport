@@ -12,7 +12,7 @@ const localBusinessSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    date: {
+    time: {
       type: String,
       trim: true,
     },

@@ -71,51 +71,56 @@ export const getAllLocalBusinesses = async (req, res) => {
 // Update a local business
 export const updateLocalBusiness = async (req, res) => {
   try {
-    const { id, name, description, date, month, time, smallDesc, venue } = req.body;
-    
-    console.log(`Updating local business with ID: ${id}`);
-    console.log('Body:', req.body);
-    console.log('File:', req.file);
-    
-    // Check if business exists
-    const business = await LocalBusiness.findById(id);
-    if (!business) {
-      return res.status(404).json({ 
-        msg: "Local business not found",
-        isSuccess: false
-      });
+    console.log("Received update request for Local Business:", req.body);
+
+    const { id } = req.params;
+    const { name, description, date, month, time, smallDesc, venue } = req.body;
+
+    // ✅ Validate required fields (basic validation, you can make it stricter if you want)
+    if (!id) {
+      return res.status(400).json({ msg: "Business ID is required." });
     }
-    
-    // Update fields
-    business.name = name || business.name;
-    business.description = description || business.description;
-    business.date = date !== undefined ? date : business.date;
-    business.month = month !== undefined ? month : business.month;
-    business.time = time !== undefined ? time : business.time;
-    business.smallDesc = smallDesc !== undefined ? smallDesc : business.smallDesc;
-    business.venue = venue || business.venue;
-    
-    // Update image if provided
+
+    // ✅ Prepare updated fields
+    const updatedFields = {
+      ...(name && { name }),
+      ...(description && { description }),
+      ...(date !== undefined && { date }),
+      ...(month !== undefined && { month }),
+      ...(time !== undefined && { time }),
+      ...(smallDesc !== undefined && { smallDesc }),
+      ...(venue && { venue }),
+    };
+
+    // ✅ Handle file upload if image is provided
     if (req.file) {
       const imagePath = req.file.path;
-      business.imageURL = await uploadToCloudinary(imagePath);
+      const imageURL = await uploadToCloudinary(imagePath);
+      updatedFields.imageURL = imageURL;
     }
-    
-    await business.save();
-    return res.status(200).json({ 
-      msg: "Local business updated successfully", 
-      data: business,
-      isSuccess: true
+
+    // ✅ Update the LocalBusiness
+    const updatedBusiness = await LocalBusiness.findByIdAndUpdate(
+      id,
+      updatedFields,
+      { new: true }
+    );
+
+    if (!updatedBusiness) {
+      return res.status(404).json({ msg: "Local business not found." });
+    }
+
+    return res.status(200).json({
+      msg: "Local business updated successfully.",
+      business: updatedBusiness
     });
-    
+
   } catch (error) {
     console.error("Error updating local business:", error);
-    return res.status(500).json({ 
-      msg: "Server error while updating local business",
-      isSuccess: false
-    });
+    return res.status(500).json({ msg: "Server error while updating local business." });
   }
 };
+
 
 // Delete a local business
 export const deleteLocalBusiness = async (req, res) => {

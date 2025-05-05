@@ -27,7 +27,7 @@ const PromotionalPamphlet = () => {
 
   const fetchPamphlets = async () => {
     try {
-      const response = await API.getPamphlets(); // Make sure this API method exists
+      const response = await API.getPamflate(); // Make sure this API method exists
       const data = response.data?.data || [];
       const formatted = data.map((item) => ({
         imageURL: item.imageURL,
@@ -60,7 +60,7 @@ const PromotionalPamphlet = () => {
     formData.append("altText", altText);
 
     try {
-      const response = await API.uploadPamphlet(formData); // Adjust this method in your API file
+      const response = await API.uploadPamflate(formData); // Adjust this method in your API file
       if (response.isSuccess) {
         setMessage("Pamphlet uploaded successfully!");
         setAltText("");
@@ -80,7 +80,7 @@ const PromotionalPamphlet = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await API.deletePamphlet({ id }); // Adjust this method in your API file
+      const response = await API.deletePamflate({ id }); // Adjust this method in your API file
       if (response.isSuccess) {
         setMessage("Pamphlet deleted successfully.");
         fetchPamphlets();

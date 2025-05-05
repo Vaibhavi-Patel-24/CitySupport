@@ -1,3 +1,4 @@
+
 // API service calls
 export const SERVICE_URLS = {
 
@@ -19,6 +20,11 @@ export const SERVICE_URLS = {
     deleteBlog: { url: '/social/:id', method: 'DELETE' },
     getBlog: { url: '/social/:id', method: 'GET' },
 
+    event: { url: '/events', method: 'POST' },
+    deleteEvent: { url: '/events/:id', method: 'DELETE' },
+    getEvent: { url: '/events', method: 'GET' },
+    
+
     uploadBanner: { url: '/banner', method: 'POST' },
     deleteBanner: { url: '/banner/:id', method: 'DELETE' },
     getBanner: { url: '/banner/:id', method: 'GET' },
@@ -26,10 +32,11 @@ export const SERVICE_URLS = {
     uploadPamflate: { url: '/Pamflate', method: 'POST' },
     deletePamflate: { url: '/Pamflate/:id', method: 'DELETE' },
     getPamflate: { url: '/Pamflate/:id', method: 'GET' },
-    uploadHomeBusinesses: { url: '/homelocalbussiness', method: 'POST' },
-    getHomeBusinesses: { url: '/homelocalbussiness/:id', method: 'GET' },
-    deleteHomeBusinesses: { url: '/homelocalbussiness/:id', method: 'DELETE' },
-    updateHomeBussiness: { url: '/faqs/:id', method: 'PUT' }, 
+    
+    uploadHomeBussinesses: { url: '/homelocalbussiness', method: 'POST' },
+    getHomeBussinesses: { url: '/homelocalbussiness/:id', method: 'GET' },
+    deleteHomeBussinesses: { url: '/homelocalbussiness/:id', method: 'DELETE' },
+    updateHomeBussiness: { url: '/homelocalbussiness/:id', method: 'PUT' }, 
 
   };
   
