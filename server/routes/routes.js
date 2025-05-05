@@ -76,9 +76,9 @@ router.get('/mustvisit/:id', getAllMustVisit);
 router.delete('/mustvisit/:id', deleteMustVisit);
 
 // Popular Places for Admin Panel
-router.post('/places', upload.single('image'), createPlace);
-router.get('/places', getAllPlaces);
-router.delete('/places/:id', deletePlace);
+router.post('/popularplaces', upload.single('image'), createPlace); // Ensure 'image' is the field used in the frontend
+router.get('/popularplaces', getAllPlaces);
+router.delete('/popularplaces/:id', deletePlace);
 
 //Social for the adminpanel
 router.post('/social',  upload.fields([

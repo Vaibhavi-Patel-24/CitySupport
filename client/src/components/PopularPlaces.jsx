@@ -1,108 +1,163 @@
-import React from "react";
-import { Box, Typography, Grid, Card, CardContent } from "@mui/material";
-
-const places = [
-  {
-    id: 1,
-    name: "Sidi Saiyyed Mosque",
-    image: "https://img.atlasobscura.com/OVTOoyacO3oMfNBabCtVKDxOe7cCsWqy5IE4eL3vraU/rs:fill:780:520:1/g:ce/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3BsYWNl/X2ltYWdlcy9lYzc3/ZTAyNi1mOWVkLTQ2/ZmEtOGM1NC1hYjRj/MTRiZGEyZWM1OTUy/NzdmMmQzNmFhMmJj/MjVfTW9zcXVlX29m/X1NpZGlfU2F5ZWRf/SmFhbGkuanBn.jpg",
-  },
-  {
-    id: 2,
-    name: "Rudra Mahalaya",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRh-NhUyeaA0QH3InorLLIz1Hhfxn9fBICgg&s",
-  },
-  {
-    id: 3,
-    name: "Sun Temple",
-    image: "https://www.gujarattourism.com/content/dam/gujrattourism/images/heritage-sites/sun-temple/gallery/Sun%20Temple19.jpg",
-  },
-];
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  IconButton,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { API } from "../services/api";
 
 const PopularPlaces = () => {
-  return (
-    <Box sx={{ p: 4 }}>
-      <Typography variant="h4" sx={{ fontWeight: "bold", mb: 4 }}>
-        Popular Places
-      </Typography>
+  const [places, setPlaces] = useState([]);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [open, setOpen] = useState(false);
 
-      <Grid container spacing={4}>
-        <Grid item xs={12} sm={4}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-              justifyContent: "space-between",
-            }}
-          >
-            {places.map((place) => (
+  useEffect(() => {
+    const fetchPopularPlaces = async () => {
+      try {
+        const response = await API.getPopularPlaces();
+        setPlaces(response.data?.data || []);
+      } catch (error) {
+        console.error("Error fetching popular places:", error);
+      }
+    };
+
+    fetchPopularPlaces();
+  }, []);
+
+  const handleCardClick = (place) => {
+    setSelectedPlace(place);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedPlace(null);
+  };
+
+  return (
+    <Box sx={{ marginX: { xs: "auto", md: "120px" }, maxWidth: "1200px" }}>
+      <Box sx={{ p: 4 }}>
+        <Typography
+          variant="h6"
+          sx={{ color: "#3f51b5", fontWeight: "bold", textAlign: "left", mb: 2 }}
+        >
+          ~ Popular Places
+        </Typography>
+
+        {/* --- YOUTUBE VIDEO --- */}
+        <Box sx={{ mb: 4, display: "flex", justifyContent: "center" }}>
+          <iframe
+            width="100%"
+            height="400"
+            src="https://www.youtube.com/embed/k3OolA45orE" // <-- Replace with actual video ID
+            title="Popular Places Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{ borderRadius: "10px", maxWidth: "1000px" }}
+          ></iframe>
+        </Box>
+
+        {/* --- PLACE CARDS --- */}
+        <Grid container spacing={3}>
+          {places.map((place) => (
+            <Grid item xs={12} sm={6} md={4} key={place._id}>
               <Card
-                key={place.id}
+                onClick={() => handleCardClick(place)}
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  mb: 2,
-                  p: 2,
-                  borderRadius: 2,
-                  boxShadow: 3,
-                  transition: "transform 0.3s",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                  },
-                  flex: 1,
+                  height: "100%",
+                  cursor: "pointer",
+                  transition: "0.3s",
+                  "&:hover": { boxShadow: 4 },
                 }}
               >
                 <Box
                   sx={{
-                    width: 80,
-                    height: 80,
-                    borderRadius: 1,
-                    mr: 2,
+                    width: "100%",
+                    height: 200,
                     overflow: "hidden",
-                    flexShrink: 0,
+                    borderTopLeftRadius: 4,
+                    borderTopRightRadius: 4,
                   }}
                 >
                   <img
                     src={place.image}
                     alt={place.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
                   />
                 </Box>
 
-                <CardContent sx={{ p: 0 }}>
-                  <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                <CardContent>
+                  <Typography variant="h6" fontWeight="bold" gutterBottom>
                     {place.name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      display: "-webkit-box",
+                      WebkitBoxOrient: "vertical",
+                      WebkitLineClamp: 2,
+                      overflow: "hidden",
+                    }}
+                  >
+                    No description available.
                   </Typography>
                 </CardContent>
               </Card>
-            ))}
-          </Box>
+            </Grid>
+          ))}
         </Grid>
 
-        <Grid item xs={12} sm={8}>
-          <Box
-            sx={{
-              width: "100%",
-              height: "370px",
-              borderRadius: 2,
-              overflow: "hidden",
-              boxShadow: 3,
-            }}
+        {/* --- DIALOG --- */}
+        <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
+          <DialogTitle
+            sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
           >
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/k3OolA45orE"
-              title="Popular Place Video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ aspectRatio: "16/9" }}
-            ></iframe>
-          </Box>
-        </Grid>
-      </Grid>
+            {selectedPlace?.name}
+            <IconButton onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            {selectedPlace?.image && (
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 2,
+                }}
+              >
+                <img
+                  src={selectedPlace.image}
+                  alt={selectedPlace.name}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "250px",
+                    objectFit: "contain",
+                    borderRadius: "8px",
+                  }}
+                />
+              </Box>
+            )}
+            <DialogContentText>No description available.</DialogContentText>
+          </DialogContent>
+        </Dialog>
+      </Box>
     </Box>
   );
 };

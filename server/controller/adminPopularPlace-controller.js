@@ -1,62 +1,55 @@
-import Place from "../models/popularplace.js";
-import uploadToCloudinary from "../services/cloudinary.js";
+import Place from '../models/popularplace.js'; // Assuming you have a PopularPlace model
 
-// ✅ Create a new Place
+// 1. Create Place - Add a new popular place
 export const createPlace = async (req, res) => {
   try {
-    console.log("Received request to add a place");
+    const { name, description, location } = req.body;
+    const image = req.file ? req.file.path : null; // Assuming image is uploaded via multer
 
-    const { name } = req.body;
-    console.log("Name:", name);
-    console.log("Headers:", req.headers["content-type"]);
-    console.log("Body:", req.body);
-    console.log("File:", req.file);
+    // Create a new place document in the database
+    const newPlace = new Place({
+      name,
+      description,
+      location,
+      image
+    });
 
-    if (!req.file || !name) {
-      return res.status(400).json({ msg: "Name and image are required" });
-    }
-
-    const imagePath = req.file.path;
-
-    const imageURL = await uploadToCloudinary(imagePath);
-    console.log("Uploaded image URL:", imageURL);
-
-    const newPlace = new Place({ name, image: imageURL });
+    // Save to the database
     await newPlace.save();
 
-    return res.status(201).json({ msg: "Place created successfully", data: newPlace });
+    res.status(201).json({ message: 'Place created successfully', place: newPlace });
   } catch (error) {
-    console.error("Error in createPlace:", error);
-    return res.status(500).json({ msg: "Server error while creating place" });
+    console.error("Error creating place:", error);
+    res.status(500).json({ message: 'Server error', error });
   }
 };
 
-// ✅ Get All Places
+// 2. Get All Places - Fetch all popular places
 export const getAllPlaces = async (req, res) => {
   try {
-    const places = await Place.find().sort({ createdAt: -1 });
-    return res.status(200).json({ data: places });
+    const places = await Place.find(); // Fetch all places from the database
+    res.status(200).json(places);
   } catch (error) {
     console.error("Error fetching places:", error);
-    return res.status(500).json({ msg: "Failed to fetch places" });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
 
-// ✅ Delete a Place
+// 3. Delete Place - Delete a popular place by ID
 export const deletePlace = async (req, res) => {
   try {
-    const { id } = req.params;
-    console.log(`Deleting Place with ID: ${id}`);
+    const { id } = req.params; // Get the place ID from the URL
 
+    // Find and delete the place by ID
     const deletedPlace = await Place.findByIdAndDelete(id);
 
     if (!deletedPlace) {
-      return res.status(404).json({ msg: "Place not found" });
+      return res.status(404).json({ message: 'Place not found' });
     }
 
-    return res.status(200).json({ msg: "Place deleted successfully" });
+    res.status(200).json({ message: 'Place deleted successfully', deletedPlace });
   } catch (error) {
     console.error("Error deleting place:", error);
-    return res.status(500).json({ msg: "Server error while deleting place" });
+    res.status(500).json({ message: 'Server error', error });
   }
 };

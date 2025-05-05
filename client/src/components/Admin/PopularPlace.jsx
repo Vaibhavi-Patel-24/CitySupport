@@ -3,14 +3,14 @@ import axios from 'axios';
 import { Box, Button, TextField, Typography, Card, CardMedia, CardContent, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const PopularPlaces = () => {
+const PopularPlace = () => {
   const [name, setName] = useState('');
   const [image, setImage] = useState(null);
   const [places, setPlaces] = useState([]);
 
   const fetchPlaces = async () => {
     try {
-      const res = await axios.get('/api/places'); // Change path if needed
+      const res = await axios.get('/api/popularplaces'); // Change path if needed
       setPlaces(res.data.data);
     } catch (err) {
       console.error("Failed to fetch places", err);
@@ -19,27 +19,31 @@ const PopularPlaces = () => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
+    if (!name || !image) {
+      alert("Please fill all fields");
+      return;
+    }
+  
     const formData = new FormData();
-    formData.append("name", name);
+    formData.append("name", name); // adjust to 'title' if needed
     formData.append("image", image);
-
+  
     try {
-      await axios.post('/api/places', formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
+      await axios.post('/api/popularplaces', formData, {
+        headers: { "Content-Type": "multipart/form-data" }
       });
       setName('');
       setImage(null);
       fetchPlaces();
     } catch (err) {
-      console.error("Upload failed", err);
+      console.error("Upload failed", err.response?.data || err.message);
     }
   };
+  
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/places/${id}`);
+      await axios.delete(`/api/popularplaces/${id}`);
       fetchPlaces();
     } catch (err) {
       console.error("Delete failed", err);
@@ -86,4 +90,4 @@ const PopularPlaces = () => {
   );
 };
 
-export default PopularPlaces;
+export default PopularPlace;

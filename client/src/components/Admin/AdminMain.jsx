@@ -46,6 +46,8 @@ import Banner from './Banner';
 import LocalBusinessCorner from '../HomeLocalBusinessCorner';
 import LocalBusinessAdmin from './HomeLocalBussinesses';
 import PromotionalPamphlet from './PromotionalPamflates';
+import PopularPlaces from '../PopularPlaces';
+import PopularPlace from './PopularPlace';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -132,6 +134,8 @@ const AdminMain = () => {
         return <h1>This is settings section..</h1>;
       case 'Subscribers':
         return <Subscribers/>;
+      case'PopularPlaces':
+        return <PopularPlace/>
       default:
         return <h1>This will be the Dashboard</h1>;
     }
