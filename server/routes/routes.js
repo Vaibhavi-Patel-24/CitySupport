@@ -14,6 +14,9 @@ import { deletePamflate, getPamflate, uploadPamflate } from '../controller/pamfl
 
 import { createPlace, getAllPlaces, deletePlace } from "../controller/adminPopularPlace-controller.js";
 import {createEvent,deleteEvent,getAllEvents} from '../controller/adminEvent-controller.js'
+import { createHospital, deleteHospital, getAllHospitals } from '../controller/adminHospitalController.js';
+import { createMunicipal, deleteMunicipal, getAllMunicipals } from '../controller/adminMunicipal.js';
+import { createEelectricity, deleteEelectricity, getAllEelectricity } from '../controller/adminElectricity.js';
 
 
 // import { uploadImage } from '../controller/upload-controller.js'; // Import upload controller
@@ -111,6 +114,21 @@ router.delete("/homelocalbussiness/:id", deleteLocalBusiness);
 router.post('/subscriber', newSubscriber);
 router.get('/subscribers', getSubscribers);
 router.delete('/subscribers/:id', deleteSubscriber); 
+
+// Hospitals 
+router.post('/hospitals', createHospital);
+router.get('/hospitals', getAllHospitals);
+router.delete('/hospitals/:id', deleteHospital); 
+
+// Municipals 
+router.post('/municipals', createMunicipal);
+router.get('/municipals', getAllMunicipals);
+router.delete('/municipals/:id', deleteMunicipal); 
+
+// Electricity 
+router.post('/electricity', createEelectricity);
+router.get('/electricity', getAllEelectricity);
+router.delete('/electricity/:id', deleteEelectricity); 
 
 //Event Routes
 router.post("/events",upload.single('image'),createEvent);

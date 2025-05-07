@@ -28,6 +28,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import StorefrontIcon from '@mui/icons-material/Storefront';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 
 // import EventSettings from './EventSettings';
@@ -49,6 +50,9 @@ import LocalBusinessAdmin from './HomeLocalBussinesses';
 import PromotionalPamphlet from './PromotionalPamflates';
 import PopularPlaces from '../PopularPlaces';
 import PopularPlace from './PopularPlace';
+import AdminHospital from './AdminHospitals';
+import AdminMunicipal from './AdminMunicipal';
+import AdminElectricity from './AdminElectricity';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -137,6 +141,12 @@ const AdminMain = () => {
         return <Subscribers/>;
       case'PopularPlaces':
         return <PopularPlace/>
+      case'Hospitals':
+        return <AdminHospital/>
+      case'Municipal':
+        return <AdminMunicipal/>
+      case'Electricity':
+        return <AdminElectricity/>
       default:
         return <h1>This will be the Dashboard</h1>;
     }
@@ -256,6 +266,27 @@ const AdminMain = () => {
             <TourIcon />
        </ListItemIcon>
         <ListItemText primary="Popular Places" sx={{ cursor: 'pointer' }} />
+        </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('Hospitals')}>
+        <ListItemIcon>
+            <LocalHospitalIcon />
+       </ListItemIcon>
+        <ListItemText primary="Hospitals" sx={{ cursor: 'pointer' }} />
+        </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('Municipal')}>
+        <ListItemIcon>
+            <LocalHospitalIcon />
+       </ListItemIcon>
+        <ListItemText primary="Municipal" sx={{ cursor: 'pointer' }} />
+        </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('Electricity')}>
+        <ListItemIcon>
+            <LocalHospitalIcon />
+       </ListItemIcon>
+        <ListItemText primary="Electricity" sx={{ cursor: 'pointer' }} />
         </ListItem>
       
       </List>
