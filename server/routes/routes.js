@@ -17,6 +17,8 @@ import {createEvent,deleteEvent,getAllEvents} from '../controller/adminEvent-con
 import { createHospital, deleteHospital, getAllHospitals } from '../controller/adminHospitalController.js';
 import { createMunicipal, deleteMunicipal, getAllMunicipals } from '../controller/adminMunicipal.js';
 import { createEelectricity, deleteEelectricity, getAllEelectricity } from '../controller/adminElectricity.js';
+import { createBusiness, deleteBusiness, getAllBusiness } from '../controller/RegisterBusiness-controller.js';
+
 
 
 // import { uploadImage } from '../controller/upload-controller.js'; // Import upload controller
@@ -134,6 +136,10 @@ router.delete('/electricity/:id', deleteEelectricity);
 router.post("/events",upload.single('image'),createEvent);
 router.get("/events",getAllEvents)
 router.delete("/events/:id",deleteEvent)
+
+router.post('/business', upload.single('image'), createBusiness);
+router.get('/business', getAllBusiness);
+router.delete('/business/:id', deleteBusiness);
 
 
 export default router;

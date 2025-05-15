@@ -53,6 +53,7 @@ import PopularPlace from './PopularPlace';
 import AdminHospital from './AdminHospitals';
 import AdminMunicipal from './AdminMunicipal';
 import AdminElectricity from './AdminElectricity';
+import AdminBusiness from './AdminBusiness';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -147,6 +148,8 @@ const AdminMain = () => {
         return <AdminMunicipal/>
       case'Electricity':
         return <AdminElectricity/>
+      case'Business':
+        return <AdminBusiness/>
       default:
         return <h1>This will be the Dashboard</h1>;
     }
@@ -289,6 +292,13 @@ const AdminMain = () => {
         <ListItemText primary="Electricity" sx={{ cursor: 'pointer' }} />
         </ListItem>
       
+      
+        <ListItem button onClick={() => handleNavigation('Business')}>
+          <ListItemIcon>
+            <StorefrontIcon />
+          </ListItemIcon>
+          <ListItemText primary="Business" sx={{ cursor: 'pointer' }} />
+        </ListItem>
       </List>
     </div>
   );

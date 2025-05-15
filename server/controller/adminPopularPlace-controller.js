@@ -1,55 +1,42 @@
-import Place from '../models/popularplace.js'; // Assuming you have a PopularPlace model
+import Place from '../models/popularplace.js';
 
-// 1. Create Place - Add a new popular place
+// 1. Create Place
 export const createPlace = async (req, res) => {
   try {
-    const { name, description, location } = req.body;
-    const image = req.file ? req.file.path : null; // Assuming image is uploaded via multer
+    const { title } = req.body;
+    const image = req.file.path;
 
-    // Create a new place document in the database
-    const newPlace = new Place({
-      name,
-      description,
-      location,
-      image
-    });
-
-    // Save to the database
+    const newPlace = new Place({ title, image });
     await newPlace.save();
 
     res.status(201).json({ message: 'Place created successfully', place: newPlace });
   } catch (error) {
-    console.error("Error creating place:", error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
 
-// 2. Get All Places - Fetch all popular places
+// 2. Get All Places
 export const getAllPlaces = async (req, res) => {
   try {
-    const places = await Place.find(); // Fetch all places from the database
+    const places = await Place.find();
     res.status(200).json(places);
   } catch (error) {
-    console.error("Error fetching places:", error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
 
-// 3. Delete Place - Delete a popular place by ID
+// 3. Delete Place (MAKE SURE THIS EXISTS)
 export const deletePlace = async (req, res) => {
   try {
-    const { id } = req.params; // Get the place ID from the URL
-
-    // Find and delete the place by ID
+    const { id } = req.params;
     const deletedPlace = await Place.findByIdAndDelete(id);
 
     if (!deletedPlace) {
       return res.status(404).json({ message: 'Place not found' });
     }
 
-    res.status(200).json({ message: 'Place deleted successfully', deletedPlace });
+    res.status(200).json({ message: 'Place deleted successfully' });
   } catch (error) {
-    console.error("Error deleting place:", error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
