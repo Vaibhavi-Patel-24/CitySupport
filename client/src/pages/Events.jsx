@@ -1,5 +1,3 @@
-
-
 // export default Events;
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
@@ -12,6 +10,11 @@ import SearchEvents from '../components/SearchEvents';
 import DaysEvents from './Days_Events';
 import { API } from '../services/api';
 import dayjs from "dayjs";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter);
+
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -19,6 +22,8 @@ const Events = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEventType, setSelectedEventType] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDayFilter, setSelectedDayFilter] = useState("");
+
 
   useEffect(() => {
     fetchEvents();
@@ -54,7 +59,6 @@ const Events = () => {
       );
     }
     
-
     if (selectedEventType) {
       filtered = filtered.filter(event => {
         const eventTypeName = event.eventType || "";
@@ -62,7 +66,6 @@ const Events = () => {
         return similarity >= 0.5;
       });
     }
-
     if (selectedDate) {
       filtered = filtered.filter(event => {
         const eventDate = dayjs(event.date).format("YYYY-MM-DD");
@@ -71,8 +74,71 @@ const Events = () => {
       });
     }
 
+
+    if (selectedDayFilter) {
+      const today = dayjs();
+    
+      filtered = filtered.filter(event => {
+        const eventDate = dayjs(event.date);
+        console.log("Event Date:", event.date, "Converted:", eventDate.format("YYYY-MM-DD"));
+    
+        switch (selectedDayFilter) {
+          case "Today":
+            return eventDate.isSame(today, "day");
+    
+          case "Tomorrow":
+            return eventDate.isSame(today.add(1, "day"), "day");
+    
+          case "This Weekend": {
+            const saturday = today.day(6);
+            const sunday = saturday.add(1, "day");
+            return eventDate.isSame(saturday, "day") || eventDate.isSame(sunday, "day");
+          }
+    
+          case "This Week": {
+            const startOfWeek = today.startOf("week");
+            const endOfWeek = today.endOf("week");
+            console.log("Week Range:", startOfWeek.format("YYYY-MM-DD"), "to", endOfWeek.format("YYYY-MM-DD"));
+            return eventDate.isSameOrAfter(startOfWeek, "day") && eventDate.isSameOrBefore(endOfWeek, "day");
+          }
+    
+          case "Next Weekend": {
+            const nextSaturday = today.add(1, "week").day(6);
+            const nextSunday = nextSaturday.add(1, "day");
+            return eventDate.isSame(nextSaturday, "day") || eventDate.isSame(nextSunday, "day");
+          }
+    
+          case "Next Week": {
+            const nextWeekStart = today.add(1, "week").startOf("week");
+            const nextWeekEnd = nextWeekStart.endOf("week");
+            console.log("Next Week Range:", nextWeekStart.format("YYYY-MM-DD"), "to", nextWeekEnd.format("YYYY-MM-DD"));
+            return eventDate.isSameOrAfter(nextWeekStart, "day") && eventDate.isSameOrBefore(nextWeekEnd, "day");
+          }
+    
+          case "This Month": {
+            const startOfMonth = today.startOf("month");
+            const endOfMonth = today.endOf("month");
+            console.log("Month Range:", startOfMonth.format("YYYY-MM-DD"), "to", endOfMonth.format("YYYY-MM-DD"));
+            return eventDate.isSameOrAfter(startOfMonth, "day") && eventDate.isSameOrBefore(endOfMonth, "day");
+          }
+
+          case "Last Month": {
+            const startOfLastMonth = today.subtract(1, "month").startOf("month");
+            const endOfLastMonth = startOfLastMonth.endOf("month");
+            console.log("Last Month Range:", startOfLastMonth.format("YYYY-MM-DD"), "to", endOfLastMonth.format("YYYY-MM-DD"));
+            return eventDate.isSameOrAfter(startOfLastMonth, "day") && eventDate.isSameOrBefore(endOfLastMonth, "day");
+          }
+    
+          default:
+            return true;
+        }
+      });
+    }
+    
+    
+
     setFilteredEvents(filtered);
-  }, [searchTerm, selectedEventType, selectedDate, events]);
+  }, [searchTerm, selectedEventType, selectedDate, selectedDayFilter, events]);
 
   const fetchEvents = async () => {
     try {
@@ -159,8 +225,8 @@ const Events = () => {
           </Box>
         </Box>
 
-        <DaysEvents />
-      </div>
+        <DaysEvents selectedFilter={selectedDayFilter} onSelectFilter={setSelectedDayFilter} />
+        </div>
       <Footer />
     </div>
   );
