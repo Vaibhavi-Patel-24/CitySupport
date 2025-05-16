@@ -28,6 +28,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import StorefrontIcon from '@mui/icons-material/Storefront';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 
 // import EventSettings from './EventSettings';
@@ -48,6 +49,12 @@ import LocalBusinessCorner from '../HomeLocalBusinessCorner';
 import LocalBusinessAdmin from './HomeLocalBussinesses';
 import PromotionalPamphlet from './PromotionalPamflates';
 import AdminEventType from './AdminEventType'
+import PopularPlaces from '../PopularPlaces';
+import PopularPlace from './PopularPlace';
+import AdminHospital from './AdminHospitals';
+import AdminMunicipal from './AdminMunicipal';
+import AdminElectricity from './AdminElectricity';
+import AdminBusiness from './AdminBusiness';
 
 const drawerWidth = 240;
 const Image = styled("img")({
@@ -136,6 +143,16 @@ const AdminMain = () => {
         return <h1>This is settings section..</h1>;
       case 'Subscribers':
         return <Subscribers/>;
+      case'PopularPlaces':
+        return <PopularPlace/>
+      case'Hospitals':
+        return <AdminHospital/>
+      case'Municipal':
+        return <AdminMunicipal/>
+      case'Electricity':
+        return <AdminElectricity/>
+      case'Business':
+        return <AdminBusiness/>
       default:
         return <h1>This will be the Dashboard</h1>;
     }
@@ -263,7 +280,35 @@ const AdminMain = () => {
        </ListItemIcon>
         <ListItemText primary="Popular Places" sx={{ cursor: 'pointer' }} />
         </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('Hospitals')}>
+        <ListItemIcon>
+            <LocalHospitalIcon />
+       </ListItemIcon>
+        <ListItemText primary="Hospitals" sx={{ cursor: 'pointer' }} />
+        </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('Municipal')}>
+        <ListItemIcon>
+            <LocalHospitalIcon />
+       </ListItemIcon>
+        <ListItemText primary="Municipal" sx={{ cursor: 'pointer' }} />
+        </ListItem>
+        
+        <ListItem button onClick={() => handleNavigation('Electricity')}>
+        <ListItemIcon>
+            <LocalHospitalIcon />
+       </ListItemIcon>
+        <ListItemText primary="Electricity" sx={{ cursor: 'pointer' }} />
+        </ListItem>
       
+      
+        <ListItem button onClick={() => handleNavigation('Business')}>
+          <ListItemIcon>
+            <StorefrontIcon />
+          </ListItemIcon>
+          <ListItemText primary="Business" sx={{ cursor: 'pointer' }} />
+        </ListItem>
       </List>
     </div>
   );

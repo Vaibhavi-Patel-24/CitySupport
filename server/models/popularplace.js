@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const placeSchema = new mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
-      minlength: 3,  // Ensures that the name is at least 3 characters long
-      maxlength: 100, // Optional: Limits the length of the name
+      minlength: 3,  // Ensures that the title is at least 3 characters long
+      maxlength: 100, // Optional: Limits the length of the title
     },
     image: {
       type: String,
@@ -22,7 +22,7 @@ const placeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Index the name field for better search performance (optional)
-placeSchema.index({ name: 1 });
+// Index the title field for better search performance (optional)
+placeSchema.index({ title: 1 });
 
 export default mongoose.model("Place", placeSchema);

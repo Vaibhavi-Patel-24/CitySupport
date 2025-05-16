@@ -15,6 +15,12 @@ import { deletePamflate, getPamflate, uploadPamflate } from '../controller/pamfl
 import { createPlace, getAllPlaces, deletePlace } from "../controller/adminPopularPlace-controller.js";
 import {createEvent,deleteEvent,getAllEvents} from '../controller/adminEvent-controller.js'
 import {createEventType,deleteEventType,getAllEventTypes} from '../controller/adminEventType-controller.js'
+import { createHospital, deleteHospital, getAllHospitals } from '../controller/adminHospitalController.js';
+import { createMunicipal, deleteMunicipal, getAllMunicipals } from '../controller/adminMunicipal.js';
+import { createEelectricity, deleteEelectricity, getAllEelectricity } from '../controller/adminElectricity.js';
+import { createBusiness, deleteBusiness, getAllBusiness } from '../controller/RegisterBusiness-controller.js';
+
+
 
 // import { uploadImage } from '../controller/upload-controller.js'; // Import upload controller
 
@@ -76,9 +82,9 @@ router.get('/mustvisit/:id', getAllMustVisit);
 router.delete('/mustvisit/:id', deleteMustVisit);
 
 // Popular Places for Admin Panel
-router.post('/places', upload.single('image'), createPlace);
-router.get('/places', getAllPlaces);
-router.delete('/places/:id', deletePlace);
+router.post('/popularplaces', upload.single('image'), createPlace); // Ensure 'image' is the field used in the frontend
+router.get('/popularplaces', getAllPlaces);
+router.delete('/popularplaces/:id', deletePlace);
 
 //Social for the adminpanel
 router.post('/social',  upload.fields([
@@ -112,6 +118,21 @@ router.post('/subscriber', newSubscriber);
 router.get('/subscribers', getSubscribers);
 router.delete('/subscribers/:id', deleteSubscriber); 
 
+// Hospitals 
+router.post('/hospitals', createHospital);
+router.get('/hospitals', getAllHospitals);
+router.delete('/hospitals/:id', deleteHospital); 
+
+// Municipals 
+router.post('/municipals', createMunicipal);
+router.get('/municipals', getAllMunicipals);
+router.delete('/municipals/:id', deleteMunicipal); 
+
+// Electricity 
+router.post('/electricity', createEelectricity);
+router.get('/electricity', getAllEelectricity);
+router.delete('/electricity/:id', deleteEelectricity); 
+
 //Event Routes
 router.post("/events",upload.single('image'),createEvent);
 router.get("/events",getAllEvents)
@@ -121,5 +142,9 @@ router.delete("/events/:id",deleteEvent)
 router.post("/eventType",createEventType)
 router.delete('/eventType/:id',deleteEventType)
 router.get("/eventType",getAllEventTypes)
+router.post('/business', upload.single('image'), createBusiness);
+router.get('/business', getAllBusiness);
+router.delete('/business/:id', deleteBusiness);
+
 
 export default router;

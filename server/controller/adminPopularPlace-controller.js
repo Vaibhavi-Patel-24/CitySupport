@@ -1,62 +1,42 @@
-import Place from "../models/popularplace.js";
-import uploadToCloudinary from "../services/cloudinary.js";
+import Place from '../models/popularplace.js';
 
-// ✅ Create a new Place
+// 1. Create Place
 export const createPlace = async (req, res) => {
   try {
-    console.log("Received request to add a place");
+    const { title } = req.body;
+    const image = req.file.path;
 
-    const { name } = req.body;
-    console.log("Name:", name);
-    console.log("Headers:", req.headers["content-type"]);
-    console.log("Body:", req.body);
-    console.log("File:", req.file);
-
-    if (!req.file || !name) {
-      return res.status(400).json({ msg: "Name and image are required" });
-    }
-
-    const imagePath = req.file.path;
-
-    const imageURL = await uploadToCloudinary(imagePath);
-    console.log("Uploaded image URL:", imageURL);
-
-    const newPlace = new Place({ name, image: imageURL });
+    const newPlace = new Place({ title, image });
     await newPlace.save();
 
-    return res.status(201).json({ msg: "Place created successfully", data: newPlace });
+    res.status(201).json({ message: 'Place created successfully', place: newPlace });
   } catch (error) {
-    console.error("Error in createPlace:", error);
-    return res.status(500).json({ msg: "Server error while creating place" });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
 
-// ✅ Get All Places
+// 2. Get All Places
 export const getAllPlaces = async (req, res) => {
   try {
-    const places = await Place.find().sort({ createdAt: -1 });
-    return res.status(200).json({ data: places });
+    const places = await Place.find();
+    res.status(200).json(places);
   } catch (error) {
-    console.error("Error fetching places:", error);
-    return res.status(500).json({ msg: "Failed to fetch places" });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
 
-// ✅ Delete a Place
+// 3. Delete Place (MAKE SURE THIS EXISTS)
 export const deletePlace = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(`Deleting Place with ID: ${id}`);
-
     const deletedPlace = await Place.findByIdAndDelete(id);
 
     if (!deletedPlace) {
-      return res.status(404).json({ msg: "Place not found" });
+      return res.status(404).json({ message: 'Place not found' });
     }
 
-    return res.status(200).json({ msg: "Place deleted successfully" });
+    res.status(200).json({ message: 'Place deleted successfully' });
   } catch (error) {
-    console.error("Error deleting place:", error);
-    return res.status(500).json({ msg: "Server error while deleting place" });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
