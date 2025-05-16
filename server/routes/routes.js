@@ -143,7 +143,9 @@ router.post("/eventType",createEventType)
 router.delete('/eventType/:id',deleteEventType)
 router.get("/eventType",getAllEventTypes)
 
-router.post('/business', upload.single('image'), createBusiness);
+//business
+
+router.post('/business', upload.single('image'), createBusiness); // If you want to support image upload with 'image' field
 router.get('/business', getAllBusiness);
 router.delete('/business/:id', deleteBusiness);
 
