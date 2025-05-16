@@ -12,7 +12,7 @@ import upload from '../middleware/multer.js';
 import { createLocalBusiness, deleteLocalBusiness, getAllLocalBusinesses, updateLocalBusiness } from '../controller/homelocalBusinessController.js';
 import { deletePamflate, getPamflate, uploadPamflate } from '../controller/pamflate-controller.js';
 
-import { createPlace, getAllPlaces, deletePlace } from "../controller/adminPopularPlace-controller.js";
+import { createPopularPlace, getAllPopularPlaces, deletePopularPlace } from "../controller/adminPopularPlace-controller.js";
 import {createEvent,deleteEvent,getAllEvents} from '../controller/adminEvent-controller.js'
 import {createEventType,deleteEventType,getAllEventTypes} from '../controller/adminEventType-controller.js'
 import { createHospital, deleteHospital, getAllHospitals } from '../controller/adminHospitalController.js';
@@ -82,9 +82,9 @@ router.get('/mustvisit/:id', getAllMustVisit);
 router.delete('/mustvisit/:id', deleteMustVisit);
 
 // Popular Places for Admin Panel
-router.post('/popularplaces', upload.single('image'), createPlace); // Ensure 'image' is the field used in the frontend
-router.get('/popularplaces', getAllPlaces);
-router.delete('/popularplaces/:id', deletePlace);
+router.post('/popularplaces', upload.single('image'), createPopularPlace); // Ensure 'image' is the field used in the frontend
+router.get('/popularplaces', getAllPopularPlaces);
+router.delete('/popularplaces/:id', deletePopularPlace);
 
 //Social for the adminpanel
 router.post('/social',  upload.fields([
