@@ -13,7 +13,7 @@ const formatDate = (dateString) => {
 const Blogs = ({ blog }) => {
   return (
     <Box>
-      <Card sx={{ maxWidth: 310 }}>
+      <Card sx={{ maxWidth: 310,transition: 'transform 0.3s, box-shadow 0.3s','&:hover': { transform: 'scale(1.03)',boxShadow: 6},}}>
         <CardMedia
           sx={{ height: 180 }}
           image={blog.imageURL}

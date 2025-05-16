@@ -23,6 +23,10 @@ export const SERVICE_URLS = {
     event: { url: '/events', method: 'POST' },
     deleteEvent: { url: '/events/:id', method: 'DELETE' },
     getEvent: { url: '/events', method: 'GET' },
+
+    addEventType: { url: '/eventType', method: 'POST' },
+    deleteEventType: { url: '/eventType/:id', method: 'DELETE' },
+    getEventTypes: { url: '/eventType', method: 'GET' },
     
 
     uploadBanner: { url: '/banner', method: 'POST' },

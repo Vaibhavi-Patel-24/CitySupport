@@ -21,6 +21,10 @@ const eventSchema = new mongoose.Schema({
   likes: {
     type: Number,
     default: 0,
+  },
+  eventType:{
+    type:String,
+    required:true
   }
 }, { timestamps: true });
 

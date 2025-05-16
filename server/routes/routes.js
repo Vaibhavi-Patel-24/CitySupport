@@ -14,7 +14,7 @@ import { deletePamflate, getPamflate, uploadPamflate } from '../controller/pamfl
 
 import { createPlace, getAllPlaces, deletePlace } from "../controller/adminPopularPlace-controller.js";
 import {createEvent,deleteEvent,getAllEvents} from '../controller/adminEvent-controller.js'
-
+import {createEventType,deleteEventType,getAllEventTypes} from '../controller/adminEventType-controller.js'
 
 // import { uploadImage } from '../controller/upload-controller.js'; // Import upload controller
 
@@ -117,5 +117,9 @@ router.post("/events",upload.single('image'),createEvent);
 router.get("/events",getAllEvents)
 router.delete("/events/:id",deleteEvent)
 
+//EventType Routes
+router.post("/eventType",createEventType)
+router.delete('/eventType/:id',deleteEventType)
+router.get("/eventType",getAllEventTypes)
 
 export default router;

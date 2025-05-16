@@ -5,7 +5,7 @@ import uploadToCloudinary from "../services/cloudinary.js"; // Assuming you have
 export const createEvent = async (req, res) => {
   try {
     console.log("Got request to create Event!");
-    const { title, author } = req.body;
+    const { title, author , eventType , date} = req.body;
     const file = req.file;
 
     console.log("Headers:", req.headers["content-type"]);
@@ -13,7 +13,7 @@ export const createEvent = async (req, res) => {
     console.log("Files:", file);
 
     // Validate required fields and file
-    if (!file || !title || !author) {
+    if (!file || !title || !author ||!eventType) {
       return res.status(400).json({ msg: "Title, author, and image are required" });
     }
 
@@ -22,11 +22,17 @@ export const createEvent = async (req, res) => {
       const imageURL = await uploadToCloudinary(file.path);
       console.log("Uploaded Image URL:", imageURL);
 
+      const eventDate = date ? new Date(date) : Date.now();
+
+
       // Create and save the new event
       const newEvent = new Event({
         title,
         author,
         image: imageURL,
+        eventType,        
+        date: eventDate,   // <-- set date here explicitly
+
       });
 
       await newEvent.save();

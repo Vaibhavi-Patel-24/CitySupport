@@ -29,6 +29,8 @@ const AdminEvent = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [events, setEvents] = useState([]);
+  const [eventType, setEventType] = useState(""); // ✅ Added for eventType (required by backend)
+
 
   const imageInputRef = useRef(null);
 
@@ -54,7 +56,7 @@ const AdminEvent = () => {
     setLoading(true);
     setMessage("");
 
-    if (!title || !author || !image || !date) {
+    if (!title || !author || !image || !date || !eventType) {
       setMessage("All fields including image are required!");
       setLoading(false);
       return;
@@ -63,8 +65,11 @@ const AdminEvent = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("author", author);
-    formData.append("date", date.format("YYYY-MM-DD"));
+    // formData.append("date", date.format("YYYY-MM-DD"));
     formData.append("image", image);
+    formData.append("eventType", eventType);
+    formData.append("date", date.toISOString()); // Sends as ISO format (e.g., 2025-05-15T00:00:00.000Z)
+
 
     try {
       const response = await API.event(formData); // Ensure this endpoint is set up on the backend
@@ -74,6 +79,7 @@ const AdminEvent = () => {
         setTitle("");
         setAuthor("");
         setImage(null);
+        setEventType("");
         imageInputRef.current.value = "";
         fetchEvents();
       } else {
@@ -139,6 +145,16 @@ const AdminEvent = () => {
           onChange={(e) => setAuthor(e.target.value)}
         />
 
+        <TextField
+          label="Event Type"
+          variant="outlined"
+          fullWidth
+          margin="dense"
+          value={eventType}
+          onChange={(e) => setEventType(e.target.value)} // ✅ Added input for eventType
+        />
+
+
         <Box sx={{ marginTop: 2 }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -193,7 +209,7 @@ const AdminEvent = () => {
       <IconButton
         onClick={() => handleDelete(event._id)}
         color="error"
-        sx={{ position: 'absolute', top: 8, right: 8, backgroundColor: 'white', '&:hover': { backgroundColor: '#ffe6e6' } }}
+        sx={{ position: 'absolute', top: 8, right: 8 }}
       >
         <DeleteIcon />
       </IconButton>
