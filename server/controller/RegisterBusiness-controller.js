@@ -3,6 +3,7 @@ import Business from '../models/businessModel.js';
 // Create Business
 export const createBusiness = async (req, res) => {
   try {
+    // If you want to handle image upload here, you can add it later
     const newBusiness = new Business(req.body);
     const savedBusiness = await newBusiness.save();
     res.status(201).json(savedBusiness);

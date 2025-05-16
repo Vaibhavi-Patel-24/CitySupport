@@ -58,6 +58,10 @@ export const SERVICE_URLS = {
     getAllPlaces: { url: '/popularplaces', method: 'GET' },
     deletePlace: { url: '/popularplaces/:id', method: 'DELETE' },
 
+    createBusiness: { url: '/business', method: 'POST' },
+    getAllBusiness: { url: '/business', method: 'GET' },
+    deleteBusiness: { url: '/business/:id', method: 'DELETE' },
+
   };
   
   
