@@ -1,183 +1,181 @@
-import React, { useState } from "react";
-import { 
-  Button, 
-  TextField, 
-  Box, 
-  Typography, 
-  Card, 
+import React, { useState, useEffect, useRef } from "react";
+import {
+  TextField,
+  Button,
+  Typography,
+  CircularProgress,
+  Box,
+  Card,
   CardContent,
-  LinearProgress,
-  Avatar
+  Grid,
+  IconButton,
 } from "@mui/material";
-import { CloudUpload, CheckCircle } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { API } from "../../services/api";
 
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});
-
-const PopularPlace = () => {
-  const [title, setTitle] = useState("");
+export default function PopularPlacesAdmin() {
+  const [name, setName] = useState("");
   const [image, setImage] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [places, setPlaces] = useState([]);
+  const fileInputRef = useRef(null);
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-    setSuccess(false);
+  useEffect(() => {
+    fetchPlaces();
+  }, []);
+
+  const fetchPlaces = async () => {
+    try {
+      const response = await API.getPopularPlaces();
+      setPlaces(response.data?.data || []);
+    } catch (error) {
+      console.error("Failed to fetch popular places:", error);
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
+  };
 
-    if (!title || !image) {
-      alert("Both title and image are required.");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    if (!name || !image) {
+      setMessage("Both name and image are required!");
+      setLoading(false);
       return;
     }
 
-    setIsSubmitting(true);
-
     const formData = new FormData();
-    formData.append("title", title);
+    formData.append("name", name);
     formData.append("image", image);
 
     try {
       // Replace with your actual endpoint
-      const response = await API.createPopularPlace("/api/admin/popularplaces", {
+      const response = await fetch("/api/admin/popularplaces", {
         method: "POST",
         body: formData,
       });
 
-      const data = await response.json();
-      alert(data.msg);
-      setSuccess(true);
-      // Optionally reset form
-      setTitle("");
-      setImage(null);
+      if (response.isSuccess) {
+        setMessage("Popular place added successfully!");
+        setName("");
+        setImage(null);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+        fetchPlaces(); // Refresh list
+      } else {
+        setMessage("Failed to add popular place.");
+      }
     } catch (error) {
-      console.error("Error uploading place:", error);
-      alert("Network error while submitting data");
-    } finally {
-      setIsSubmitting(false);
+      console.error("Error uploading popular place:", error);
+      setMessage("Error uploading popular place.");
+    }
+
+    setLoading(false);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await API.deletePopularPlace({ id });
+      setPlaces((prev) => prev.filter((place) => place._id !== id));
+    } catch (error) {
+      console.error("Failed to delete popular place:", error);
     }
   };
 
   return (
-    <Card sx={{ maxWidth: 600, margin: "30px auto", p: 0 }}>
-      <CardContent sx={{ p: 4 }}>
-        <Typography variant="h5" component="div" sx={{ mb: 3, fontWeight: 600, color: 'text.primary' }}>
-          Add a Popular Place
-        </Typography>
+    <Box sx={{ padding: 3, marginTop: 3 }}>
+      <Typography variant="h5" gutterBottom>
+        Add a Popular Place
+      </Typography>
 
-        <form onSubmit={handleSubmit}>
-          <TextField
-            label="Place Title"
-            placeholder="Enter place title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            fullWidth
-            required
-            sx={{ mb: 3 }}
-            variant="outlined"
-            size="medium"
-            InputProps={{
-              sx: { borderRadius: 2 }
-            }}
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <TextField
+          label="Name"
+          variant="outlined"
+          fullWidth
+          margin="dense"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <Box sx={{ marginTop: 2 }}>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleImageChange}
           />
+        </Box>
 
-          <Button
-            component="label"
-            variant="outlined"
-            color="primary"
-            startIcon={<CloudUpload />}
-            fullWidth
-            sx={{
-              mb: 2,
-              py: 2,
-              borderRadius: 2,
-              borderStyle: 'dashed',
-              borderWidth: 2,
-              borderColor: image ? 'success.main' : 'primary.main',
-              bgcolor: image ? 'success.light' : 'transparent',
-              '&:hover': {
-                borderColor: image ? 'success.dark' : 'primary.dark',
-                borderWidth: 2
-              }
-            }}
-          >
-            {image ? 'Change Image' : 'Upload Image'}
-            <VisuallyHiddenInput 
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-          </Button>
-
-          {image && (
-            <Box sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: 2, 
-              mb: 3,
-              p: 2,
-              borderRadius: 2,
-              bgcolor: 'action.hover'
-            }}>
-              <Avatar 
-                src={URL.createObjectURL(image)} 
-                variant="rounded" 
-                sx={{ width: 56, height: 56 }}
-              />
-              <Box>
-                <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                  {image.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {(image.size / 1024).toFixed(2)} KB
-                </Typography>
-              </Box>
-              {success && (
-                <CheckCircle color="success" sx={{ ml: 'auto' }} />
-              )}
-            </Box>
+        <Button
+          variant="contained"
+          sx={{ marginTop: 2, backgroundColor: "#7622D7", color: "white" }}
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? (
+            <CircularProgress size={24} sx={{ color: "white" }} />
+          ) : (
+            "Upload"
           )}
+        </Button>
+      </form>
 
-          {isSubmitting && <LinearProgress sx={{ mb: 3 }} />}
+      {message && (
+        <Typography sx={{ marginTop: 2, color: message.includes("failed") ? "red" : "green" }}>
+          {message}
+        </Typography>
+      )}
 
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            size="large"
-            disabled={isSubmitting || !image || !title}
-            sx={{
-              py: 1.5,
-              borderRadius: 2,
-              fontWeight: 600,
-              fontSize: 16,
-              textTransform: 'none',
-              boxShadow: 'none',
-              '&:hover': {
-                boxShadow: 'none'
-              }
-            }}
-          >
-            {isSubmitting ? 'Uploading...' : 'Submit Place'}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+      {/* Popular Places List */}
+      <Box sx={{ mt: 5 }}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          All Popular Places
+        </Typography>
+        <Grid container spacing={2}>
+          {places.map((place) => (
+            <Grid item xs={12} sm={6} key={place._id}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  boxShadow: 3,
+                  p: 1,
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 100,
+                    height: 100,
+                    overflow: "hidden",
+                    borderRadius: 2,
+                    mr: 2,
+                  }}
+                >
+                  <img
+                    src={place.imageURL || place.image}
+                    alt={place.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </Box>
+                <CardContent sx={{ flex: 1 }}>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    {place.name}
+                  </Typography>
+                </CardContent>
+                <IconButton onClick={() => handleDelete(place._id)} color="error">
+                  <DeleteIcon />
+                </IconButton>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </Box>
   );
-};
-
-export default PopularPlace;
+}

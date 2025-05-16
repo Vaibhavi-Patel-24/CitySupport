@@ -1,28 +1,18 @@
 import mongoose from "mongoose";
 
-const placeSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true,
-      minlength: 3,  // Ensures that the title is at least 3 characters long
-      maxlength: 100, // Optional: Limits the length of the title
-    },
-    image: {
-      type: String,
-      required: true,
-      validate: {
-        validator: (v) => {
-          return /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif))$/.test(v); // Validates that the image URL is in a valid format
-        },
-        message: (props) => `${props.value} is not a valid image URL!`,
-      },
-    },
+const popularPlaceSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+  image: {
+    type: String,
+    required: true,
+  },
+  location: {
+    type: String,
+    default: ""
+  }
+}, { timestamps: true });
 
-// Index the title field for better search performance (optional)
-placeSchema.index({ title: 1 });
-
-export default mongoose.model("Place", placeSchema);
+export default mongoose.model("PopularPlace", popularPlaceSchema);

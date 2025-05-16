@@ -49,9 +49,15 @@ const SearchEvents = ({ onSearchChange, onEventTypeChange, onDateChange }) => {
   };
 
   const handleDateChange = (newValue) => {
-    setSelectedDate(newValue);
-    onDateChange(newValue ? newValue.toISOString() : null);
+    if (newValue && newValue.isValid()) {
+      setSelectedDate(newValue);
+      onDateChange(newValue.toISOString());
+    } else {
+      setSelectedDate(null);
+      onDateChange(null);
+    }
   };
+  
 
   return (
     <Box>
