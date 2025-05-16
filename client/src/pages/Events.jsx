@@ -201,7 +201,7 @@ const Events = () => {
           Events
         </Typography>
 
-        <Box sx={{ pl: { xs: 6, md: 14 }, pr: { xs: 6, md: 14 }, pb: { xs: 1, md: 7 }, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Box sx={{ pl: { xs: 6, md: 14,lg: 18 }, pr: { xs: 6, md: 14,lg: 18 }, pb: { xs: 1, md: 7 }, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Box sx={{ width: "100%" }}>
             <Grid
               container
