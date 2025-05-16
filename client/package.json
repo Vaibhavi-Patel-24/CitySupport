@@ -10,6 +10,7 @@
     "@mui/icons-material": "^6.4.2",
     "@mui/material": "^6.4.7",
     "@mui/x-date-pickers": "^7.27.3",
+    "@react-google-maps/api": "^2.20.6",
     "axios": "^1.8.1",
     "cra-template": "1.2.0",
     "dayjs": "^1.11.13",
