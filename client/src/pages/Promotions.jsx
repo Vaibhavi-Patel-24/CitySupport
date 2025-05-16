@@ -40,7 +40,7 @@ const CitySupport = () => {
     },
     {
       name: "Customer Testimonials",
-      details: "The dining discounts were amazing! We tried so many local restaurants and saved a lot of money.",
+      details: "The dining discounts were amazing! We tried many local restaurants, saved a lot of money.",
       rating: "9.5",
       status: "Open/Close",
       image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGFwcHklMjBwZW9wbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
@@ -235,17 +235,18 @@ const CitySupport = () => {
                     borderRadius: 2,
                     position: 'relative',
                     overflow: 'visible',
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
-                      top: '10px',
-                      left: '10px',
-                      zIndex: -1,
-                      borderRadius: 2,
-                      backgroundColor: '#f5f5f5'
-                    },
+                    backgroundColor: '#f5f5f5',
+                    // '&::after': {
+                    //   content: '""',
+                    //   position: 'absolute',
+                    //   width: '100%',
+                    //   height: '100%',
+                    //   top: '10px',
+                    //   left: '10px',
+                    //   zIndex: -1,
+                    //   borderRadius: 2,
+                    //   backgroundColor: '#f5f5f5'
+                    // },
                     transition: 'transform 0.3s ease',
                     '&:hover': {
                       transform: 'translateY(-5px)'

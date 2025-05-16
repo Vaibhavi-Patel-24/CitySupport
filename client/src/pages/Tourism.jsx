@@ -110,6 +110,7 @@ const Tourism = () => {
                     borderRadius: 2,
                     position: 'relative',
                     overflow: 'visible',
+                    backgroundColor: '#f5f5f5',
                     '&::after': {
                       content: '""',
                       position: 'absolute',
@@ -196,6 +197,7 @@ const Tourism = () => {
                     borderRadius: 2,
                     position: 'relative',
                     overflow: 'visible',
+                    backgroundColor: '#f5f5f5',
                     '&::after': {
                       content: '""',
                       position: 'absolute',
