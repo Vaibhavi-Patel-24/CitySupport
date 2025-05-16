@@ -40,6 +40,7 @@ export const SERVICE_URLS = {
     getElectricity: { url: '/electricity', method: 'GET' },
     
 
+
     uploadBanner: { url: '/banner', method: 'POST' },
     deleteBanner: { url: '/banner/:id', method: 'DELETE' },
     getBanner: { url: '/banner/:id', method: 'GET' },
@@ -52,6 +53,10 @@ export const SERVICE_URLS = {
     getHomeBussinesses: { url: '/homelocalbussiness/:id', method: 'GET' },
     deleteHomeBussinesses: { url: '/homelocalbussiness/:id', method: 'DELETE' },
     updateHomeBussiness: { url: '/homelocalbussiness/:id', method: 'PUT' }, 
+
+    uploadPlace: { url: '/popularplaces', method: 'POST' },
+    getAllPlaces: { url: '/popularplaces', method: 'GET' },
+    deletePlace: { url: '/popularplaces/:id', method: 'DELETE' },
 
   };
   

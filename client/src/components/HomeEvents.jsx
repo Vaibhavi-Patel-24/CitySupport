@@ -4,14 +4,14 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const events = [
   { date: '5', month: 'MAR', category: 'EDUCATION', description: 'Encouraged children to study and helped needed children' },
-  { date: '5', month: 'MAR', category: 'EDUCATION', description: 'Encouraged children to study and helped needed children' },
-  { date: '5', month: 'MAR', category: 'EDUCATION', description: 'Encouraged children to study and helped needed children' },
-  { date: '5', month: 'MAR', category: 'EDUCATION', description: 'Encouraged children to study and helped needed children' }
+  { date: '12', month: 'APR', category: 'HEALTH', description: 'Free health checkup camp for locals' },
+  { date: '20', month: 'MAY', category: 'COMMUNITY', description: 'Neighborhood clean-up drive and awareness' },
+  { date: '8', month: 'JUN', category: 'EDUCATION', description: 'Scholarship announcements and application help' }
 ];
 
 const EventsSection = () => {
   return (
-    <Box sx={{ padding: '40px 20px',margin:"0 120px" }}>
+    <Box sx={{ padding: '40px 20px', marginX: { xs: 2, md: '120px' } }}>
       <Typography 
         variant="h4" 
         sx={{ 
@@ -31,10 +31,10 @@ const EventsSection = () => {
       >
         Events
       </Typography>
-      
-      <Grid container spacing={2.5}>
+
+      <Grid container spacing={3}>
         {events.map((event, index) => (
-          <Grid item xs={12} md={6} key={index}>
+          <Grid item xs={12} sm={6} key={index}>
             <Card 
               sx={{ 
                 backgroundColor: '#4b90dd',
@@ -42,15 +42,16 @@ const EventsSection = () => {
                 borderRadius: '12px',
                 display: 'flex',
                 alignItems: 'center',
-                padding: '24px',
-                minHeight: '120px',
+                justifyContent: 'space-between',
+                height: { xs: '140px', sm: '140px' }, // compact uniform height
+                paddingX: 2,
                 boxShadow: 'none'
               }}
             >
               <Box sx={{ 
                 textAlign: 'left',
                 minWidth: '45px',
-                marginRight: '20px'
+                marginRight: '16px'
               }}>
                 <Typography 
                   variant="h4" 
@@ -62,12 +63,7 @@ const EventsSection = () => {
                 >
                   {event.date}
                 </Typography>
-                <Typography 
-                  sx={{ 
-                    fontSize: '0.875rem',
-                    marginTop: '4px'
-                  }}
-                >
+                <Typography sx={{ fontSize: '0.875rem', marginTop: '4px' }}>
                   {event.month}
                 </Typography>
               </Box>
@@ -75,15 +71,16 @@ const EventsSection = () => {
               <CardContent 
                 sx={{ 
                   flexGrow: 1,
-                  padding: '0 !important',
-                  marginRight: '16px'
+                  padding: 0,
+                  marginRight: '16px',
+                  overflow: 'hidden'
                 }}
               >
                 <Typography 
                   sx={{ 
                     fontSize: '0.75rem',
                     letterSpacing: '0.5px',
-                    marginBottom: '8px'
+                    marginBottom: '6px'
                   }}
                 >
                   {event.category}
@@ -91,7 +88,11 @@ const EventsSection = () => {
                 <Typography 
                   sx={{ 
                     fontSize: '0.9rem',
-                    lineHeight: '1.4'
+                    lineHeight: '1.3',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
                   }}
                 >
                   {event.description}
