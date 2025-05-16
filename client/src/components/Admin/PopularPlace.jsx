@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { CloudUpload, CheckCircle } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
+import { API } from "../../services/api";
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -51,7 +52,7 @@ const PopularPlace = () => {
 
     try {
       // Replace with your actual endpoint
-      const response = await fetch("/api/admin/popularplaces", {
+      const response = await API.createPopularPlace("/api/admin/popularplaces", {
         method: "POST",
         body: formData,
       });

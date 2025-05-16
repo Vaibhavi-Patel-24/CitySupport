@@ -27,6 +27,7 @@ export const SERVICE_URLS = {
     addEventType: { url: '/eventType', method: 'POST' },
     deleteEventType: { url: '/eventType/:id', method: 'DELETE' },
     getEventTypes: { url: '/eventType', method: 'GET' },
+    
     hospitals: { url: '/hospitals', method: 'POST' },
     deleteHospital: { url: '/hospitals/:id', method: 'DELETE' },
     getHospitals: { url: '/hospitals', method: 'GET' },

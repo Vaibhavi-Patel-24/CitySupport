@@ -105,9 +105,12 @@ export default function ContactMain() {
     // console.log(response.data.msg.value)
     // 
     try{
+      console.log('here the api goin to be called ')
       const response = await API.contactUs(detail)
+      console.log('here the api has been called ')
     if (response.isError === true){
       setError(`${response.data.msg.value}`);
+      console.log('error has been occured')
        
     } else{
       setError("");

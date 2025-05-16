@@ -5,7 +5,8 @@ export const createPlace = async (req, res) => {
   try {
     const { title } = req.body;
     const image = req.file.path;
-
+    console.log('got request to createplace')
+    console.log(req)
     const newPlace = new Place({ title, image });
     await newPlace.save();
 

@@ -18,7 +18,7 @@ const Utility = () => {
     {id:1,name:'Hospitals',image:hospitals, path: '/utility/Hospitals'},
     {id:2,name:'Municipal Corporation ',image:municipal_corporation,path: '/utility/Municipal'},
     {id:3,name:'Electricity',image:electricity,path:'/utility/Electricity'},
-    {id:4,name:'Bancks',image:banks,path: '/utility/Banks'},
+    {id:4,name:'Banks',image:banks,path: '/utility/Banks'},
     {id:5,name:'Schools',image:schools,path:'/utility/Schools'},
     {id:6,name:'Colleges',image:colleges,path: '/utility/Colleges'},
     {id:7,name:'NGOs',image:ngos,path: '/utility/Ngos'},

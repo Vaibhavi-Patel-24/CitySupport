@@ -15,7 +15,7 @@ export const contactUs = async (req, res) => {
     await newContact.save();
     console.log(`user data saved in db`)
   } catch (error) {
-    return res.status(500).json({ msg: 'Error saving contact details to the database.' });
+    return res.status(500).json({ msg:'Error saving contact details to the database.'});
   }
 
   const recipients = ['krishjp2538@gmail.com', `${email}`]
