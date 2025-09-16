@@ -36,9 +36,4 @@ It will provide:
 | **Server**    | Express.js       |
 | **Styling**   | Material UI, Tailwind CSS |
 
----
 
-## 📂 Project Structure
-CitySupport/
-Client/ # Contains frontend files (React.js + Material UI + Tailwind CSS)
-Server/ # Contains backend files (Node.js + Express + MongoDB)
