@@ -1,5 +1,5 @@
 # CitySupport
-<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/ae360bf7-952a-48b0-9594-266241401be1" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/ae360bf7-952a-48b0-9594-266241401be1" />
 
 
 ## 📌 Problem Statement
@@ -40,5 +40,5 @@ It will provide:
 
 ## 📂 Project Structure
 CitySupport/
-│── Client/ # Contains frontend files (React.js + Material UI + Tailwind CSS)
-│── Server/ # Contains backend files (Node.js + Express + MongoDB)
+Client/ # Contains frontend files (React.js + Material UI + Tailwind CSS)
+Server/ # Contains backend files (Node.js + Express + MongoDB)
